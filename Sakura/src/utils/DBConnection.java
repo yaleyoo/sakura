@@ -10,75 +10,37 @@ import com.mysql.jdbc.Statement;
 
 public class DBConnection {
 
-    // For local setup, uncomment this line or, better, set the environment variable in your run configuration
-	//private static final String DB_CONNECTION = "jdbc:derby://localhost:1527/ebookshop;create=true";
-	private static final String DB_CONNECTION = "jdbc:mysql://www.yaleyoo.com:3306/sakura";
-	private static final String DB_USER = "sakura";
-	private static final String DB_PASSWORD = "sakura";
-
-
-    public static PreparedStatement prepare(String stm) {
-		 
-		PreparedStatement preparedStatement = null;
-		try {	
-	
-	       	 Connection dbConnection = getDBConnection();
-
-			preparedStatement = (PreparedStatement) dbConnection.prepareStatement(stm);
-
-			
-		} catch (SQLException e) {
-
-			System.out.println(e.getMessage());
-
-		
-		}
-
-		return preparedStatement;
-	}
-	private static Connection getDBConnection() {
-
-
-
+    private static String driverString = "com.mysql.jdbc.Driver";
+	private static String connectionString = "jdbc:mysql://www.yaleyoo.com:3306/sakura";
+	private static String username = "sakura";
+	private static String password = "sakura";
+	public static Connection getConnection() throws Exception {
+		Connection connection = null;
 		try {
-			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-
-			Connection dbConnection = (Connection) DriverManager.getConnection(
-                            DB_CONNECTION, DB_USER,DB_PASSWORD);
-			return dbConnection;
-
-		} catch (SQLException e) {
-
-			System.out.println(e.getMessage());
-
+			Class.forName(driverString);
+			connection = (Connection) DriverManager.getConnection(connectionString,username,password);
+		} catch (Exception e) {
+			throw e;
 		}
-		System.out.println("Connection problem");
-		return null;
-
+		return connection;
 	}
-
-    public static PreparedStatement prepare(String stm, int returnGeneratedKeys) {
-        PreparedStatement preparedStatement = null;
-        try {
-
-            Connection dbConnection = getDBConnection();
-
-            preparedStatement = (PreparedStatement) dbConnection.prepareStatement(stm, Statement.RETURN_GENERATED_KEYS);
-
-
-        } catch (SQLException e) {
-
-            System.out.println(e.getMessage());
-
-
-        }
-
-        return preparedStatement;
-    }
-    
-    /* test DB connection
-    public static void main(String[] args) throws Exception {
-		Connection conn = getDBConnection();
+	public static void closeStatement(Statement statement) throws Exception {
+		statement.close();
+	}
+	public static void closePreparedStatement(PreparedStatement pStatement)
+			throws Exception {
+		pStatement.close();
+	}
+	public static void closeResultSet(ResultSet resultSet) throws Exception {
+		resultSet.close();
+	}
+	public static void closeConnection(Connection connection) throws Exception {
+		connection.close();
+	}
+	
+	/* test the DB Connection
+	public static void main(String[] args) throws Exception {
+		Connection conn = DBUtil.getConnection();
 		System.out.println(conn);
 	}*/
 }
