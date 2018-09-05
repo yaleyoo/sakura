@@ -16,7 +16,7 @@
 	            background-size: cover;
 	            background-position: center center;">
 	            
-	            <button type="button" class="btn btn-info" style="
+	            <button onclick="javascript:location.href='viewRooms'" type="button" class="btn btn-info" style="
 	            width: 20%; margin: 40% 40% 0 40%; height:60px;">Book Your Room Now!</button>
 	    </div>
 	

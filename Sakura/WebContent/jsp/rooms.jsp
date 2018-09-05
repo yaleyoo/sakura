@@ -5,11 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../css/bootstrap.css">
+<link rel="stylesheet" href="css/bootstrap.css">
 </head>
 <body>
 	<%@include file="common/navi.jsp"%>
-
+	${requestScope['rooms']}
 
 	<style type="text/css">
 			html,body{
@@ -24,6 +24,6 @@
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
         
-        <script src="../js/bootstrap.js"></script>
+        <script src="js/bootstrap.js"></script>
 </body>
 </html>
