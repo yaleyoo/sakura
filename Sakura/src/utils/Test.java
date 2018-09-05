@@ -1,18 +1,24 @@
 package utils;
 
-import java.util.Date;
-
-import domain.Order;
-import service.OrderService;
+import domain.*;
+import service.*;
+import dataMapper.*;
 
 public class Test {
 
 	public static void main(String[] args) {
 		
-		Order o = new Order();
+		Room room = new Room();
+		room.setAvailable(1);
+		room.setName("spring1");
+		room.setType("single");
+		room.setPrice(300);
+		room.setBuildingId(1);
+		room.setRoomId(3);
 		
-		OrderService os = new OrderService();
-		System.out.println(o.getOrderId());
+		RoomMapper cs = new RoomMapper();
+		System.out.println(cs.findRoomByType(room).size());
+		
 	}
 
 }

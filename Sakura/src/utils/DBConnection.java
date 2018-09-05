@@ -2,8 +2,6 @@ package utils;
 
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
