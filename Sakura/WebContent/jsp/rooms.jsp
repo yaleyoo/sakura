@@ -31,7 +31,7 @@
   <div class="card-body">
     <h5 class="card-title">${room.name}</h5>
     <p class="card-text">${room.price}/day</p>
-    <a href="#" class="btn btn-primary">Book</a>
+    <!-- <a href="" class="btn btn-primary">Book</a>  -->
   </div>
 </div>
 </c:forEach>
