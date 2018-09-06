@@ -11,10 +11,10 @@ import domain.Customer;
 import utils.DBConnection;
 
 public class CustomerMapper {
-	private final String insertCustomer="INSERT INTO sakura.Customer "
-			+ "(customerId, firstname, lastname, title, identityNumber, identityType, number, email)"
-			+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 	public boolean insertCustomer(Customer customer) {
+		String insertCustomer="INSERT INTO sakura.Customer "
+				+ "(customerId, firstname, lastname, title, identityNumber, identityType, number, email)"
+				+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 		int result = 0;
 		try {
 			Connection conn = DBConnection.getConnection();
@@ -40,8 +40,8 @@ public class CustomerMapper {
 			return true;
 	}
 	
-	private final String deleteCustomerById = "DELETE FROM sakura.Customer WHERE customerId = ?";
 	public boolean deleteCustomer(Customer customer) {
+		String deleteCustomerById = "DELETE FROM sakura.Customer WHERE customerId = ?";
 		int result = 0;
 		try {
 			Connection conn = DBConnection.getConnection();
@@ -61,10 +61,10 @@ public class CustomerMapper {
 			return true;
 	}
 	
-	private final String updateCustomerById = "UPDATE sakura.Customer SET "
-			+ "firstname=?, lastname=?, title=?, identityNumber=?, identityType=?,"
-			+ " number=?, email=? WHERE customerId=?";
 	public boolean updateCustomer (Customer customer) {
+		String updateCustomerById = "UPDATE sakura.Customer SET "
+				+ "firstname=?, lastname=?, title=?, identityNumber=?, identityType=?,"
+				+ " number=?, email=? WHERE customerId=?";
 		int result = 0;
 		try {
 			Connection conn = DBConnection.getConnection();
@@ -91,8 +91,8 @@ public class CustomerMapper {
 			return true;
 	}
 	
-	private final String findCustomerById = "SELECT * from sakura.Customer WHERE customerId = ?";
 	public List<Customer> findCustomerById(Customer customer){
+		String findCustomerById = "SELECT * from sakura.Customer WHERE customerId = ?";
 		List<Customer> result = new ArrayList<Customer>();
 		try {
 			Connection conn = DBConnection.getConnection();

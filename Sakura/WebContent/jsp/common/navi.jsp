@@ -13,7 +13,7 @@
             </li>
            <li class="nav-item">
                 <a class="nav-link" href="viewRooms">
-                    Book a Room <span class="sr-only">(current)</span>
+                    Book A Room <span class="sr-only">(current)</span>
                 </a>
             </li>
             <li class="nav-item">

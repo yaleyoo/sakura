@@ -12,10 +12,10 @@ import domain.Order;
 import utils.DBConnection;
 
 public class OrderMapper {
-	private final String insertOrder="INSERT INTO sakura.Order "
-			+ "(orderId, roomId, customerId, checkIn, checkOut, createTime, sum, status)"
-			+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 	public boolean insertOrder(Order order) {
+		String insertOrder="INSERT INTO sakura.Order "
+				+ "(orderId, roomId, customerId, checkIn, checkOut, createTime, sum, status)"
+				+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 		int result = 0;
 		try {
 			Connection conn = DBConnection.getConnection();
@@ -41,8 +41,8 @@ public class OrderMapper {
 			return true;
 	}
 
-	private final String deleteOrderById = "DELETE FROM sakura.Order WHERE orderId = ?";
 	public boolean deleteOrder(Order order) {
+		String deleteOrderById = "DELETE FROM sakura.Order WHERE orderId = ?";
 		int result = 0;
 		try {
 			Connection conn = DBConnection.getConnection();
@@ -62,10 +62,10 @@ public class OrderMapper {
 			return true;
 	}
 
-	private final String updateOrderById = "UPDATE sakura.Order SET "
-			+ "roomId=?, customerId=?, checkIn=?, checkOut=?, createTime=?, sum=?, status=? "
-			+ "WHERE orderId=?";
 	public boolean updateOrder (Order order) {
+		String updateOrderById = "UPDATE sakura.Order SET "
+				+ "roomId=?, customerId=?, checkIn=?, checkOut=?, createTime=?, sum=?, status=? "
+				+ "WHERE orderId=?";
 		int result = 0;
 		try {
 			Connection conn = DBConnection.getConnection();
@@ -92,8 +92,8 @@ public class OrderMapper {
 			return true;
 	}
 	
-	private final String findOrderByOrderId = "SELECT * from sakura.Order WHERE orderId = ?";
 	public List<Order> findOrderByOrderId(Order order){
+		String findOrderByOrderId = "SELECT * from sakura.Order WHERE orderId = ?";
 		List<Order> result = new ArrayList<Order>();
 		try {
 			Connection conn = DBConnection.getConnection();
@@ -120,8 +120,8 @@ public class OrderMapper {
 		return result;
 	}
 	
-	private final String findOrderByRoomId = "SELECT * from sakura.Order WHERE roomId = ?";
 	public List<Order> findOrderByRoomId(Order order){
+		String findOrderByRoomId = "SELECT * from sakura.Order WHERE roomId = ?";
 		List<Order> result = new ArrayList<Order>();
 		try {
 			Connection conn = DBConnection.getConnection();
@@ -148,8 +148,8 @@ public class OrderMapper {
 		return result;
 	}
 	
-	private final String findOrderByCustomerId = "SELECT * from sakura.Order WHERE customerId = ?";
 	public List<Order> findOrderByCustomerId(Order order){
+		String findOrderByCustomerId = "SELECT * from sakura.Order WHERE customerId = ?";
 		List<Order> result = new ArrayList<Order>();
 		try {
 			Connection conn = DBConnection.getConnection();

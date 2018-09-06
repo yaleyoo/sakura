@@ -9,7 +9,6 @@ public class Test {
 	public static void main(String[] args) {
 		
 		Room room = new Room();
-		room.setAvailable(1);
 		room.setName("spring1");
 		room.setType("single");
 		room.setPrice(300);
