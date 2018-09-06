@@ -12,15 +12,19 @@ public class DBConnection {
 	private static String connectionString = "jdbc:mysql://www.yaleyoo.com:3306/sakura";
 	private static String username = "sakura";
 	private static String password = "sakura";
+	private static Connection connection = null;
 	public static Connection getConnection() throws Exception {
-		Connection connection = null;
-		try {
-			Class.forName(driverString);
-			connection = (Connection) DriverManager.getConnection(connectionString,username,password);
-		} catch (Exception e) {
-			throw e;
+		if (connection == null) {
+			try {
+				Class.forName(driverString);
+				connection = (Connection) DriverManager.getConnection(connectionString,username,password);
+			} catch (Exception e) {
+				throw e;
+			}
+			return connection;
 		}
-		return connection;
+		else
+			return connection;
 	}
 	public static void closeStatement(Statement statement) throws Exception {
 		statement.close();

@@ -101,12 +101,12 @@ public class BuildingMapper {
 				
 				//set room list
 				List<Room> roomList = new ArrayList<Room>();
-				RoomMapper rm = new RoomMapper();
-				Building tempBuilding = new Building();
-				tempBuilding.setBuildingId(buildingId);
-				Room tempRoom = new Room();
-				tempRoom.setBuilding(tempBuilding);
-				roomList = rm.findRoomByBuildingId(tempRoom);
+				//RoomMapper rm = new RoomMapper();
+				//Building tempBuilding = new Building();
+				//tempBuilding.setBuildingId(buildingId);
+				//Room tempRoom = new Room();
+				//tempRoom.setBuilding(tempBuilding);
+				//roomList = rm.findRoomByBuildingId(tempRoom);
 				b.setRoomList(roomList);
 				
 				result.add(b);
@@ -133,13 +133,13 @@ public class BuildingMapper {
 				b.setBuildingName(resultSet.getString(3));
 				//set room list
 				List<Room> roomList = new ArrayList<Room>();
-				RoomMapper rm = new RoomMapper();
-				Building tempBuilding = new Building();
-				tempBuilding.setBuildingId(buildingId);
-				Room tempRoom = new Room();
-				tempRoom.setBuilding(tempBuilding);
+				//RoomMapper rm = new RoomMapper();
+				//Building tempBuilding = new Building();
+				//tempBuilding.setBuildingId(buildingId);
+				//Room tempRoom = new Room();
+				//tempRoom.setBuilding(tempBuilding);
 				
-				roomList = rm.findRoomByBuildingId(tempRoom);
+				//roomList = rm.findRoomByBuildingId(tempRoom);
 				b.setRoomList(roomList);
 				
 				result.add(b);
