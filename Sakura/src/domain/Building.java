@@ -1,9 +1,12 @@
 package domain;
 
+import java.util.List;
+
 public class Building {
 	private int buildingId;
 	private String address;
 	private String buildingName;
+	private List<Room> roomList;
 	
 	public int getBuildingId() {
 		return buildingId;
@@ -22,6 +25,12 @@ public class Building {
 	}
 	public void setBuildingName(String buildingName) {
 		this.buildingName = buildingName;
+	}
+	public List<Room> getRoomList() {
+		return roomList;
+	}
+	public void setRoomList(List<Room> roomList) {
+		this.roomList = roomList;
 	}
 	
 	

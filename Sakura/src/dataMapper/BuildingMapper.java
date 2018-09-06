@@ -8,6 +8,7 @@ import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
 import domain.Building;
+import domain.Room;
 import utils.DBConnection;
 
 public class BuildingMapper {
@@ -93,9 +94,20 @@ public class BuildingMapper {
 			
 			while(resultSet.next()) {
 				Building b = new Building();
-				b.setBuildingId(resultSet.getInt(1));
+				int buildingId = resultSet.getInt(1);
+				b.setBuildingId(buildingId);
 				b.setAddress(resultSet.getString(2));
 				b.setBuildingName(resultSet.getString(3));
+				
+				//set room list
+				List<Room> roomList = new ArrayList<Room>();
+				RoomMapper rm = new RoomMapper();
+				Building tempBuilding = new Building();
+				tempBuilding.setBuildingId(buildingId);
+				Room tempRoom = new Room();
+				tempRoom.setBuilding(tempBuilding);
+				roomList = rm.findRoomByBuildingId(tempRoom);
+				b.setRoomList(roomList);
 				
 				result.add(b);
 			}
@@ -115,9 +127,20 @@ public class BuildingMapper {
 			
 			while(resultSet.next()) {
 				Building b = new Building();
-				b.setBuildingId(resultSet.getInt(1));
+				int buildingId = resultSet.getInt(1);
+				b.setBuildingId(buildingId);
 				b.setAddress(resultSet.getString(2));
 				b.setBuildingName(resultSet.getString(3));
+				//set room list
+				List<Room> roomList = new ArrayList<Room>();
+				RoomMapper rm = new RoomMapper();
+				Building tempBuilding = new Building();
+				tempBuilding.setBuildingId(buildingId);
+				Room tempRoom = new Room();
+				tempRoom.setBuilding(tempBuilding);
+				
+				roomList = rm.findRoomByBuildingId(tempRoom);
+				b.setRoomList(roomList);
 				
 				result.add(b);
 			}

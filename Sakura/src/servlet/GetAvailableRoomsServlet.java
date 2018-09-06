@@ -23,9 +23,9 @@ public class GetAvailableRoomsServlet extends HttpServlet{
 	}
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Date checkInTime = (Date)request.getAttribute("checkInTime");
-		Date checkOutTime = (Date)request.getAttribute("checkOutTime");
-		int buildingId = (Integer)request.getAttribute("building");
+		Date checkInTime = (Date)request.getAttribute("check_in_time");
+		Date checkOutTime = (Date)request.getAttribute("check_out_time");
+		int buildingId = (Integer)request.getAttribute("building_id");
 	
 		//response json for partially update
 		response.setContentType("application/json; charset=utf-8");

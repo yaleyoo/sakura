@@ -26,9 +26,9 @@ public class OrderService {
 	public List<Order> findOrder(Order order){
 		if (order.getOrderId() != 0)
 			return om.findOrderByOrderId(order);
-		else if (order.getRoomId() != 0)
+		else if (order.getRoom().getRoomId() != 0)
 			return om.findOrderByRoomId(order);
-		else if (order.getCustomerId() != 0)
+		else if (order.getCustomer().getCustomerId() != 0)
 			return om.findOrderByCustomerId(order);
 		else
 			return null;

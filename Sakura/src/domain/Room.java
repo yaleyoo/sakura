@@ -5,7 +5,7 @@ public class Room {
 	private String name;
 	private String type;
 	private float price;
-	private int buildingId;
+	private Building building;
 	
 	
 	public int getRoomId() {
@@ -32,12 +32,13 @@ public class Room {
 	public void setPrice(float price) {
 		this.price = price;
 	}
-	public int getBuildingId() {
-		return buildingId;
+	public Building getBuilding() {
+		return building;
 	}
-	public void setBuildingId(int buildingId) {
-		this.buildingId = buildingId;
+	public void setBuilding(Building building) {
+		this.building = building;
 	}
+	
 	
 	
 }

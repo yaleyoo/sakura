@@ -20,7 +20,7 @@ public class CheckOrderServlet extends HttpServlet{
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		/*
-		 * HERE we pretend user already logged in as customer.
+		 * HERE we pretend user already logged in as a customer.
 		 */
 		CustomerService cs = new CustomerService();
 		Customer c = new Customer();
@@ -32,6 +32,8 @@ public class CheckOrderServlet extends HttpServlet{
 		if (session.getAttribute("loggedCustomer") != null) {
 			Order order = new Order();
 			Customer logged = (Customer)session.getAttribute("loggedCustomer");
+			
+			request.setAttribute("order", order);
 		}
 		else {
 			// TODO: would redirect user to an error page

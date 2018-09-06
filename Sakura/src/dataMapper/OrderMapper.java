@@ -8,7 +8,10 @@ import java.util.List;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
+import domain.Customer;
 import domain.Order;
+import domain.Room;
+import domain.TimeRange;
 import utils.DBConnection;
 
 public class OrderMapper {
@@ -21,10 +24,10 @@ public class OrderMapper {
 			Connection conn = DBConnection.getConnection();
 			PreparedStatement pStatement = (PreparedStatement) conn.prepareStatement(insertOrder);
 			pStatement.setInt(1, order.getOrderId());
-			pStatement.setInt(2, order.getRoomId());
-			pStatement.setInt(3, order.getCustomerId());
-			pStatement.setDate(4, new Date(order.getCheckIn().getTime()));
-			pStatement.setDate(5, new Date(order.getCheckOut().getTime()));
+			pStatement.setInt(2, order.getRoom().getRoomId());
+			pStatement.setInt(3, order.getCustomer().getCustomerId());
+			pStatement.setDate(4, new Date(order.getTimerange().getCheckInTime().getTime()));
+			pStatement.setDate(5, new Date(order.getTimerange().getCheckOutTime().getTime()));
 			pStatement.setDate(6, new Date(order.getCreateTime().getTime()));
 			pStatement.setFloat(7, order.getSum());
 			pStatement.setString(8, order.getStatus());
@@ -70,10 +73,10 @@ public class OrderMapper {
 		try {
 			Connection conn = DBConnection.getConnection();
 			PreparedStatement pStatement = (PreparedStatement) conn.prepareStatement(updateOrderById);
-			pStatement.setInt(1, order.getRoomId());
-			pStatement.setInt(2, order.getCustomerId());
-			pStatement.setDate(3, new Date(order.getCheckIn().getTime()));
-			pStatement.setDate(4, new Date(order.getCheckOut().getTime()));
+			pStatement.setInt(1, order.getRoom().getRoomId());
+			pStatement.setInt(2, order.getCustomer().getCustomerId());
+			pStatement.setDate(3, new Date(order.getTimerange().getCheckInTime().getTime()));
+			pStatement.setDate(4, new Date(order.getTimerange().getCheckOutTime().getTime()));
 			pStatement.setDate(5, new Date(order.getCreateTime().getTime()));
 			pStatement.setFloat(6, order.getSum());
 			pStatement.setString(7, order.getStatus());
@@ -104,10 +107,22 @@ public class OrderMapper {
 			while(resultSet.next()) {
 				Order o = new Order();
 				o.setOrderId(resultSet.getInt(1));
-				o.setRoomId(resultSet.getInt(2));
-				o.setCustomerId(resultSet.getInt(3));
-				o.setCheckIn(resultSet.getDate(4));
-				o.setCheckOut(resultSet.getDate(5));
+				//set room
+				Room tempRoom = new Room();
+				tempRoom.setRoomId(resultSet.getInt(2));
+				RoomMapper rm = new RoomMapper();
+				o.setRoom(rm.findRoomById(tempRoom).get(0));
+				//set Customer
+				Customer tempCustomer = new Customer();
+				tempCustomer.setCustomerId(resultSet.getInt(3));
+				CustomerMapper cm = new CustomerMapper();
+				o.setCustomer(cm.findCustomerById(tempCustomer).get(0));
+				//set Timerange
+				TimeRange tempTR = new TimeRange();
+				tempTR.setCheckInTime(resultSet.getDate(4));
+				tempTR.setCheckOutTime(resultSet.getDate(5));
+				o.setTimerange(tempTR);
+				
 				o.setCreateTime(resultSet.getDate(6));
 				o.setSum(resultSet.getFloat(7));
 				o.setStatus(resultSet.getString(8));
@@ -126,16 +141,28 @@ public class OrderMapper {
 		try {
 			Connection conn = DBConnection.getConnection();
 			PreparedStatement pStatement = (PreparedStatement) conn.prepareStatement(findOrderByRoomId);
-			pStatement.setInt(1, order.getRoomId());
+			pStatement.setInt(1, order.getRoom().getRoomId());
 			ResultSet resultSet = pStatement.executeQuery();
 			
 			while(resultSet.next()) {
 				Order o = new Order();
 				o.setOrderId(resultSet.getInt(1));
-				o.setRoomId(resultSet.getInt(2));
-				o.setCustomerId(resultSet.getInt(3));
-				o.setCheckIn(resultSet.getDate(4));
-				o.setCheckOut(resultSet.getDate(5));
+				//set room
+				Room tempRoom = new Room();
+				tempRoom.setRoomId(resultSet.getInt(2));
+				RoomMapper rm = new RoomMapper();
+				o.setRoom(rm.findRoomById(tempRoom).get(0));
+				//set Customer
+				Customer tempCustomer = new Customer();
+				tempCustomer.setCustomerId(resultSet.getInt(3));
+				CustomerMapper cm = new CustomerMapper();
+				o.setCustomer(cm.findCustomerById(tempCustomer).get(0));
+				//set Timerange
+				TimeRange tempTR = new TimeRange();
+				tempTR.setCheckInTime(resultSet.getDate(4));
+				tempTR.setCheckOutTime(resultSet.getDate(5));
+				o.setTimerange(tempTR);
+				
 				o.setCreateTime(resultSet.getDate(6));
 				o.setSum(resultSet.getFloat(7));
 				o.setStatus(resultSet.getString(8));
@@ -154,16 +181,28 @@ public class OrderMapper {
 		try {
 			Connection conn = DBConnection.getConnection();
 			PreparedStatement pStatement = (PreparedStatement) conn.prepareStatement(findOrderByCustomerId);
-			pStatement.setInt(1, order.getCustomerId());
+			pStatement.setInt(1, order.getCustomer().getCustomerId());
 			ResultSet resultSet = pStatement.executeQuery();
 			
 			while(resultSet.next()) {
 				Order o = new Order();
 				o.setOrderId(resultSet.getInt(1));
-				o.setRoomId(resultSet.getInt(2));
-				o.setCustomerId(resultSet.getInt(3));
-				o.setCheckIn(resultSet.getDate(4));
-				o.setCheckOut(resultSet.getDate(5));
+				//set room
+				Room tempRoom = new Room();
+				tempRoom.setRoomId(resultSet.getInt(2));
+				RoomMapper rm = new RoomMapper();
+				o.setRoom(rm.findRoomById(tempRoom).get(0));
+				//set Customer
+				Customer tempCustomer = new Customer();
+				tempCustomer.setCustomerId(resultSet.getInt(3));
+				CustomerMapper cm = new CustomerMapper();
+				o.setCustomer(cm.findCustomerById(tempCustomer).get(0));
+				//set Timerange
+				TimeRange tempTR = new TimeRange();
+				tempTR.setCheckInTime(resultSet.getDate(4));
+				tempTR.setCheckOutTime(resultSet.getDate(5));
+				o.setTimerange(tempTR);
+				
 				o.setCreateTime(resultSet.getDate(6));
 				o.setSum(resultSet.getFloat(7));
 				o.setStatus(resultSet.getString(8));
