@@ -84,7 +84,7 @@ public class BookedRoomMapper {
 			return true;
 	}
 	
-	public List<BookedRoom> findAllBookedRoom(BookedRoom br){
+	public List<BookedRoom> findAllBookedRoom(){
 		String findAllBuilding = "SELECT * from sakura.BookedRoom";
 		List<BookedRoom> result = new ArrayList<BookedRoom>();
 		try {
@@ -94,6 +94,10 @@ public class BookedRoomMapper {
 			
 			while(resultSet.next()) {
 				BookedRoom b = new BookedRoom();
+				b.setBookedRoomId(resultSet.getInt(1));
+				b.setCheckInTime(resultSet.getDate(2));
+				b.setCheckOutTime(resultSet.getDate(3));
+				b.setRoomId(resultSet.getInt(4));
 				result.add(b);
 			}
 		} catch (Exception e) {

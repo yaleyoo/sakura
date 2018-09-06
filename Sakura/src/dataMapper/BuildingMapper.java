@@ -105,4 +105,26 @@ public class BuildingMapper {
 		return result;
 	}
 	
+	public List<Building> findAllBuilding(){
+		String findBuildingById = "SELECT * from sakura.Building";
+		List<Building> result = new ArrayList<Building>();
+		try {
+			Connection conn = DBConnection.getConnection();
+			PreparedStatement pStatement = (PreparedStatement) conn.prepareStatement(findBuildingById);
+			ResultSet resultSet = pStatement.executeQuery();
+			
+			while(resultSet.next()) {
+				Building b = new Building();
+				b.setBuildingId(resultSet.getInt(1));
+				b.setAddress(resultSet.getString(2));
+				b.setBuildingName(resultSet.getString(3));
+				
+				result.add(b);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
 }

@@ -159,4 +159,29 @@ public class RoomMapper {
 		return result;
 	}
 	
+	public List<Room> findRoomByBuildingId(Room room){
+		String findRoomByBuildingId = "SELECT * from sakura.Room WHERE buildingId = ?";
+		List<Room> result = new ArrayList<Room>();
+		try {
+			Connection conn = DBConnection.getConnection();
+			PreparedStatement pStatement = (PreparedStatement) conn.prepareStatement(findRoomByBuildingId);
+			pStatement.setInt(1, room.getBuildingId());
+			ResultSet resultSet = pStatement.executeQuery();
+			
+			while(resultSet.next()) {
+				Room r = new Room();
+				r.setRoomId(resultSet.getInt(1));
+				r.setName(resultSet.getString(2));
+				r.setType(resultSet.getString(3));
+				r.setPrice(resultSet.getFloat(4));
+				r.setBuildingId(resultSet.getInt(5));
+				
+				result.add(r);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
 }
