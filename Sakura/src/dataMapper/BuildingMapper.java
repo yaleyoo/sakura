@@ -1,0 +1,105 @@
+package dataMapper;
+
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.PreparedStatement;
+
+import domain.Building;
+import utils.DBConnection;
+
+public class BuildingMapper {
+
+	public boolean insertBuilding(Building building) {
+		String insertBuilding="INSERT INTO sakura.Building "
+				+ "(buildingId, address)"
+				+ " VALUES (?, ?);";
+		int result = 0;
+		try {
+			Connection conn = DBConnection.getConnection();
+			PreparedStatement pStatement = (PreparedStatement) conn.prepareStatement(insertBuilding);
+			pStatement.setInt(1, building.getBuildingId());
+			pStatement.setString(2, building.getAddress());
+			
+			result = pStatement.executeUpdate();
+			DBConnection.closePreparedStatement(pStatement);
+			DBConnection.closeConnection(conn);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if (result == 0)
+			return false;
+		else 
+			return true;
+	}
+	
+	public boolean deleteBuilding(Building building) {
+		String deleteBuildingById = "DELETE FROM sakura.Building WHERE buildingId = ?";
+		int result = 0;
+		try {
+			Connection conn = DBConnection.getConnection();
+			PreparedStatement pStatement = (PreparedStatement) conn.prepareStatement(deleteBuildingById);
+			pStatement.setInt(1, building.getBuildingId());
+			
+			result = pStatement.executeUpdate();
+			DBConnection.closePreparedStatement(pStatement);
+			DBConnection.closeConnection(conn);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if (result == 0)
+			return false;
+		else 
+			return true;
+	}
+	
+	public boolean updateBuilding (Building building) {
+		String updateBuildingById = "UPDATE sakura.Building SET "
+				+ "address=? "
+				+ " WHERE buildingId=?";
+		int result = 0;
+		try {
+			Connection conn = DBConnection.getConnection();
+			PreparedStatement pStatement = (PreparedStatement) conn.prepareStatement(updateBuildingById);
+			pStatement.setString(1, building.getAddress());
+			
+			pStatement.setInt(2, building.getBuildingId());
+			
+			result = pStatement.executeUpdate();
+			DBConnection.closePreparedStatement(pStatement);
+			DBConnection.closeConnection(conn);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if (result == 0)
+			return false;
+		else 
+			return true;
+	}
+	
+	public List<Building> findBuildingById(Building building){
+		String findBuildingById = "SELECT * from sakura.Building WHERE buildingId = ?";
+		List<Building> result = new ArrayList<Building>();
+		try {
+			Connection conn = DBConnection.getConnection();
+			PreparedStatement pStatement = (PreparedStatement) conn.prepareStatement(findBuildingById);
+			pStatement.setInt(1, building.getBuildingId());
+			ResultSet resultSet = pStatement.executeQuery();
+			
+			while(resultSet.next()) {
+				Building b = new Building();
+				b.setBuildingId(resultSet.getInt(1));
+				b.setAddress(resultSet.getString(2));
+				
+				result.add(b);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+}
