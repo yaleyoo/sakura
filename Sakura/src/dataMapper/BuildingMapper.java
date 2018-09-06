@@ -14,14 +14,15 @@ public class BuildingMapper {
 
 	public boolean insertBuilding(Building building) {
 		String insertBuilding="INSERT INTO sakura.Building "
-				+ "(buildingId, address)"
-				+ " VALUES (?, ?);";
+				+ "(buildingId, address, buildingName)"
+				+ " VALUES (?, ?, ?);";
 		int result = 0;
 		try {
 			Connection conn = DBConnection.getConnection();
 			PreparedStatement pStatement = (PreparedStatement) conn.prepareStatement(insertBuilding);
 			pStatement.setInt(1, building.getBuildingId());
 			pStatement.setString(2, building.getAddress());
+			pStatement.setString(3, building.getBuildingName());
 			
 			result = pStatement.executeUpdate();
 			DBConnection.closePreparedStatement(pStatement);
@@ -58,15 +59,16 @@ public class BuildingMapper {
 	
 	public boolean updateBuilding (Building building) {
 		String updateBuildingById = "UPDATE sakura.Building SET "
-				+ "address=? "
+				+ "address=?, buildingName=? "
 				+ " WHERE buildingId=?";
 		int result = 0;
 		try {
 			Connection conn = DBConnection.getConnection();
 			PreparedStatement pStatement = (PreparedStatement) conn.prepareStatement(updateBuildingById);
 			pStatement.setString(1, building.getAddress());
+			pStatement.setString(2, building.getBuildingName());
 			
-			pStatement.setInt(2, building.getBuildingId());
+			pStatement.setInt(3, building.getBuildingId());
 			
 			result = pStatement.executeUpdate();
 			DBConnection.closePreparedStatement(pStatement);
@@ -93,6 +95,7 @@ public class BuildingMapper {
 				Building b = new Building();
 				b.setBuildingId(resultSet.getInt(1));
 				b.setAddress(resultSet.getString(2));
+				b.setBuildingName(resultSet.getString(3));
 				
 				result.add(b);
 			}
