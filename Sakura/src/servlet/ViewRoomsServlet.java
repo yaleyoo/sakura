@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,11 +21,7 @@ public class ViewRoomsServlet extends HttpServlet{
 	}
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Date checkInTime = (Date)request.getAttribute("checkInTime");
-		Date checkOutTime = (Date)request.getAttribute("checkOutTime");
-		int buildingId = (Integer)request.getAttribute("building");
-		
-		request.setAttribute("rooms", rs.findAvailableRooms(checkInTime, checkOutTime, buildingId));
+		request.setAttribute("rooms", rs.findAllRooms());
 		request.getRequestDispatcher("/jsp/rooms.jsp").forward(request, response);
 	}
 	

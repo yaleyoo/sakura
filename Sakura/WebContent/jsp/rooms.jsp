@@ -10,44 +10,31 @@
 </head>
 <body>
 	<%@include file="common/navi.jsp"%>
-	<div class="card">
-	  <div class="card-body">
-	  <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Name</th>
-      <th scope="col">Type</th>
-      <th scope="col">Price</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
-	    <c:forEach var="room" items="${rooms}">
-			<c:out value="${room.name}"/></p>
-		</c:forEach>
-	  </div>
-	</div>
-	
+
+<nav class="navbar navbar-light bg-light">
+  <form class="form-inline text-center">
+    <input class="form-control mr-sm-2" type="search" placeholder="Check in time: yy-mm-dd hh:mm:ss" aria-label="Search">
+    <input class="form-control mr-sm-2" type="search" placeholder="Check out time: yy-mm-dd hh:mm:ss" aria-label="Search">
+	<select class="form-control" id="exampleFormControlSelect1">
+      <c:forEach var="building" items="${buildings}">
+      	<option>${building.name}</option>
+      </c:forEach>      
+    </select>
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</nav>	
+<c:forEach var="room" items="${rooms}">
+<div class="card text-center room-card">
+  <div class="card-header">
+    ${room.type}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">${room.name}</h5>
+    <p class="card-text">${room.price}/day</p>
+    <a href="#" class="btn btn-primary">Book</a>
+  </div>
+</div>
+</c:forEach>
 
 	<style type="text/css">
 			html,body{
@@ -56,6 +43,11 @@
 				margin:0;
 		    	padding:0;
 			}
+			
+			.room-card{
+				margin:20px;
+			}
+			
 		</style>
 		
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js"
