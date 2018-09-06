@@ -12,16 +12,19 @@ import javax.servlet.http.HttpServletResponse;
 import service.BuildingService;
 import service.RoomService;
 
-@WebServlet("/viewDatePicker")
-public class ViewDatePicker extends HttpServlet{
+@WebServlet("/viewRooms")
+public class ViewRooms extends HttpServlet{
 	BuildingService bs;
-	public ViewDatePicker() {
+	RoomService rs;
+	public ViewRooms() {
 		super();
 		bs = new BuildingService();
+		rs = new RoomService();
 	}
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setAttribute("buildings", bs.getAllBuildings());
+		request.setAttribute("rooms", rs.findAllRooms());
 		request.getRequestDispatcher("/jsp/rooms.jsp").forward(request, response);
 	}
 	

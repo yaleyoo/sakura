@@ -10,13 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import domain.Room;
+import net.sf.json.JSONObject;
 import service.RoomService;
 
-@WebServlet("/viewRooms")
-public class ViewRoomsServlet extends HttpServlet{
+@WebServlet("/getAvailableRooms")
+public class GetAvailableRoomsServlet extends HttpServlet{
 	private RoomService rs;
 	
-	public ViewRoomsServlet() {
+	public GetAvailableRoomsServlet() {
 		super();
 		rs = new RoomService();
 	}
@@ -25,9 +26,12 @@ public class ViewRoomsServlet extends HttpServlet{
 		Date checkInTime = (Date)request.getAttribute("checkInTime");
 		Date checkOutTime = (Date)request.getAttribute("checkOutTime");
 		int buildingId = (Integer)request.getAttribute("building");
-		
-		request.setAttribute("rooms", rs.findAvailableRooms(checkInTime, checkOutTime, buildingId));
-		request.getRequestDispatcher("/jsp/rooms.jsp").forward(request, response);
+	
+		//response json for partially update
+		response.setContentType("application/json; charset=utf-8");
+		JSONObject json = new JSONObject();
+		json.put("result", rs.findAvailableRooms(checkInTime, checkOutTime, buildingId));
+		response.getWriter().write(json.toString());;
 	}
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
