@@ -17,7 +17,7 @@
     <input class="form-control mr-sm-2" type="search" placeholder="Check out time: yy-mm-dd hh:mm:ss" aria-label="Search">
 	<select class="form-control" id="exampleFormControlSelect1">
       <c:forEach var="building" items="${buildings}">
-      	<option>${building.name}</option>
+      	<option>${building.buildingName}</option>
       </c:forEach>      
     </select>
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>

@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,20 +10,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import domain.Room;
+import net.sf.json.JSONObject;
 import service.RoomService;
 
-@WebServlet("/viewRooms")
-public class ViewRoomsServlet extends HttpServlet{
+@WebServlet("/getAvailableRooms")
+public class GetAvailableRoomsServlet extends HttpServlet{
 	private RoomService rs;
 	
-	public ViewRoomsServlet() {
+	public GetAvailableRoomsServlet() {
 		super();
 		rs = new RoomService();
 	}
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setAttribute("rooms", rs.findAllRooms());
-		request.getRequestDispatcher("/jsp/rooms.jsp").forward(request, response);
+		Date checkInTime = (Date)request.getAttribute("checkInTime");
+		Date checkOutTime = (Date)request.getAttribute("checkOutTime");
+		int buildingId = (Integer)request.getAttribute("building");
+	
+		//response json for partially update
+		response.setContentType("application/json; charset=utf-8");
+		JSONObject json = new JSONObject();
+		json.put("result", rs.findAvailableRooms(checkInTime, checkOutTime, buildingId));
+		response.getWriter().write(json.toString());;
+
 	}
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
