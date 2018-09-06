@@ -4,10 +4,9 @@ import java.util.Date;
 
 public class Order {
 	private int orderId;
-	private int roomId;
-	private int customerId;
-	private Date checkIn;
-	private Date checkOut;
+	private Room room;
+	private Customer customer;
+	private TimeRange timerange;
 	private Date createTime;
 	private float sum;
 	private String status;
@@ -17,30 +16,6 @@ public class Order {
 	}
 	public void setOrderId(int orderId) {
 		this.orderId = orderId;
-	}
-	public int getRoomId() {
-		return roomId;
-	}
-	public void setRoomId(int roomId) {
-		this.roomId = roomId;
-	}
-	public int getCustomerId() {
-		return customerId;
-	}
-	public void setCustomerId(int customerId) {
-		this.customerId = customerId;
-	}
-	public Date getCheckIn() {
-		return checkIn;
-	}
-	public void setCheckIn(Date checkIn) {
-		this.checkIn = checkIn;
-	}
-	public Date getCheckOut() {
-		return checkOut;
-	}
-	public void setCheckOut(Date checkOut) {
-		this.checkOut = checkOut;
 	}
 	public Date getCreateTime() {
 		return createTime;
@@ -60,6 +35,25 @@ public class Order {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	public Room getRoom() {
+		return room;
+	}
+	public void setRoom(Room room) {
+		this.room = room;
+	}
+	public Customer getCustomer() {
+		return customer;
+	}
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+	public TimeRange getTimerange() {
+		return timerange;
+	}
+	public void setTimerange(TimeRange timerage) {
+		this.timerange = timerage;
+	}
+	
 	
 	
 }

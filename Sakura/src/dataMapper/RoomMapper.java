@@ -7,6 +7,7 @@ import java.util.List;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
+import domain.Building;
 import domain.Room;
 import utils.DBConnection;
 
@@ -23,7 +24,7 @@ public class RoomMapper {
 			pStatement.setString(2, room.getName());
 			pStatement.setString(3, room.getType());
 			pStatement.setFloat(4, room.getPrice());
-			pStatement.setInt(5, room.getBuildingId());
+			pStatement.setInt(5, room.getBuilding().getBuildingId());
 			
 			result = pStatement.executeUpdate();
 			DBConnection.closePreparedStatement(pStatement);
@@ -69,7 +70,7 @@ public class RoomMapper {
 			pStatement.setString(1, room.getName());
 			pStatement.setString(2, room.getType());
 			pStatement.setFloat(3, room.getPrice());
-			pStatement.setInt(4, room.getBuildingId());
+			pStatement.setInt(4, room.getBuilding().getBuildingId());
 			
 			pStatement.setInt(5, room.getRoomId());
 			
@@ -99,7 +100,13 @@ public class RoomMapper {
 				r.setName(resultSet.getString(2));
 				r.setType(resultSet.getString(3));
 				r.setPrice(resultSet.getFloat(4));
-				r.setBuildingId(resultSet.getInt(5));
+				
+				//set room.building
+				int buildingId = resultSet.getInt(5);
+				BuildingMapper bm = new BuildingMapper();
+				Building b = new Building();
+				b.setBuildingId(buildingId);
+				r.setBuilding(bm.findBuildingById(b).get(0));
 				
 				result.add(r);
 			}
@@ -124,7 +131,12 @@ public class RoomMapper {
 				r.setName(resultSet.getString(2));
 				r.setType(resultSet.getString(3));
 				r.setPrice(resultSet.getFloat(4));
-				r.setBuildingId(resultSet.getInt(5));
+				//set room.building
+				int buildingId = resultSet.getInt(5);
+				BuildingMapper bm = new BuildingMapper();
+				Building b = new Building();
+				b.setBuildingId(buildingId);
+				r.setBuilding(bm.findBuildingById(b).get(0));
 				
 				result.add(r);
 			}
@@ -149,7 +161,12 @@ public class RoomMapper {
 				r.setName(resultSet.getString(2));
 				r.setType(resultSet.getString(3));
 				r.setPrice(resultSet.getFloat(4));
-				r.setBuildingId(resultSet.getInt(5));
+				//set room.building
+				int buildingId = resultSet.getInt(5);
+				BuildingMapper bm = new BuildingMapper();
+				Building b = new Building();
+				b.setBuildingId(buildingId);
+				r.setBuilding(bm.findBuildingById(b).get(0));
 				
 				result.add(r);
 			}
@@ -165,7 +182,7 @@ public class RoomMapper {
 		try {
 			Connection conn = DBConnection.getConnection();
 			PreparedStatement pStatement = (PreparedStatement) conn.prepareStatement(findRoomByBuildingId);
-			pStatement.setInt(1, room.getBuildingId());
+			pStatement.setInt(1, room.getBuilding().getBuildingId());
 			ResultSet resultSet = pStatement.executeQuery();
 			
 			while(resultSet.next()) {
@@ -174,7 +191,12 @@ public class RoomMapper {
 				r.setName(resultSet.getString(2));
 				r.setType(resultSet.getString(3));
 				r.setPrice(resultSet.getFloat(4));
-				r.setBuildingId(resultSet.getInt(5));
+				//set room.building
+				int buildingId = resultSet.getInt(5);
+				BuildingMapper bm = new BuildingMapper();
+				Building b = new Building();
+				b.setBuildingId(buildingId);
+				r.setBuilding(bm.findBuildingById(b).get(0));
 				
 				result.add(r);
 			}

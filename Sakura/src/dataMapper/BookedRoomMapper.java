@@ -9,6 +9,7 @@ import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
 import domain.BookedRoom;
+import domain.Room;
 import utils.DBConnection;
 
 public class BookedRoomMapper {
@@ -23,7 +24,7 @@ public class BookedRoomMapper {
 			pStatement.setInt(1, br.getBookedRoomId());
 			pStatement.setDate(2, new Date(br.getCheckInTime().getTime()));
 			pStatement.setDate(3, new Date(br.getCheckOutTime().getTime()));
-			pStatement.setInt(4, br.getRoomId());
+			pStatement.setInt(4, br.getRoom().getRoomId());
 			
 			result = pStatement.executeUpdate();
 			DBConnection.closePreparedStatement(pStatement);
@@ -68,7 +69,7 @@ public class BookedRoomMapper {
 			PreparedStatement pStatement = (PreparedStatement) conn.prepareStatement(updateBookedRoomById);
 			pStatement.setDate(1, new Date(br.getCheckInTime().getTime()));
 			pStatement.setDate(2, new Date(br.getCheckOutTime().getTime()));
-			pStatement.setInt(3, br.getRoomId());
+			pStatement.setInt(3, br.getRoom().getRoomId());
 			
 			pStatement.setInt(4, br.getBookedRoomId());
 			
@@ -97,7 +98,12 @@ public class BookedRoomMapper {
 				b.setBookedRoomId(resultSet.getInt(1));
 				b.setCheckInTime(resultSet.getDate(2));
 				b.setCheckOutTime(resultSet.getDate(3));
-				b.setRoomId(resultSet.getInt(4));
+				//set room
+				int roomId = resultSet.getInt(4);
+				Room r = new Room();
+				r.setRoomId(roomId);
+				RoomMapper rm = new RoomMapper();
+				b.setRoom(rm.findRoomById(r).get(0));
 				result.add(b);
 			}
 		} catch (Exception e) {
@@ -113,7 +119,7 @@ public class BookedRoomMapper {
 			Connection conn = DBConnection.getConnection();
 			PreparedStatement pStatement = (PreparedStatement) conn.prepareStatement(findBookedRoomByRoomId);
 
-			pStatement.setInt(1, br.getRoomId());
+			pStatement.setInt(1, br.getRoom().getRoomId());
 			ResultSet resultSet = pStatement.executeQuery();
 			
 			while(resultSet.next()) {

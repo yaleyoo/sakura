@@ -2,18 +2,10 @@ package domain;
 
 import java.util.Date;
 
-public class BookedRoom {
-	private int bookedRoomId;
+public class TimeRange {
 	private Date checkInTime;
 	private Date checkOutTime;
-	private Room room;
 	
-	public int getBookedRoomId() {
-		return bookedRoomId;
-	}
-	public void setBookedRoomId(int bookedRoomId) {
-		this.bookedRoomId = bookedRoomId;
-	}
 	public Date getCheckInTime() {
 		return checkInTime;
 	}
@@ -25,12 +17,6 @@ public class BookedRoom {
 	}
 	public void setCheckOutTime(Date checkOutTime) {
 		this.checkOutTime = checkOutTime;
-	}
-	public Room getRoom() {
-		return room;
-	}
-	public void setRoom(Room room) {
-		this.room = room;
 	}
 	
 	

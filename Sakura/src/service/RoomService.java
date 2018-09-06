@@ -8,6 +8,7 @@ import dataMapper.BookedRoomMapper;
 import dataMapper.BuildingMapper;
 import dataMapper.RoomMapper;
 import domain.BookedRoom;
+import domain.Building;
 import domain.Room;
 
 public class RoomService {
@@ -35,12 +36,14 @@ public class RoomService {
 			// or customer's intended check-out time after booked room's check-in time
 			if (!(temp.getCheckInTime().after(checkOutTime) 
 					||temp.getCheckOutTime().before(checkInTime))) {
-				unavailableRoomId.add(temp.getRoomId());
+				unavailableRoomId.add(temp.getRoom().getRoomId());
 			}
 		}
 		
 		Room room = new Room();
-		room.setBuildingId(buildingId);
+		Building building = new Building();
+		building.setBuildingId(buildingId);
+		room.setBuilding(building);
 		List<Room> availableRooms = rm.findRoomByBuildingId(room);
 		for (int i=0;i<availableRooms.size();i++) {
 			// if item is in unavailableRoom list, get rid of it
