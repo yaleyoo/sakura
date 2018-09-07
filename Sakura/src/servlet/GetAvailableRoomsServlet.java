@@ -42,9 +42,7 @@ public class GetAvailableRoomsServlet extends HttpServlet{
 		JSONObject json = new JSONObject();
 		json.put("result", rs.findAvailableRooms(checkInTime, checkOutTime, buildingId));
 		
-		System.out.println(json.get("result"));
-		response.getWriter().write(json.toString());;
-
+		response.getWriter().write(json.toString());
 	}
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
