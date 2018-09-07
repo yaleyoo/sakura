@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,7 +20,7 @@ import service.CustomerService;
 import service.OrderService;
 import service.RoomService;
 import utils.Parameters;
-
+@WebServlet("/placeOrder")
 public class OrderServlet extends HttpServlet{
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response)

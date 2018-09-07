@@ -8,6 +8,17 @@ public class BookedRoom {
 	private Date checkOutTime;
 	private Room room;
 	
+	public BookedRoom() {
+		
+	}
+	
+	public BookedRoom(int bookedRoomId, Date checkInTime, Date checkOutTime, Room room) {
+		this.bookedRoomId = bookedRoomId;
+		this.checkInTime = checkInTime;
+		this.checkOutTime = checkOutTime;
+		this.room = room;
+	}
+	
 	public int getBookedRoomId() {
 		return bookedRoomId;
 	}
