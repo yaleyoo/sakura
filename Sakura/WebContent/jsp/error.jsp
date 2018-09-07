@@ -4,15 +4,18 @@
 <html>
 	<head>
 	<meta charset="UTF-8">
-	<title>Sakura Hotel</title>
+	<title>Error - Sakura Hotel</title>
 	<link rel="stylesheet" href="css/bootstrap.css">
 	</head>
 	<body>
 		<%@include file="common/navi.jsp"%>
 		
-		<div class="alert alert-danger" role="alert" style="margin:30% 0;">
+		<div class="alert alert-danger" role="alert" style="margin:10%;width:80%;">
   			Something going wrong!
 		</div>
+		<button type="button" style="text-align: right; margin:0 10%;" 
+			class="btn btn-success" onclick="javascript:location.href='viewMain'">Return</button>
+		
 		
 		<style type="text/css">
 			html,body{

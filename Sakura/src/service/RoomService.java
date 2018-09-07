@@ -58,4 +58,8 @@ public class RoomService {
 	public List<Room> findRoomById(Room room){
 		return rm.findRoomById(room);
 	}
+	
+	public boolean insertBookedRoom(BookedRoom br) {
+		return brm.insertBookedRoom(br);
+	}
 }

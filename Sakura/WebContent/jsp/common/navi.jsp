@@ -8,7 +8,7 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="viewMain">
                     Home <span class="sr-only">(current)</span>
                 </a>
             </li>
@@ -19,10 +19,10 @@
             </li>
             <li class="nav-item">
             <a class="nav-link" href="getAvailableRooms?check_in_time=2018-09-08 19:00:00&check_out_time=2018-09-08 19:00:00&building_id=1">
-            	<c:if test = "${sessionScope.customer != null}">
-            		Hello, ${sessionScope.customer.firstname}</span>
+            	<c:if test = "${sessionScope.loggedCustomer != null}">
+            		Hello, ${sessionScope.loggedCustomer.firstname}</span>
             	</c:if>
-            	<c:if test = "${sessionScope.customer == null}">
+            	<c:if test = "${sessionScope.loggedCustomer == null}">
             		LOGIN</span>
             	</c:if>
             	
