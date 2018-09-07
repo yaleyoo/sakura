@@ -1,7 +1,7 @@
 package dataMapper;
 
-import java.sql.Date;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +22,8 @@ public class BookedRoomMapper {
 			Connection conn = DBConnection.getConnection();
 			PreparedStatement pStatement = (PreparedStatement) conn.prepareStatement(insertBookedRoom);
 			pStatement.setInt(1, br.getBookedRoomId());
-			pStatement.setDate(2, new Date(br.getCheckInTime().getTime()));
-			pStatement.setDate(3, new Date(br.getCheckOutTime().getTime()));
+			pStatement.setTimestamp(2, new Timestamp(br.getCheckInTime().getTime()));
+			pStatement.setTimestamp(3, new Timestamp(br.getCheckOutTime().getTime()));
 			pStatement.setInt(4, br.getRoom().getRoomId());
 			
 			result = pStatement.executeUpdate();
@@ -67,8 +67,8 @@ public class BookedRoomMapper {
 		try {
 			Connection conn = DBConnection.getConnection();
 			PreparedStatement pStatement = (PreparedStatement) conn.prepareStatement(updateBookedRoomById);
-			pStatement.setDate(1, new Date(br.getCheckInTime().getTime()));
-			pStatement.setDate(2, new Date(br.getCheckOutTime().getTime()));
+			pStatement.setTimestamp(1, new Timestamp(br.getCheckInTime().getTime()));
+			pStatement.setTimestamp(2, new Timestamp(br.getCheckOutTime().getTime()));
 			pStatement.setInt(3, br.getRoom().getRoomId());
 			
 			pStatement.setInt(4, br.getBookedRoomId());

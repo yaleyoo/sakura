@@ -1,7 +1,7 @@
 package dataMapper;
 
-import java.sql.Date;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,9 +26,9 @@ public class OrderMapper {
 			pStatement.setInt(1, order.getOrderId());
 			pStatement.setInt(2, order.getRoom().getRoomId());
 			pStatement.setInt(3, order.getCustomer().getCustomerId());
-			pStatement.setDate(4, new Date(order.getTimerange().getCheckInTime().getTime()));
-			pStatement.setDate(5, new Date(order.getTimerange().getCheckOutTime().getTime()));
-			pStatement.setDate(6, new Date(order.getCreateTime().getTime()));
+			pStatement.setTimestamp(4, new Timestamp(order.getTimerange().getCheckInTime().getTime()));
+			pStatement.setTimestamp(5, new Timestamp(order.getTimerange().getCheckOutTime().getTime()));
+			pStatement.setTimestamp(6, new Timestamp(order.getCreateTime().getTime()));
 			pStatement.setFloat(7, order.getSum());
 			pStatement.setString(8, order.getStatus());
 			
@@ -75,9 +75,9 @@ public class OrderMapper {
 			PreparedStatement pStatement = (PreparedStatement) conn.prepareStatement(updateOrderById);
 			pStatement.setInt(1, order.getRoom().getRoomId());
 			pStatement.setInt(2, order.getCustomer().getCustomerId());
-			pStatement.setDate(3, new Date(order.getTimerange().getCheckInTime().getTime()));
-			pStatement.setDate(4, new Date(order.getTimerange().getCheckOutTime().getTime()));
-			pStatement.setDate(5, new Date(order.getCreateTime().getTime()));
+			pStatement.setTimestamp(3, new Timestamp(order.getTimerange().getCheckInTime().getTime()));
+			pStatement.setTimestamp(4, new Timestamp(order.getTimerange().getCheckOutTime().getTime()));
+			pStatement.setTimestamp(5, new Timestamp(order.getCreateTime().getTime()));
 			pStatement.setFloat(6, order.getSum());
 			pStatement.setString(7, order.getStatus());
 			

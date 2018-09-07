@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,10 +12,14 @@ import service.BuildingService;
 import service.RoomService;
 
 @WebServlet("/viewRooms")
-public class ViewRooms extends HttpServlet{
+public class ViewRoomsServlet extends HttpServlet{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	BuildingService bs;
 	RoomService rs;
-	public ViewRooms() {
+	public ViewRoomsServlet() {
 		super();
 		bs = new BuildingService();
 		rs = new RoomService();

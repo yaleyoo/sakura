@@ -23,6 +23,11 @@ import utils.Parameters;
 @WebServlet("/checkOrder")
 public class CheckOrderServlet extends HttpServlet{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
@@ -92,6 +97,7 @@ public class CheckOrderServlet extends HttpServlet{
 	
 	public void init() throws ServletException {
 	}
+	
 	public void destroy() {
 		super.destroy(); 
 	}

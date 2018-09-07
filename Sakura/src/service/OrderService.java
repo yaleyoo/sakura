@@ -2,16 +2,17 @@ package service;
 
 import java.util.List;
 
+import dataMapper.BookedRoomMapper;
 import dataMapper.OrderMapper;
 import domain.BookedRoom;
 import domain.Order;
 
 public class OrderService {
 	private OrderMapper om;
-	private RoomService rs;
+	private BookedRoomMapper rm;
 	public OrderService() {
 		om = new OrderMapper();
-		rs = new RoomService();
+		rm = new BookedRoomMapper();
 	}
 	
 	public boolean insertOrder(Order order) {
@@ -20,7 +21,10 @@ public class OrderService {
 		br.setCheckInTime(order.getTimerange().getCheckInTime());
 		br.setCheckOutTime(order.getTimerange().getCheckOutTime());
 		br.setRoom(order.getRoom());
-		result = rs.insertBookedRoom(br);
+		
+		result = rm.insertBookedRoom(br);
+		if (!result)
+			return result;
 		result = om.insertOrder(order);
 		
 		return result;

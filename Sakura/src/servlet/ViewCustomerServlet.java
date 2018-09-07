@@ -8,12 +8,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/viewMain")
-public class MainServlet extends HttpServlet {
+@WebServlet("/viewCustomer")
+public class ViewCustomerServlet extends HttpServlet{
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.getRequestDispatcher("index.jsp").forward(request, response);
@@ -25,6 +27,7 @@ public class MainServlet extends HttpServlet {
 	
 	public void init() throws ServletException {
 	}
+	
 	public void destroy() {
 		super.destroy(); 
 	}
