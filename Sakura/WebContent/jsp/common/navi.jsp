@@ -17,7 +17,7 @@
                 </a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="getAvailableRooms?check_in_time=2018-09-08 19:00:00&check_out_time=2018-09-08 19:00:00&building_id=1">
             	Hello, ${sessionScope.customer.firstname}</span>
             </a>
             </li>

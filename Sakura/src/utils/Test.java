@@ -2,11 +2,16 @@ package utils;
 
 import domain.*;
 import service.*;
+import servlet.GetAvailableRoomsServlet;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import dataMapper.*;
 
@@ -31,8 +36,6 @@ public class Test {
 //			e.printStackTrace();
 //		}
 		
-		System.out.println(rs.findAllRooms().size());
-        System.out.println("ss");
 		
 	}
 
