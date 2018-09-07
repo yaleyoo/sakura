@@ -30,7 +30,7 @@
   </div>
   <div class="card-body">
     <h5 class="card-title">${room.name}</h5>
-    <p class="card-text">${room.price}/day</p>
+    <p class="card-text">$${room.price}/day</p>
     <!-- <a href="checkOrder?checkIn=dd&&checkOut=dd&&roomId=ff" class="btn btn-primary">Book</a>  -->
   </div>
 </div>

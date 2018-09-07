@@ -54,4 +54,8 @@ public class RoomService {
 		
 		return availableRooms;
 	}
+	
+	public List<Room> findRoomById(Room room){
+		return rm.findRoomById(room);
+	}
 }
