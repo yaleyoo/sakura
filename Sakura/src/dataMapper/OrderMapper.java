@@ -119,11 +119,11 @@ public class OrderMapper {
 				o.setCustomer(cm.findCustomerById(tempCustomer).get(0));
 				//set Timerange
 				TimeRange tempTR = new TimeRange();
-				tempTR.setCheckInTime(resultSet.getDate(4));
-				tempTR.setCheckOutTime(resultSet.getDate(5));
+				tempTR.setCheckInTime(resultSet.getTimestamp(4));
+				tempTR.setCheckOutTime(resultSet.getTimestamp(5));
 				o.setTimerange(tempTR);
 				
-				o.setCreateTime(resultSet.getDate(6));
+				o.setCreateTime(resultSet.getTimestamp(6));
 				o.setSum(resultSet.getFloat(7));
 				o.setStatus(resultSet.getString(8));
 				
@@ -159,11 +159,11 @@ public class OrderMapper {
 				o.setCustomer(cm.findCustomerById(tempCustomer).get(0));
 				//set Timerange
 				TimeRange tempTR = new TimeRange();
-				tempTR.setCheckInTime(resultSet.getDate(4));
-				tempTR.setCheckOutTime(resultSet.getDate(5));
+				tempTR.setCheckInTime(resultSet.getTimestamp(4));
+				tempTR.setCheckOutTime(resultSet.getTimestamp(5));
 				o.setTimerange(tempTR);
 				
-				o.setCreateTime(resultSet.getDate(6));
+				o.setCreateTime(resultSet.getTimestamp(6));
 				o.setSum(resultSet.getFloat(7));
 				o.setStatus(resultSet.getString(8));
 				
@@ -199,11 +199,11 @@ public class OrderMapper {
 				o.setCustomer(cm.findCustomerById(tempCustomer).get(0));
 				//set Timerange
 				TimeRange tempTR = new TimeRange();
-				tempTR.setCheckInTime(resultSet.getDate(4));
-				tempTR.setCheckOutTime(resultSet.getDate(5));
+				tempTR.setCheckInTime(resultSet.getTimestamp(4));
+				tempTR.setCheckOutTime(resultSet.getTimestamp(5));
 				o.setTimerange(tempTR);
 				
-				o.setCreateTime(resultSet.getDate(6));
+				o.setCreateTime(resultSet.getTimestamp(6));
 				o.setSum(resultSet.getFloat(7));
 				o.setStatus(resultSet.getString(8));
 				

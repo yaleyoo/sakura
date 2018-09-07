@@ -1,5 +1,6 @@
 package service;
 
+import java.security.Policy.Parameters;
 import java.util.List;
 
 import dataMapper.BookedRoomMapper;
@@ -30,8 +31,17 @@ public class OrderService {
 		return result;
 	}
 	
-	public boolean deleteOrder(Order order) {
-		return om.deleteOrder(order);
+	public boolean cancelOrder(Order order) {
+		boolean result = true;
+		BookedRoom br = new BookedRoom();
+		br.setOrderId(order.getOrderId());
+		result = rm.deleteBookedRoomByOrderId(br);
+		
+		if (!result)
+			return result;
+		
+		order.setStatus(utils.Parameters.CANCEL);
+		return om.updateOrder(order);
 	}
 	
 	public boolean updateOrder(Order order) {
@@ -41,12 +51,24 @@ public class OrderService {
 	public List<Order> findOrder(Order order){
 		if (order.getOrderId() != 0)
 			return om.findOrderByOrderId(order);
-		else if (order.getRoom().getRoomId() != 0)
+		else if (order.getRoom() != null)
 			return om.findOrderByRoomId(order);
-		else if (order.getCustomer().getCustomerId() != 0)
+		else if (order.getCustomer() != null)
 			return om.findOrderByCustomerId(order);
 		else
 			return null;
+	}
+	
+	public boolean deleteOrder(Order order) {
+		boolean result = true;
+		BookedRoom br = new BookedRoom();
+		br.setOrderId(order.getOrderId());
+		result = rm.deleteBookedRoomByOrderId(br);
+		
+		if (!result)
+			return result;
+		
+		return om.deleteOrder(order);
 	}
 	
 }

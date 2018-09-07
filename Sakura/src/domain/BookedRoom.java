@@ -7,6 +7,7 @@ public class BookedRoom {
 	private Date checkInTime;
 	private Date checkOutTime;
 	private Room room;
+	private int orderId;
 	
 	public BookedRoom() {
 		
@@ -42,6 +43,14 @@ public class BookedRoom {
 	}
 	public void setRoom(Room room) {
 		this.room = room;
+	}
+
+	public int getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
 	}
 	
 	

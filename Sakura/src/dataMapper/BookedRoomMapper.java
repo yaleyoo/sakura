@@ -15,8 +15,8 @@ import utils.DBConnection;
 public class BookedRoomMapper {
 	public boolean insertBookedRoom(BookedRoom br) {
 		String insertBookedRoom="INSERT INTO sakura.BookedRoom "
-				+ "(bookedRoomId, checkInTime, checkOutTime, roomId)"
-				+ " VALUES (?, ?, ?, ?);";
+				+ "(bookedRoomId, checkInTime, checkOutTime, roomId, orderId)"
+				+ " VALUES (?, ?, ?, ?, ?);";
 		int result = 0;
 		try {
 			Connection conn = DBConnection.getConnection();
@@ -25,6 +25,7 @@ public class BookedRoomMapper {
 			pStatement.setTimestamp(2, new Timestamp(br.getCheckInTime().getTime()));
 			pStatement.setTimestamp(3, new Timestamp(br.getCheckOutTime().getTime()));
 			pStatement.setInt(4, br.getRoom().getRoomId());
+			pStatement.setInt(5, br.getOrderId());
 			
 			result = pStatement.executeUpdate();
 			DBConnection.closePreparedStatement(pStatement);
@@ -59,9 +60,30 @@ public class BookedRoomMapper {
 			return true;
 	}
 	
+	public boolean deleteBookedRoomByOrderId(BookedRoom br) {
+		String deleteBookedRoomById = "DELETE FROM sakura.BookedRoom WHERE orderId = ?";
+		int result = 0;
+		try {
+			Connection conn = DBConnection.getConnection();
+			PreparedStatement pStatement = (PreparedStatement) conn.prepareStatement(deleteBookedRoomById);
+			pStatement.setInt(1, br.getOrderId());
+			
+			result = pStatement.executeUpdate();
+			DBConnection.closePreparedStatement(pStatement);
+			DBConnection.closeConnection(conn);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if (result == 0)
+			return false;
+		else 
+			return true;
+	}
+	
 	public boolean updateBookedRoom (BookedRoom br) {
 		String updateBookedRoomById = "UPDATE sakura.BookedRoom SET "
-				+ "checkInTime=?, checkOutTime=?, roomId=? "
+				+ "checkInTime=?, checkOutTime=?, roomId=?, orderId=? "
 				+ " WHERE bookedRoomId=?";
 		int result = 0;
 		try {
@@ -70,8 +92,9 @@ public class BookedRoomMapper {
 			pStatement.setTimestamp(1, new Timestamp(br.getCheckInTime().getTime()));
 			pStatement.setTimestamp(2, new Timestamp(br.getCheckOutTime().getTime()));
 			pStatement.setInt(3, br.getRoom().getRoomId());
+			pStatement.setInt(4, br.getOrderId());
 			
-			pStatement.setInt(4, br.getBookedRoomId());
+			pStatement.setInt(5, br.getBookedRoomId());
 			
 			result = pStatement.executeUpdate();
 			DBConnection.closePreparedStatement(pStatement);
@@ -96,14 +119,16 @@ public class BookedRoomMapper {
 			while(resultSet.next()) {
 				BookedRoom b = new BookedRoom();
 				b.setBookedRoomId(resultSet.getInt(1));
-				b.setCheckInTime(resultSet.getDate(2));
-				b.setCheckOutTime(resultSet.getDate(3));
+				b.setCheckInTime(resultSet.getTimestamp(2));
+				b.setCheckOutTime(resultSet.getTimestamp(3));
 				//set room
 				int roomId = resultSet.getInt(4);
 				Room r = new Room();
 				r.setRoomId(roomId);
 				RoomMapper rm = new RoomMapper();
 				b.setRoom(rm.findRoomById(r).get(0));
+				
+				b.setOrderId(resultSet.getInt(5));
 				result.add(b);
 			}
 		} catch (Exception e) {
@@ -124,6 +149,17 @@ public class BookedRoomMapper {
 			
 			while(resultSet.next()) {
 				BookedRoom b = new BookedRoom();
+				b.setBookedRoomId(resultSet.getInt(1));
+				b.setCheckInTime(resultSet.getTimestamp(2));
+				b.setCheckOutTime(resultSet.getTimestamp(3));
+				//set room
+				int roomId = resultSet.getInt(4);
+				Room r = new Room();
+				r.setRoomId(roomId);
+				RoomMapper rm = new RoomMapper();
+				b.setRoom(rm.findRoomById(r).get(0));
+				
+				b.setOrderId(resultSet.getInt(5));
 				result.add(b);
 			}
 		} catch (Exception e) {

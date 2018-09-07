@@ -8,33 +8,40 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import service.BuildingService;
-import service.RoomService;
+import domain.Order;
+import service.OrderService;
 
-@WebServlet("/viewRooms")
-public class ViewRoomsServlet extends HttpServlet{
+
+@WebServlet("/cancelOrder")
+public class CancelOrderServlet extends HttpServlet{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	BuildingService bs;
-	RoomService rs;
+	private OrderService os;
+
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setAttribute("buildings", bs.getAllBuildings());
-		request.setAttribute("rooms", rs.findAllRooms());
-		request.getRequestDispatcher("/jsp/rooms.jsp").forward(request, response);
+		int orderId = Integer.parseInt(request.getParameter("order_id"));
+		Order order = new Order();
+		order.setOrderId(orderId);
+		order = os.findOrder(order).get(0);
+		boolean result = os.cancelOrder(order);
+		
+		if (result)
+			request.getRequestDispatcher("/jsp/successOrder.jsp").forward(request, response);
+		else
+			request.getRequestDispatcher("/jsp/error.jsp").forward(request, response);
 	}
-	
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
 	}
 	
 	public void init() throws ServletException {
-		bs = new BuildingService();
-		rs = new RoomService();
+		os = new OrderService();
 	}
+	
 	public void destroy() {
 		super.destroy(); 
 	}
