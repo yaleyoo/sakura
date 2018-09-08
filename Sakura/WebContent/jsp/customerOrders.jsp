@@ -23,7 +23,7 @@
 					</li>
 					<li class="list-group-item">
 						<span class="prefix">Building Address: </span>
-						<span class="label label-success"> ${order.room.building.address}  </span>
+						<span class="label label-success">${order.room.building.address}</span>
 					</li>
 					<li class="list-group-item">
 						<span class="prefix">Building Name: </span>

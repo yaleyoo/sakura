@@ -5,22 +5,28 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <div class="collapse navbar-collapse order-1" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
                 <a class="nav-link" href="viewMain">
-                    Home <span class="sr-only"></span>
+                    <i class="iconfont">&#xe600;</i>&nbsp;Home <span class="sr-only"></span>
                 </a>
             </li>
-           <li class="nav-item">
+           <li class="nav-item ml-3">
                 <a class="nav-link" href="viewRooms">
-                    Book A Room <span class="sr-only"></span>
+                    <i class="iconfont">&#xe601;</i>&nbsp;Book A Room <span class="sr-only"></span>
                 </a>
             </li>
-            <li class="nav-item">
+            
+        </ul>
+    </div>
+    
+    <div class="navbar-collapse collapse order-2">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item ml-3">
             <c:if test = "${sessionScope.loggedCustomer != null}">
 	            <a class="nav-link" href="viewCustomer">
-	            	Hello, ${sessionScope.loggedCustomer.firstname}</span>
+	            	Hello, ${sessionScope.loggedCustomer.firstname} <i class="iconfont">&#xe674;</i></span>
 	            </a>	
             </c:if>
            	<c:if test = "${sessionScope.loggedCustomer == null}">
@@ -33,3 +39,20 @@
         </ul>
     </div>
 </nav>
+
+<style type="text/css">
+@font-face {
+  font-family: 'iconfont';  /* project id 828466 */
+  src: url('//at.alicdn.com/t/font_828466_occazemv8d.eot');
+  src: url('//at.alicdn.com/t/font_828466_occazemv8d.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_828466_occazemv8d.woff') format('woff'),
+  url('//at.alicdn.com/t/font_828466_occazemv8d.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_828466_occazemv8d.svg#iconfont') format('svg');
+}
+.iconfont{
+    font-family:"iconfont" !important;
+    font-size:16px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;}
+</style>

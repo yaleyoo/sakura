@@ -4,6 +4,7 @@ import domain.*;
 import service.*;
 import servlet.GetAvailableRoomsServlet;
 
+import java.lang.reflect.InvocationTargetException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -17,7 +18,7 @@ import dataMapper.*;
 
 public class Test {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, ClassNotFoundException {
 		
 		
 //		RoomService rs = new RoomService();
@@ -36,7 +37,8 @@ public class Test {
 //			e.printStackTrace();
 //		}
 //		
-	
+		//A a = (A)Class.forName("utils.B").getConstructor().newInstance();
+		//a.print();
 	}
 
 }
