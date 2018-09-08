@@ -1,9 +1,5 @@
 package domain;
 
-import java.util.Date;
-
-import utils.UnitOfWork;
-
 public class BookedRoom extends DomainObject{
 	private int bookedRoomId;
 	private TimeRange timeRange;

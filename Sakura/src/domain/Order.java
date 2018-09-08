@@ -2,8 +2,6 @@ package domain;
 
 import java.util.Date;
 
-import utils.UnitOfWork;
-
 public class Order extends DomainObject{
 	private int orderId;
 	private Room room;
@@ -24,8 +22,6 @@ public class Order extends DomainObject{
 		this.timerange = timerange;
 		this.sum = sum;
 		this.status = status;
-		
-		
 	}
 	
 	public int getOrderId() {
@@ -36,6 +32,9 @@ public class Order extends DomainObject{
 		
 	}
 	public Date getCreateTime() {
+		if (this.createTime == null)
+			load();
+		
 		return createTime;
 	}
 	public void setCreateTime(Date createTime) {
@@ -50,6 +49,8 @@ public class Order extends DomainObject{
 		
 	}
 	public String getStatus() {
+		if (this.status == null)
+			load();
 		return status;
 	}
 	public void setStatus(String status) {
@@ -71,10 +72,31 @@ public class Order extends DomainObject{
 		
 	}
 	public TimeRange getTimerange() {
+		if (this.timerange == null)
+			load();
 		return timerange;
 	}
 	public void setTimerange(TimeRange timerage) {
 		this.timerange = timerage;
+		
+	}
+	
+	/*
+	 * Using lazy load to reduce the amount of data that read to the memory
+	 */
+	private void load() {
+		dataMapper.OrderMapper  om = new dataMapper.OrderMapper();
+		Order record = om.findOrderByOrderId(this).get(0);
+		
+		if (this.createTime == null) {
+			this.createTime = record.getCreateTime();
+		}
+		if (this.status == null) {
+			this.status = record.getStatus();
+		}
+		if (this.timerange == null) {
+			this.timerange = record.getTimerange();
+		}
 		
 	}
 	

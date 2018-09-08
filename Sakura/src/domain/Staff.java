@@ -1,7 +1,5 @@
 package domain;
 
-import utils.UnitOfWork;
-
 public class Staff extends DomainObject{
 	private int staffId;
 	private String firstname;

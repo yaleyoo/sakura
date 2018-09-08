@@ -1,7 +1,5 @@
 package domain;
 
-import utils.UnitOfWork;
-
 public class Customer extends DomainObject{
 	private int customerId;
 	private String firstname;

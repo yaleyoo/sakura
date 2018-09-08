@@ -3,7 +3,6 @@ package service;
 import java.util.ArrayList;
 import java.util.List;
 
-import dataMapper.BookedRoomMapper;
 import dataMapper.OrderMapper;
 import domain.BookedRoom;
 import domain.Order;
@@ -13,10 +12,8 @@ import utils.UnitOfWork;
 
 public class OrderService {
 	private OrderMapper om;
-	private BookedRoomMapper rm;
 	public OrderService() {
 		om = new OrderMapper();
-		rm = new BookedRoomMapper();
 	}
 	
 	public boolean insertOrder(Order order) {

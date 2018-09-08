@@ -1,7 +1,5 @@
 package domain;
 
-import utils.UnitOfWork;
-
 public class Room extends DomainObject{
 	private int roomId;
 	private String name;
@@ -50,13 +48,26 @@ public class Room extends DomainObject{
 		
 	}
 	public Building getBuilding() {
+		if (this.building == null)
+			load();
 		return building;
 	}
 	public void setBuilding(Building building) {
 		this.building = building;
 		
 	}
-	
+	/*
+	 * Using lazy load to reduce the amount of data that read to the memory
+	 */
+	private void load() {
+		dataMapper.RoomMapper  rm = new dataMapper.RoomMapper();
+		Room record = rm.findRoomById(this).get(0);
+		
+		if (this.building == null) {
+			this.building = record.getBuilding();
+		}
+		
+	}
 	
 	
 	

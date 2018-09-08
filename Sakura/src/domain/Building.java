@@ -2,8 +2,6 @@ package domain;
 
 import java.util.List;
 
-import utils.UnitOfWork;
-
 public class Building extends DomainObject{
 	private int buildingId;
 	private String address;
@@ -44,10 +42,24 @@ public class Building extends DomainObject{
 		
 	}
 	public List<Room> getRoomList() {
+		if (this.roomList == null)
+			load();
 		return roomList;
 	}
 	public void setRoomList(List<Room> roomList) {
 		this.roomList = roomList;
+		
+	}
+	/*
+	 * Using lazy load to reduce the amount of data that read to the memory
+	 */
+	private void load() {
+		dataMapper.BuildingMapper  bm = new dataMapper.BuildingMapper();
+		Building record = bm.findBuildingById(this).get(0);
+		
+		if (this.roomList == null) {
+			this.roomList = record.getRoomList();
+		}
 		
 	}
 	
