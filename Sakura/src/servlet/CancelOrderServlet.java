@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,7 +27,18 @@ public class CancelOrderServlet extends HttpServlet{
 		Order order = new Order();
 		order.setOrderId(orderId);
 		order = os.findOrder(order).get(0);
-		boolean result = os.cancelOrder(order);
+		boolean result = true;
+		
+		// can only cancel order in 2 days before the check in date.
+		Date now = new Date();
+		if (order.getTimerange().getCheckInTime().getDate() - now.getDate() < 2) {
+			result = false;
+		}
+		if (!result) {
+			request.getRequestDispatcher("/jsp/error.jsp").forward(request, response);
+			return;
+		}
+		result = os.cancelOrder(order);
 		
 		if (result)
 			request.getRequestDispatcher("/jsp/successOrder.jsp").forward(request, response);
