@@ -21,17 +21,17 @@ public class OrderService {
 	
 	public boolean insertOrder(Order order) {
 		boolean result = true;
-		BookedRoom br = new BookedRoom();
-		br.setCheckInTime(order.getTimerange().getCheckInTime());
-		br.setCheckOutTime(order.getTimerange().getCheckOutTime());
-		br.setRoom(order.getRoom());
-		br.setOrderId(order.getOrderId());
 		
-		result = rm.insertBookedRoom(br);
-		if (!result)
-			return result;
-		result = om.insertOrder(order);
+		TimeRange tr = order.getTimerange();
+		Room room = order.getRoom();
+		int orderId = order.getOrderId();
+		BookedRoom br = new BookedRoom(tr, room, orderId);
 		
+		UnitOfWork.newCurrent();
+		UnitOfWork.getCurrent().registerNew(br);
+		UnitOfWork.getCurrent().registerNew(order);
+		
+		result = UnitOfWork.getCurrent().commit();
 		return result;
 	}
 	
@@ -39,17 +39,21 @@ public class OrderService {
 		boolean result = true;
 		BookedRoom br = new BookedRoom();
 		br.setOrderId(order.getOrderId());
-		result = rm.deleteBookedRoomByOrderId(br);
 		
-		if (!result)
-			return result;
-		
+		UnitOfWork.newCurrent();
+		UnitOfWork.getCurrent().registerDeleted(br);
+				
 		order.setStatus(utils.Parameters.CANCEL);
-		return om.updateOrder(order);
+		UnitOfWork.getCurrent().registerDirty(order);
+		
+		result = UnitOfWork.getCurrent().commit();
+		return result;
 	}
 	
 	public boolean updateOrder(Order order) {
-		return om.updateOrder(order);
+		UnitOfWork.newCurrent();
+		UnitOfWork.getCurrent().registerDirty(order);
+		return UnitOfWork.getCurrent().commit();
 	}
 	
 	public List<Order> findOrder(Order order){
@@ -78,12 +82,13 @@ public class OrderService {
 		boolean result = true;
 		BookedRoom br = new BookedRoom();
 		br.setOrderId(order.getOrderId());
-		result = rm.deleteBookedRoomByOrderId(br);
 		
-		if (!result)
-			return result;
+		UnitOfWork.newCurrent();
+		UnitOfWork.getCurrent().registerDeleted(br);
+		UnitOfWork.getCurrent().registerDeleted(order);
 		
-		return om.deleteOrder(order);
+		result = UnitOfWork.getCurrent().commit();
+		return result;
 	}
 	
 }

@@ -58,87 +58,98 @@ public boolean checkIfInList(DomainObject obj) {
 	 return false;
 }
 
-public void commit()  {
-	//boolean addResult = true;
-	//boolean updateResult = true;
-	//boolean deleteResult = true;
+public boolean commit()  {
+	boolean addResult = true;
+	boolean updateResult = true;
+	boolean deleteResult = true;
 	//deal with new objects
 	for(DomainObject obj: newObjects) {
+		if(!addResult) {
+			return false;
+		}
 		switch(obj.getClass().getSimpleName()) {			
 			case "BookedRoom":
 				BookedRoomMapper brm = new BookedRoomMapper();
-				brm.insertBookedRoom((BookedRoom)obj);
+				addResult = brm.insertBookedRoom((BookedRoom)obj);
 				break;
 			case "Building":
 				BuildingMapper bm = new BuildingMapper();
-				bm.insertBuilding((Building)obj);
+				addResult = bm.insertBuilding((Building)obj);
 				break;
 			case "Customer":
 				CustomerMapper cm = new CustomerMapper();
-				cm.insertCustomer((Customer)obj);
+				addResult = cm.insertCustomer((Customer)obj);
 				break;
 			case "Order":
 				OrderMapper om = new OrderMapper();
-				om.insertOrder((Order)obj);
+				addResult = om.insertOrder((Order)obj);
 				break;
 			case "Room":
 				RoomMapper rm = new RoomMapper();
-				rm.insertRoom((Room)obj);
+				addResult = rm.insertRoom((Room)obj);
 				break;
 		}		
 	}
 	
 	//deal with dirty objects
 	for(DomainObject obj: dirtyObjects) {
+		if(!updateResult) {
+			return false;
+		}
 		switch(obj.getClass().getSimpleName()) {			
 		case "BookedRoom":
 			BookedRoomMapper brm = new BookedRoomMapper();
-			brm.updateBookedRoom((BookedRoom)obj);
+			updateResult = brm.updateBookedRoom((BookedRoom)obj);
 			break;
 		case "Building":
 			BuildingMapper bm = new BuildingMapper();
-			bm.updateBuilding((Building)obj);
+			updateResult = bm.updateBuilding((Building)obj);
 			break;
 		case "Customer":
 			CustomerMapper cm = new CustomerMapper();
-			cm.updateCustomer((Customer)obj);
+			updateResult = cm.updateCustomer((Customer)obj);
 			break;
 		case "Order":
 			OrderMapper om = new OrderMapper();
-			om.updateOrder((Order)obj);
+			updateResult = om.updateOrder((Order)obj);
 			break;
 		case "Room":
 			RoomMapper rm = new RoomMapper();
-			rm.updateRoom((Room)obj);
+			updateResult = rm.updateRoom((Room)obj);
 			break;
 		}
 	}
 	
 	//deal with deleted objects
 	for(DomainObject obj: deletedObjects) {
+		if(!deleteResult) {
+			return false;
+		}
 		switch(obj.getClass().getSimpleName()) {			
 		case "BookedRoom":
 			BookedRoomMapper brm = new BookedRoomMapper();
-			brm.deleteBookedRoom((BookedRoom)obj);
+			deleteResult = brm.deleteBookedRoom((BookedRoom)obj);
 			break;
 		case "Building":
 			BuildingMapper bm = new BuildingMapper();
-			bm.deleteBuilding((Building)obj);
+			deleteResult = bm.deleteBuilding((Building)obj);
 			break;
 		case "Customer":
 			CustomerMapper cm = new CustomerMapper();
-			cm.deleteCustomer((Customer)obj);
+			deleteResult = cm.deleteCustomer((Customer)obj);
 			break;
 		case "Order":
 			OrderMapper om = new OrderMapper();
-			om.deleteOrder((Order)obj);
+			deleteResult = om.deleteOrder((Order)obj);
 			break;
 		case "Room":
 			RoomMapper rm = new RoomMapper();
-			rm.deleteRoom((Room)obj);
+			deleteResult = rm.deleteRoom((Room)obj);
 			break;
 		}
 	}
+	
+	return true;
 }
 	
 }

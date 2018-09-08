@@ -9,6 +9,7 @@ import dataMapper.RoomMapper;
 import domain.BookedRoom;
 import domain.Building;
 import domain.Room;
+import utils.UnitOfWork;
 
 public class RoomService {
 	private RoomMapper rm;
@@ -66,6 +67,8 @@ public class RoomService {
 	}
 	
 	public boolean insertBookedRoom(BookedRoom br) {
-		return brm.insertBookedRoom(br);
+		UnitOfWork.newCurrent();
+		UnitOfWork.getCurrent().registerNew(br);
+		return UnitOfWork.getCurrent().commit();
 	}
 }
