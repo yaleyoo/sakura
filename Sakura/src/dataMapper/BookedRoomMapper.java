@@ -11,6 +11,7 @@ import com.mysql.jdbc.PreparedStatement;
 import domain.BookedRoom;
 import domain.Room;
 import utils.DBConnection;
+import utils.IdentityMap;
 
 public class BookedRoomMapper {
 	public boolean insertBookedRoom(BookedRoom br) {
@@ -118,6 +119,9 @@ public class BookedRoomMapper {
 			
 			while(resultSet.next()) {
 				BookedRoom b = new BookedRoom();
+				//adapting IDENTITY MAP, get identityMap for Room.
+				IdentityMap<BookedRoom> identityMap = IdentityMap.getInstance(b);
+				
 				b.setBookedRoomId(resultSet.getInt(1));
 				b.setCheckInTime(resultSet.getTimestamp(2));
 				b.setCheckOutTime(resultSet.getTimestamp(3));
@@ -129,6 +133,9 @@ public class BookedRoomMapper {
 				b.setRoom(rm.findRoomById(r).get(0));
 				
 				b.setOrderId(resultSet.getInt(5));
+				//put Room Object b in the identity map
+				identityMap.put(b.getBookedRoomId(), b);
+				
 				result.add(b);
 			}
 		} catch (Exception e) {
@@ -149,6 +156,9 @@ public class BookedRoomMapper {
 			
 			while(resultSet.next()) {
 				BookedRoom b = new BookedRoom();
+				//adapting IDENTITY MAP, get identityMap for Room.
+				IdentityMap<BookedRoom> identityMap = IdentityMap.getInstance(b);
+				
 				b.setBookedRoomId(resultSet.getInt(1));
 				b.setCheckInTime(resultSet.getTimestamp(2));
 				b.setCheckOutTime(resultSet.getTimestamp(3));
@@ -160,6 +170,9 @@ public class BookedRoomMapper {
 				b.setRoom(rm.findRoomById(r).get(0));
 				
 				b.setOrderId(resultSet.getInt(5));
+				//put Room Object b in the identity map
+				identityMap.put(b.getBookedRoomId(), b);
+				
 				result.add(b);
 			}
 		} catch (Exception e) {

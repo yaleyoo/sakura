@@ -106,6 +106,9 @@ public class OrderMapper {
 			
 			while(resultSet.next()) {
 				Order o = new Order();
+				//get Identity Map for Order
+				utils.IdentityMap<Order> identityMap = utils.IdentityMap.getInstance(o);
+				
 				o.setOrderId(resultSet.getInt(1));
 				//set room
 				Room tempRoom = new Room();
@@ -126,6 +129,9 @@ public class OrderMapper {
 				o.setCreateTime(resultSet.getTimestamp(6));
 				o.setSum(resultSet.getFloat(7));
 				o.setStatus(resultSet.getString(8));
+				
+				//put order into identity map
+				identityMap.put(o.getOrderId(), o);
 				
 				result.add(o);
 			}
@@ -146,6 +152,9 @@ public class OrderMapper {
 			
 			while(resultSet.next()) {
 				Order o = new Order();
+				//get Identity Map for Order
+				utils.IdentityMap<Order> identityMap = utils.IdentityMap.getInstance(o);
+				
 				o.setOrderId(resultSet.getInt(1));
 				//set room
 				Room tempRoom = new Room();
@@ -166,6 +175,9 @@ public class OrderMapper {
 				o.setCreateTime(resultSet.getTimestamp(6));
 				o.setSum(resultSet.getFloat(7));
 				o.setStatus(resultSet.getString(8));
+				
+				//put order into identity map
+				identityMap.put(o.getOrderId(), o);
 				
 				result.add(o);
 			}
@@ -186,6 +198,9 @@ public class OrderMapper {
 			
 			while(resultSet.next()) {
 				Order o = new Order();
+				//get Identity Map for Order
+				utils.IdentityMap<Order> identityMap = utils.IdentityMap.getInstance(o);
+				
 				o.setOrderId(resultSet.getInt(1));
 				//set room
 				Room tempRoom = new Room();
@@ -206,6 +221,9 @@ public class OrderMapper {
 				o.setCreateTime(resultSet.getTimestamp(6));
 				o.setSum(resultSet.getFloat(7));
 				o.setStatus(resultSet.getString(8));
+				
+				//put order into identity map
+				identityMap.put(o.getOrderId(), o);
 				
 				result.add(o);
 			}

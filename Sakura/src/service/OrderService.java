@@ -1,6 +1,6 @@
 package service;
 
-import java.security.Policy.Parameters;
+import java.util.ArrayList;
 import java.util.List;
 
 import dataMapper.BookedRoomMapper;
@@ -22,6 +22,7 @@ public class OrderService {
 		br.setCheckInTime(order.getTimerange().getCheckInTime());
 		br.setCheckOutTime(order.getTimerange().getCheckOutTime());
 		br.setRoom(order.getRoom());
+		br.setOrderId(order.getOrderId());
 		
 		result = rm.insertBookedRoom(br);
 		if (!result)
@@ -49,8 +50,19 @@ public class OrderService {
 	}
 	
 	public List<Order> findOrder(Order order){
-		if (order.getOrderId() != 0)
+		if (order.getOrderId() != 0) {
+			//search identity map first
+			utils.IdentityMap<Order> identityMap = utils.IdentityMap.getInstance(order);
+			Order order_inMap = identityMap.get(order.getOrderId());
+			//if object is found
+			if (order_inMap != null) {
+				List<Order> result = new ArrayList<Order>();
+				result.add(order_inMap);
+				return result;
+			}
+			//if object is not found in identity map, fetch from DB
 			return om.findOrderByOrderId(order);
+		}
 		else if (order.getRoom() != null)
 			return om.findOrderByRoomId(order);
 		else if (order.getCustomer() != null)
