@@ -1,7 +1,7 @@
 package dataMapper;
 
-import java.sql.Date;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,9 +26,9 @@ public class OrderMapper {
 			pStatement.setInt(1, order.getOrderId());
 			pStatement.setInt(2, order.getRoom().getRoomId());
 			pStatement.setInt(3, order.getCustomer().getCustomerId());
-			pStatement.setDate(4, new Date(order.getTimerange().getCheckInTime().getTime()));
-			pStatement.setDate(5, new Date(order.getTimerange().getCheckOutTime().getTime()));
-			pStatement.setDate(6, new Date(order.getCreateTime().getTime()));
+			pStatement.setTimestamp(4, new Timestamp(order.getTimerange().getCheckInTime().getTime()));
+			pStatement.setTimestamp(5, new Timestamp(order.getTimerange().getCheckOutTime().getTime()));
+			pStatement.setTimestamp(6, new Timestamp(order.getCreateTime().getTime()));
 			pStatement.setFloat(7, order.getSum());
 			pStatement.setString(8, order.getStatus());
 			
@@ -75,9 +75,9 @@ public class OrderMapper {
 			PreparedStatement pStatement = (PreparedStatement) conn.prepareStatement(updateOrderById);
 			pStatement.setInt(1, order.getRoom().getRoomId());
 			pStatement.setInt(2, order.getCustomer().getCustomerId());
-			pStatement.setDate(3, new Date(order.getTimerange().getCheckInTime().getTime()));
-			pStatement.setDate(4, new Date(order.getTimerange().getCheckOutTime().getTime()));
-			pStatement.setDate(5, new Date(order.getCreateTime().getTime()));
+			pStatement.setTimestamp(3, new Timestamp(order.getTimerange().getCheckInTime().getTime()));
+			pStatement.setTimestamp(4, new Timestamp(order.getTimerange().getCheckOutTime().getTime()));
+			pStatement.setTimestamp(5, new Timestamp(order.getCreateTime().getTime()));
 			pStatement.setFloat(6, order.getSum());
 			pStatement.setString(7, order.getStatus());
 			
@@ -106,6 +106,9 @@ public class OrderMapper {
 			
 			while(resultSet.next()) {
 				Order o = new Order();
+				//get Identity Map for Order
+				utils.IdentityMap<Order> identityMap = utils.IdentityMap.getInstance(o);
+				
 				o.setOrderId(resultSet.getInt(1));
 				//set room
 				Room tempRoom = new Room();
@@ -119,13 +122,16 @@ public class OrderMapper {
 				o.setCustomer(cm.findCustomerById(tempCustomer).get(0));
 				//set Timerange
 				TimeRange tempTR = new TimeRange();
-				tempTR.setCheckInTime(resultSet.getDate(4));
-				tempTR.setCheckOutTime(resultSet.getDate(5));
+				tempTR.setCheckInTime(resultSet.getTimestamp(4));
+				tempTR.setCheckOutTime(resultSet.getTimestamp(5));
 				o.setTimerange(tempTR);
 				
-				o.setCreateTime(resultSet.getDate(6));
+				o.setCreateTime(resultSet.getTimestamp(6));
 				o.setSum(resultSet.getFloat(7));
 				o.setStatus(resultSet.getString(8));
+				
+				//put order into identity map
+				identityMap.put(o.getOrderId(), o);
 				
 				result.add(o);
 			}
@@ -146,6 +152,9 @@ public class OrderMapper {
 			
 			while(resultSet.next()) {
 				Order o = new Order();
+				//get Identity Map for Order
+				utils.IdentityMap<Order> identityMap = utils.IdentityMap.getInstance(o);
+				
 				o.setOrderId(resultSet.getInt(1));
 				//set room
 				Room tempRoom = new Room();
@@ -159,13 +168,16 @@ public class OrderMapper {
 				o.setCustomer(cm.findCustomerById(tempCustomer).get(0));
 				//set Timerange
 				TimeRange tempTR = new TimeRange();
-				tempTR.setCheckInTime(resultSet.getDate(4));
-				tempTR.setCheckOutTime(resultSet.getDate(5));
+				tempTR.setCheckInTime(resultSet.getTimestamp(4));
+				tempTR.setCheckOutTime(resultSet.getTimestamp(5));
 				o.setTimerange(tempTR);
 				
-				o.setCreateTime(resultSet.getDate(6));
+				o.setCreateTime(resultSet.getTimestamp(6));
 				o.setSum(resultSet.getFloat(7));
 				o.setStatus(resultSet.getString(8));
+				
+				//put order into identity map
+				identityMap.put(o.getOrderId(), o);
 				
 				result.add(o);
 			}
@@ -186,6 +198,9 @@ public class OrderMapper {
 			
 			while(resultSet.next()) {
 				Order o = new Order();
+				//get Identity Map for Order
+				utils.IdentityMap<Order> identityMap = utils.IdentityMap.getInstance(o);
+				
 				o.setOrderId(resultSet.getInt(1));
 				//set room
 				Room tempRoom = new Room();
@@ -199,13 +214,16 @@ public class OrderMapper {
 				o.setCustomer(cm.findCustomerById(tempCustomer).get(0));
 				//set Timerange
 				TimeRange tempTR = new TimeRange();
-				tempTR.setCheckInTime(resultSet.getDate(4));
-				tempTR.setCheckOutTime(resultSet.getDate(5));
+				tempTR.setCheckInTime(resultSet.getTimestamp(4));
+				tempTR.setCheckOutTime(resultSet.getTimestamp(5));
 				o.setTimerange(tempTR);
 				
-				o.setCreateTime(resultSet.getDate(6));
+				o.setCreateTime(resultSet.getTimestamp(6));
 				o.setSum(resultSet.getFloat(7));
 				o.setStatus(resultSet.getString(8));
+				
+				//put order into identity map
+				identityMap.put(o.getOrderId(), o);
 				
 				result.add(o);
 			}

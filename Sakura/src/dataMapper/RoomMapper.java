@@ -10,6 +10,7 @@ import com.mysql.jdbc.PreparedStatement;
 import domain.Building;
 import domain.Room;
 import utils.DBConnection;
+import utils.IdentityMap;
 
 public class RoomMapper {
 	public boolean insertRoom(Room room) {
@@ -96,6 +97,8 @@ public class RoomMapper {
 			
 			while(resultSet.next()) {
 				Room r = new Room();
+				//adapting IDENTITY MAP, get identityMap for Room.
+				IdentityMap<Room> identityMap = IdentityMap.getInstance(r);
 				r.setRoomId(resultSet.getInt(1));
 				r.setName(resultSet.getString(2));
 				r.setType(resultSet.getString(3));
@@ -107,6 +110,9 @@ public class RoomMapper {
 				Building b = new Building();
 				b.setBuildingId(buildingId);
 				r.setBuilding(bm.findBuildingById(b).get(0));
+				
+				//put Room Object r in the identity map
+				identityMap.put(r.getRoomId(), r);
 				
 				result.add(r);
 			}
@@ -127,6 +133,8 @@ public class RoomMapper {
 			
 			while(resultSet.next()) {
 				Room r = new Room();
+				//adapting IDENTITY MAP, get identityMap for Room.
+				IdentityMap<Room> identityMap = IdentityMap.getInstance(r);
 				r.setRoomId(resultSet.getInt(1));
 				r.setName(resultSet.getString(2));
 				r.setType(resultSet.getString(3));
@@ -137,6 +145,9 @@ public class RoomMapper {
 				Building b = new Building();
 				b.setBuildingId(buildingId);
 				r.setBuilding(bm.findBuildingById(b).get(0));
+				
+				//put Room Object r in the identity map
+				identityMap.put(r.getRoomId(), r);
 				
 				result.add(r);
 			}
@@ -157,6 +168,8 @@ public class RoomMapper {
 			
 			while(resultSet.next()) {
 				Room r = new Room();
+				//adapting IDENTITY MAP, get identityMap for Room.
+				IdentityMap<Room> identityMap = IdentityMap.getInstance(r);
 				r.setRoomId(resultSet.getInt(1));
 				r.setName(resultSet.getString(2));
 				r.setType(resultSet.getString(3));
@@ -167,6 +180,9 @@ public class RoomMapper {
 				Building b = new Building();
 				b.setBuildingId(buildingId);
 				r.setBuilding(bm.findBuildingById(b).get(0));
+				
+				//put Room Object r in the identity map
+				identityMap.put(r.getRoomId(), r);
 				
 				result.add(r);
 			}
@@ -187,6 +203,8 @@ public class RoomMapper {
 			
 			while(resultSet.next()) {
 				Room r = new Room();
+				//adapting IDENTITY MAP, get identityMap for Room.
+				IdentityMap<Room> identityMap = IdentityMap.getInstance(r);
 				r.setRoomId(resultSet.getInt(1));
 				r.setName(resultSet.getString(2));
 				r.setType(resultSet.getString(3));
@@ -197,6 +215,10 @@ public class RoomMapper {
 				Building b = new Building();
 				b.setBuildingId(buildingId);
 				r.setBuilding(bm.findBuildingById(b).get(0));
+				
+				//put Room Object r in the identity map
+				identityMap.put(r.getRoomId(), r);
+				
 				
 				result.add(r);
 			}

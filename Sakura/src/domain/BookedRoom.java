@@ -7,6 +7,18 @@ public class BookedRoom extends DomainObject{
 	private Date checkInTime;
 	private Date checkOutTime;
 	private Room room;
+	private int orderId;
+	
+	public BookedRoom() {
+		
+	}
+	
+	public BookedRoom(int bookedRoomId, Date checkInTime, Date checkOutTime, Room room) {
+		this.bookedRoomId = bookedRoomId;
+		this.checkInTime = checkInTime;
+		this.checkOutTime = checkOutTime;
+		this.room = room;
+	}
 	
 	public int getBookedRoomId() {
 		return bookedRoomId;
@@ -31,6 +43,14 @@ public class BookedRoom extends DomainObject{
 	}
 	public void setRoom(Room room) {
 		this.room = room;
+	}
+
+	public int getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
 	}
 	
 	

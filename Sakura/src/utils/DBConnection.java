@@ -7,24 +7,25 @@ import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
 
 public class DBConnection {
-
+	private static ThreadLocal<Connection> current = new ThreadLocal<Connection>();
     private static String driverString = "com.mysql.jdbc.Driver";
 	private static String connectionString = "jdbc:mysql://www.yaleyoo.com:3306/sakura";
 	private static String username = "sakura";
 	private static String password = "sakura";
-	private static Connection connection = null;
 	public static Connection getConnection() throws Exception {
-		if (connection == null) {
+		Connection connection;
+		if (current.get() == null) {
 			try {
 				Class.forName(driverString);
 				connection = (Connection) DriverManager.getConnection(connectionString,username,password);
 			} catch (Exception e) {
 				throw e;
 			}
+			current.set(connection);
 			return connection;
 		}
 		else
-			return connection;
+			return current.get();
 	}
 	public static void closeStatement(Statement statement) throws Exception {
 		statement.close();
@@ -38,6 +39,7 @@ public class DBConnection {
 	}
 	public static void closeConnection(Connection connection) throws Exception {
 		connection.close();
+		current.set(null);
 	}
 	
 	/* test the DB Connection

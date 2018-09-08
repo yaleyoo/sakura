@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 
 import dataMapper.BookedRoomMapper;
-import dataMapper.BuildingMapper;
 import dataMapper.RoomMapper;
 import domain.BookedRoom;
 import domain.Building;
@@ -13,11 +12,9 @@ import domain.Room;
 
 public class RoomService {
 	private RoomMapper rm;
-	private BuildingMapper bm;
 	private BookedRoomMapper brm;
 	public RoomService() {
 		rm = new RoomMapper();
-		bm = new BuildingMapper();
 		brm = new BookedRoomMapper();
 	}
 	
@@ -27,7 +24,7 @@ public class RoomService {
 	
 	public List<Room> findAvailableRooms(Date checkInTime, Date checkOutTime, int buildingId){
 		List<BookedRoom> allBookedRooms = brm.findAllBookedRoom();
-		// a list for unavilable room id
+		// a list for unavailable room id
 		List<Integer> unavailableRoomId = new ArrayList<Integer>();;
 		
 		for (int i=0;i<allBookedRooms.size();i++) {
@@ -56,6 +53,19 @@ public class RoomService {
 	}
 	
 	public List<Room> findRoomById(Room room){
+		//search Identity Map first
+		utils.IdentityMap<Room> identityMap = utils.IdentityMap.getInstance(room);
+		Room room_inMap = identityMap.get(room.getRoomId());
+		//if object in identity map
+		if (room_inMap != null) {
+			List<Room> result = new ArrayList<Room>();
+			result.add(room_inMap);
+			return result;
+		}
 		return rm.findRoomById(room);
+	}
+	
+	public boolean insertBookedRoom(BookedRoom br) {
+		return brm.insertBookedRoom(br);
 	}
 }

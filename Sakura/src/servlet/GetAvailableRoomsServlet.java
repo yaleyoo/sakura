@@ -11,12 +11,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import domain.Room;
 import net.sf.json.JSONObject;
 import service.RoomService;
 
 @WebServlet("/getAvailableRooms")
 public class GetAvailableRoomsServlet extends HttpServlet{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private RoomService rs;
 	
 	public GetAvailableRoomsServlet() {
