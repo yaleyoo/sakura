@@ -23,8 +23,8 @@ public class BookedRoomMapper {
 			Connection conn = DBConnection.getConnection();
 			PreparedStatement pStatement = (PreparedStatement) conn.prepareStatement(insertBookedRoom);
 			pStatement.setInt(1, br.getBookedRoomId());
-			pStatement.setTimestamp(2, new Timestamp(br.getCheckInTime().getTime()));
-			pStatement.setTimestamp(3, new Timestamp(br.getCheckOutTime().getTime()));
+			pStatement.setTimestamp(2, new Timestamp(br.getTimeRange().getCheckInTime().getTime()));
+			pStatement.setTimestamp(3, new Timestamp(br.getTimeRange().getCheckOutTime().getTime()));
 			pStatement.setInt(4, br.getRoom().getRoomId());
 			pStatement.setInt(5, br.getOrderId());
 			
@@ -90,8 +90,8 @@ public class BookedRoomMapper {
 		try {
 			Connection conn = DBConnection.getConnection();
 			PreparedStatement pStatement = (PreparedStatement) conn.prepareStatement(updateBookedRoomById);
-			pStatement.setTimestamp(1, new Timestamp(br.getCheckInTime().getTime()));
-			pStatement.setTimestamp(2, new Timestamp(br.getCheckOutTime().getTime()));
+			pStatement.setTimestamp(1, new Timestamp(br.getTimeRange().getCheckInTime().getTime()));
+			pStatement.setTimestamp(2, new Timestamp(br.getTimeRange().getCheckOutTime().getTime()));
 			pStatement.setInt(3, br.getRoom().getRoomId());
 			pStatement.setInt(4, br.getOrderId());
 			
@@ -123,8 +123,8 @@ public class BookedRoomMapper {
 				IdentityMap<BookedRoom> identityMap = IdentityMap.getInstance(b);
 				
 				b.setBookedRoomId(resultSet.getInt(1));
-				b.setCheckInTime(resultSet.getTimestamp(2));
-				b.setCheckOutTime(resultSet.getTimestamp(3));
+				b.getTimeRange().setCheckInTime(resultSet.getTimestamp(2));
+				b.getTimeRange().setCheckOutTime(resultSet.getTimestamp(3));
 				//set room
 				int roomId = resultSet.getInt(4);
 				Room r = new Room();
@@ -160,8 +160,8 @@ public class BookedRoomMapper {
 				IdentityMap<BookedRoom> identityMap = IdentityMap.getInstance(b);
 				
 				b.setBookedRoomId(resultSet.getInt(1));
-				b.setCheckInTime(resultSet.getTimestamp(2));
-				b.setCheckOutTime(resultSet.getTimestamp(3));
+				b.getTimeRange().setCheckInTime(resultSet.getTimestamp(2));
+				b.getTimeRange().setCheckOutTime(resultSet.getTimestamp(3));
 				//set room
 				int roomId = resultSet.getInt(4);
 				Room r = new Room();

@@ -1,5 +1,7 @@
 package domain;
 
+import utils.UnitOfWork;
+
 public class Staff extends DomainObject{
 	private int staffId;
 	private String firstname;
@@ -7,11 +9,24 @@ public class Staff extends DomainObject{
 	private String number;
 	private String status;
 	
+	public Staff() {
+		
+	}
+	
+	public Staff(String firstname, String lastname, String number, String status) {
+		super();
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.number = number;
+		this.status = status;
+		
+	}
 	public int getStaffId() {
 		return staffId;
 	}
 	public void setStaffId(int staffId) {
 		this.staffId = staffId;
+		
 	}
 	public String getFirstname() {
 		return firstname;
@@ -36,6 +51,7 @@ public class Staff extends DomainObject{
 	}
 	public void setStatus(String status) {
 		this.status = status;
+
 	}
 	
 }

@@ -7,6 +7,9 @@ import dataMapper.BookedRoomMapper;
 import dataMapper.OrderMapper;
 import domain.BookedRoom;
 import domain.Order;
+import domain.Room;
+import domain.TimeRange;
+import utils.UnitOfWork;
 
 public class OrderService {
 	private OrderMapper om;

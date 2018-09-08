@@ -2,10 +2,11 @@ package domain;
 
 import java.util.Date;
 
+import utils.UnitOfWork;
+
 public class BookedRoom extends DomainObject{
 	private int bookedRoomId;
-	private Date checkInTime;
-	private Date checkOutTime;
+	private TimeRange timeRange;
 	private Room room;
 	private int orderId;
 	
@@ -13,11 +14,16 @@ public class BookedRoom extends DomainObject{
 		
 	}
 	
-	public BookedRoom(int bookedRoomId, Date checkInTime, Date checkOutTime, Room room) {
+	public BookedRoom(int bookedRoomId, TimeRange timeRange, Room room) {
 		this.bookedRoomId = bookedRoomId;
-		this.checkInTime = checkInTime;
-		this.checkOutTime = checkOutTime;
+		this.setTimeRange(timeRange);
 		this.room = room;
+	}
+	
+	public BookedRoom(TimeRange timeRange, Room room, int orderId) {
+		this.setTimeRange(timeRange);
+		this.room = room;
+		this.orderId = orderId;
 	}
 	
 	public int getBookedRoomId() {
@@ -26,18 +32,7 @@ public class BookedRoom extends DomainObject{
 	public void setBookedRoomId(int bookedRoomId) {
 		this.bookedRoomId = bookedRoomId;
 	}
-	public Date getCheckInTime() {
-		return checkInTime;
-	}
-	public void setCheckInTime(Date checkInTime) {
-		this.checkInTime = checkInTime;
-	}
-	public Date getCheckOutTime() {
-		return checkOutTime;
-	}
-	public void setCheckOutTime(Date checkOutTime) {
-		this.checkOutTime = checkOutTime;
-	}
+
 	public Room getRoom() {
 		return room;
 	}
@@ -51,6 +46,14 @@ public class BookedRoom extends DomainObject{
 
 	public void setOrderId(int orderId) {
 		this.orderId = orderId;
+	}
+
+	public TimeRange getTimeRange() {
+		return timeRange;
+	}
+
+	public void setTimeRange(TimeRange timeRange) {
+		this.timeRange = timeRange;
 	}
 	
 	

@@ -59,6 +59,9 @@ public boolean checkIfInList(DomainObject obj) {
 }
 
 public void commit()  {
+	//boolean addResult = true;
+	//boolean updateResult = true;
+	//boolean deleteResult = true;
 	//deal with new objects
 	for(DomainObject obj: newObjects) {
 		switch(obj.getClass().getSimpleName()) {			

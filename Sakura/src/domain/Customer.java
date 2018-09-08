@@ -1,5 +1,7 @@
 package domain;
 
+import utils.UnitOfWork;
+
 public class Customer extends DomainObject{
 	private int customerId;
 	private String firstname;
@@ -9,6 +11,23 @@ public class Customer extends DomainObject{
 	private String identityType;
 	private String email;
 	private String number;
+		
+	public Customer(String firstname, String lastname, String title, String identityNumber, String identityType,
+			String email, String number) {
+		super();
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.title = title;
+		this.identityNumber = identityNumber;
+		this.identityType = identityType;
+		this.email = email;
+		this.number = number;
+		
+	}
+	
+	public Customer() {
+		
+	}
 	
 	public int getCustomerId() {
 		return customerId;

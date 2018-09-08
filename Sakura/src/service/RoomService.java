@@ -31,8 +31,8 @@ public class RoomService {
 			BookedRoom temp = allBookedRooms.get(i);
 			// if customer's intended check-in time earlier than booked room's check-out time
 			// or customer's intended check-out time after booked room's check-in time
-			if (!(temp.getCheckInTime().after(checkOutTime) 
-					||temp.getCheckOutTime().before(checkInTime))) {
+			if (!(temp.getTimeRange().getCheckInTime().after(checkOutTime) 
+					||temp.getTimeRange().getCheckOutTime().before(checkInTime))) {
 				unavailableRoomId.add(temp.getRoom().getRoomId());
 			}
 		}
