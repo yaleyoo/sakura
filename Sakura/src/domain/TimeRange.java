@@ -6,6 +6,16 @@ public class TimeRange extends DomainObject{
 	private Date checkInTime;
 	private Date checkOutTime;
 	
+	public TimeRange(Date checkInTime, Date checkOutTime) {
+		super();
+		this.checkInTime = checkInTime;
+		this.checkOutTime = checkOutTime;
+	}
+
+	public TimeRange() {
+		
+	}
+	
 	public Date getCheckInTime() {
 		return checkInTime;
 	}

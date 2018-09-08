@@ -10,6 +10,7 @@ import com.mysql.jdbc.PreparedStatement;
 
 import domain.BookedRoom;
 import domain.Room;
+import domain.TimeRange;
 import utils.DBConnection;
 import utils.IdentityMap;
 
@@ -119,12 +120,13 @@ public class BookedRoomMapper {
 			
 			while(resultSet.next()) {
 				BookedRoom b = new BookedRoom();
+				
 				//adapting IDENTITY MAP, get identityMap for Room.
 				IdentityMap<BookedRoom> identityMap = IdentityMap.getInstance(b);
 				
 				b.setBookedRoomId(resultSet.getInt(1));
-				b.getTimeRange().setCheckInTime(resultSet.getTimestamp(2));
-				b.getTimeRange().setCheckOutTime(resultSet.getTimestamp(3));
+				TimeRange tr = new TimeRange(resultSet.getTimestamp(2),resultSet.getTimestamp(3));
+				b.setTimeRange(tr);
 				//set room
 				int roomId = resultSet.getInt(4);
 				Room r = new Room();
