@@ -1,6 +1,6 @@
 package domain;
 
-public class Room {
+public class Room extends DomainObject{
 	private int roomId;
 	private String name;
 	private String type;

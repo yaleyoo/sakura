@@ -1,6 +1,6 @@
 package domain;
 
-public class Staff {
+public class Staff extends DomainObject{
 	private int staffId;
 	private String firstname;
 	private String lastname;

@@ -2,7 +2,7 @@ package domain;
 
 import java.util.Date;
 
-public class BookedRoom {
+public class BookedRoom extends DomainObject{
 	private int bookedRoomId;
 	private Date checkInTime;
 	private Date checkOutTime;

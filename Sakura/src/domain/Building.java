@@ -2,7 +2,7 @@ package domain;
 
 import java.util.List;
 
-public class Building {
+public class Building extends DomainObject{
 	private int buildingId;
 	private String address;
 	private String buildingName;

@@ -1,6 +1,6 @@
 package domain;
 
-public class Customer {
+public class Customer extends DomainObject{
 	private int customerId;
 	private String firstname;
 	private String lastname;

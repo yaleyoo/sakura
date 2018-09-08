@@ -2,7 +2,7 @@ package domain;
 
 import java.util.Date;
 
-public class Order {
+public class Order extends DomainObject{
 	private int orderId;
 	private Room room;
 	private Customer customer;

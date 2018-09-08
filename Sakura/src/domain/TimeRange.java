@@ -2,7 +2,7 @@ package domain;
 
 import java.util.Date;
 
-public class TimeRange {
+public class TimeRange extends DomainObject{
 	private Date checkInTime;
 	private Date checkOutTime;
 	
