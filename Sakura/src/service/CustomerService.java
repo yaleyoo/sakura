@@ -1,5 +1,6 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import dataMapper.CustomerMapper;
@@ -34,6 +35,16 @@ public class CustomerService {
 	}
 	
 	public List<Customer> findCustomer(Customer customer){
+		//search identity map first
+		utils.IdentityMap<Customer> identityMap = utils.IdentityMap.getInstance(customer);
+		Customer customer_inMap = identityMap.get(customer.getCustomerId());
+		//if object is found
+		if (customer_inMap != null) {
+			List<Customer> result = new ArrayList<Customer>();
+			result.add(customer_inMap);
+			return result;
+		}
+		//if not in the identity map
 		return cm.findCustomerById(customer);
 	}
 }

@@ -94,6 +94,8 @@ public class BuildingMapper {
 			
 			while(resultSet.next()) {
 				Building b = new Building();
+				//get Identity Map for Order
+				utils.IdentityMap<Building> identityMap = utils.IdentityMap.getInstance(b);
 				int buildingId = resultSet.getInt(1);
 				b.setBuildingId(buildingId);
 				b.setAddress(resultSet.getString(2));
@@ -108,6 +110,9 @@ public class BuildingMapper {
 				//tempRoom.setBuilding(tempBuilding);
 				//roomList = rm.findRoomByBuildingId(tempRoom);
 				b.setRoomList(roomList);
+				
+				//put order into identity map
+				identityMap.put(b.getBuildingId(), b);
 				
 				result.add(b);
 			}
@@ -127,6 +132,8 @@ public class BuildingMapper {
 			
 			while(resultSet.next()) {
 				Building b = new Building();
+				//get Identity Map for Order
+				utils.IdentityMap<Building> identityMap = utils.IdentityMap.getInstance(b);
 				int buildingId = resultSet.getInt(1);
 				b.setBuildingId(buildingId);
 				b.setAddress(resultSet.getString(2));
@@ -142,6 +149,8 @@ public class BuildingMapper {
 				//roomList = rm.findRoomByBuildingId(tempRoom);
 				b.setRoomList(roomList);
 				
+				//put order into identity map
+				identityMap.put(b.getBuildingId(), b);
 				result.add(b);
 			}
 		} catch (Exception e) {

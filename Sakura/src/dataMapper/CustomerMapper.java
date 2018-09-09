@@ -9,6 +9,7 @@ import com.mysql.jdbc.PreparedStatement;
 
 import domain.Customer;
 import utils.DBConnection;
+import utils.IdentityMap;
 
 public class CustomerMapper {
 	public boolean insertCustomer(Customer customer) {
@@ -102,6 +103,8 @@ public class CustomerMapper {
 			
 			while(resultSet.next()) {
 				Customer c = new Customer();
+				//adapting IDENTITY MAP, get identityMap for Room.
+				IdentityMap<Customer> identityMap = IdentityMap.getInstance(c);
 				c.setCustomerId(resultSet.getInt(1));
 				c.setFirstname(resultSet.getString(2));
 				c.setLastname(resultSet.getString(3));
@@ -111,6 +114,8 @@ public class CustomerMapper {
 				c.setNumber(resultSet.getString(7));
 				c.setEmail(resultSet.getString(8));
 				
+				//put Room Object r in the identity map
+				identityMap.put(c.getCustomerId(), c);
 				result.add(c);
 			}
 		} catch (Exception e) {
