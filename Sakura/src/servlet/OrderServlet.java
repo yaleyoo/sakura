@@ -41,44 +41,21 @@ public class OrderServlet extends HttpServlet{
 		
 		// verify user's identity. 
 		if (session.getAttribute("loggedCustomer") != null) {
-			// get request parameters
-			int roomId = Integer.parseInt(request.getParameter("room_id"));
-			SimpleDateFormat sdf =   new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
-			Date checkInTime = null;
-			Date checkOutTime = null;
-			try {
-				checkInTime = sdf.parse(request.getParameter("check_in_time"));
-				checkOutTime = sdf.parse(request.getParameter("check_out_time"));
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			// generate order
-			RoomService rs = new RoomService();
+			//fetch parameter
+			int orderId = Integer.parseInt(request.getParameter("order_id"));
 			Order order = new Order();
-			Customer logged = (Customer)session.getAttribute("loggedCustomer");
-			order.setCreateTime(new Date());
-			order.setCustomer(logged);
-			Room room = new Room();
-			room.setRoomId(roomId);
-			order.setRoom(rs.findRoomById(room).get(0));
-			order.setStatus(Parameters.BOOKING);
-			TimeRange range = new TimeRange();
-			range.setCheckInTime(checkInTime);
-			range.setCheckOutTime(checkOutTime);
-			order.setTimerange(range);
+			order.setOrderId(orderId);
 			
-			int days = checkOutTime.getDate() - checkInTime.getDate();
-			if (days < 0) {
-				// end date earlier than start date. INVALID.
-				response.getWriter().write("Verification Neccessary");
-				return;
+			//search identity map first
+			utils.IdentityMap<Order> identityMap = utils.IdentityMap.getInstance(order);
+			Order order_inMap = identityMap.get(order.getOrderId());
+			//if order not found
+			if (order_inMap == null) {
+				request.getRequestDispatcher("/jsp/error.jsp").forward(request, response);
 			}
-			else if (days == 0)
-				days = 0;
-			float sum = days * order.getRoom().getPrice();
-			order.setSum(sum);
-			
+			else {
+				order = order_inMap;
+			}
 			// insert order
 			OrderService os = new OrderService();
 			boolean result = os.insertOrder(order);
@@ -89,8 +66,7 @@ public class OrderServlet extends HttpServlet{
 				request.getRequestDispatcher("/jsp/error.jsp").forward(request, response);
 		}
 		else {
-			// TODO: would redirect user to an error page
-			response.getWriter().write("Verification Neccessary");
+			request.getRequestDispatcher("/jsp/error.jsp").forward(request, response);
 		}
 	}
 	

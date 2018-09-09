@@ -80,6 +80,10 @@ public class CheckOrderServlet extends HttpServlet{
 			float sum = days * order.getRoom().getPrice();
 			order.setSum(sum);
 			
+			//put order into identity map
+			utils.IdentityMap<Order> identityMap = utils.IdentityMap.getInstance(order);
+			identityMap.put(order.getOrderId(), order);
+			
 			// response client with order details
 			request.setAttribute("order", order);
 			request.getRequestDispatcher("/jsp/checkOrder.jsp").forward(request, response);

@@ -30,7 +30,7 @@
 	            </a>	
             </c:if>
            	<c:if test = "${sessionScope.loggedCustomer == null}">
-           		<a class="nav-link" href="">
+           		<a class="nav-link" href="login">
             		LOGIN</span>
 	            </a>
            	</c:if>

@@ -9,7 +9,7 @@ import com.mysql.jdbc.Statement;
 public class DBConnection {
 	private static ThreadLocal<Connection> current = new ThreadLocal<Connection>();
     private static String driverString = "com.mysql.jdbc.Driver";
-	private static String connectionString = "jdbc:mysql://www.yaleyoo.com:3306/sakura";
+	private static String connectionString = "jdbc:mysql://localhost:3306/sakura";
 	private static String username = "sakura";
 	private static String password = "sakura";
 	public static Connection getConnection() throws Exception {

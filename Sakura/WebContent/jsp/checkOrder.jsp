@@ -97,8 +97,9 @@
         	function confirm(){
         		var check_in_time = "${order.timerange.checkInTime}"
             	var check_out_time = "${order.timerange.checkOutTime}"
-     			var url = "placeOrder?check_in_time="+formatTime(check_in_time)+
-        				"&check_out_time="+formatTime(check_out_time)+"&room_id="+${order.room.roomId};
+     			//var url = "placeOrder?check_in_time="+formatTime(check_in_time)+
+        		//		"&check_out_time="+formatTime(check_out_time)+"&room_id="+${order.room.roomId};
+        		var url = "placeOrder?order_id="+${order.orderId};
         		location.href=url;
         	}
         	
