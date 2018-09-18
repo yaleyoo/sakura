@@ -3,6 +3,7 @@ package service;
 import java.util.ArrayList;
 import java.util.List;
 
+import dataMapper.BookedRoomMapper;
 import dataMapper.OrderMapper;
 import domain.BookedRoom;
 import domain.Order;
@@ -12,8 +13,10 @@ import utils.UnitOfWork;
 
 public class OrderService {
 	private OrderMapper om;
+	private BookedRoomMapper brm;
 	public OrderService() {
 		om = new OrderMapper();
+		brm = new BookedRoomMapper();
 	}
 	
 	public boolean insertOrder(Order order) {
@@ -21,7 +24,7 @@ public class OrderService {
 		
 		TimeRange tr = order.getTimerange();
 		Room room = order.getRoom();
-		int orderId = order.getOrderId();
+		long orderId = order.getOrderId();
 		BookedRoom br = new BookedRoom(tr, room, orderId);
 		
 		UnitOfWork.newCurrent();
@@ -34,8 +37,9 @@ public class OrderService {
 	
 	public boolean cancelOrder(Order order) {
 		boolean result = true;
-		BookedRoom br = new BookedRoom();
-		br.setOrderId(order.getOrderId());
+		BookedRoom temp = new BookedRoom();
+		temp.setOrderId(order.getOrderId());
+		BookedRoom br = brm.findBookedRoomByOrderId(temp).get(0);
 		
 		UnitOfWork.newCurrent();
 		UnitOfWork.getCurrent().registerDeleted(br);

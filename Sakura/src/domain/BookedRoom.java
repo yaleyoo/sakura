@@ -4,7 +4,7 @@ public class BookedRoom extends DomainObject{
 	private int bookedRoomId;
 	private TimeRange timeRange;
 	private Room room;
-	private int orderId;
+	private long orderId;
 	
 	public BookedRoom() {
 		
@@ -16,7 +16,7 @@ public class BookedRoom extends DomainObject{
 		this.room = room;
 	}
 	
-	public BookedRoom(TimeRange timeRange, Room room, int orderId) {
+	public BookedRoom(TimeRange timeRange, Room room, long orderId) {
 		this.setTimeRange(timeRange);
 		this.room = room;
 		this.orderId = orderId;
@@ -36,11 +36,11 @@ public class BookedRoom extends DomainObject{
 		this.room = room;
 	}
 
-	public int getOrderId() {
+	public long getOrderId() {
 		return orderId;
 	}
 
-	public void setOrderId(int orderId) {
+	public void setOrderId(long orderId) {
 		this.orderId = orderId;
 	}
 

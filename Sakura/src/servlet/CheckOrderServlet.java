@@ -18,6 +18,7 @@ import domain.Room;
 import domain.TimeRange;
 import service.CustomerService;
 import service.RoomService;
+import utils.OrderIdGenerator;
 import utils.Parameters;
 
 @WebServlet("/checkOrder")
@@ -57,6 +58,7 @@ public class CheckOrderServlet extends HttpServlet{
 			// generate order
 			RoomService rs = new RoomService();
 			Order order = new Order();
+			order.setOrderId(OrderIdGenerator.getOrderId(customer));
 			Customer logged = (Customer)session.getAttribute("loggedCustomer");
 			order.setCreateTime(new Date());
 			order.setCustomer(logged);

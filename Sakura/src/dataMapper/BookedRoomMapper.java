@@ -27,7 +27,7 @@ public class BookedRoomMapper {
 			pStatement.setTimestamp(2, new Timestamp(br.getTimeRange().getCheckInTime().getTime()));
 			pStatement.setTimestamp(3, new Timestamp(br.getTimeRange().getCheckOutTime().getTime()));
 			pStatement.setInt(4, br.getRoom().getRoomId());
-			pStatement.setInt(5, br.getOrderId());
+			pStatement.setLong(5, br.getOrderId());
 			
 			result = pStatement.executeUpdate();
 			DBConnection.closePreparedStatement(pStatement);
@@ -68,7 +68,7 @@ public class BookedRoomMapper {
 		try {
 			Connection conn = DBConnection.getConnection();
 			PreparedStatement pStatement = (PreparedStatement) conn.prepareStatement(deleteBookedRoomById);
-			pStatement.setInt(1, br.getOrderId());
+			pStatement.setLong(1, br.getOrderId());
 			
 			result = pStatement.executeUpdate();
 			DBConnection.closePreparedStatement(pStatement);
@@ -94,7 +94,7 @@ public class BookedRoomMapper {
 			pStatement.setTimestamp(1, new Timestamp(br.getTimeRange().getCheckInTime().getTime()));
 			pStatement.setTimestamp(2, new Timestamp(br.getTimeRange().getCheckOutTime().getTime()));
 			pStatement.setInt(3, br.getRoom().getRoomId());
-			pStatement.setInt(4, br.getOrderId());
+			pStatement.setLong(4, br.getOrderId());
 			
 			pStatement.setInt(5, br.getBookedRoomId());
 			
@@ -134,7 +134,7 @@ public class BookedRoomMapper {
 				RoomMapper rm = new RoomMapper();
 				b.setRoom(rm.findRoomById(r).get(0));
 				
-				b.setOrderId(resultSet.getInt(5));
+				b.setOrderId(resultSet.getLong(5));
 				//put Room Object b in the identity map
 				identityMap.put(b.getBookedRoomId(), b);
 				
@@ -162,8 +162,8 @@ public class BookedRoomMapper {
 				IdentityMap<BookedRoom> identityMap = IdentityMap.getInstance(b);
 				
 				b.setBookedRoomId(resultSet.getInt(1));
-				b.getTimeRange().setCheckInTime(resultSet.getTimestamp(2));
-				b.getTimeRange().setCheckOutTime(resultSet.getTimestamp(3));
+				TimeRange tr = new TimeRange(resultSet.getTimestamp(2),resultSet.getTimestamp(3));
+				b.setTimeRange(tr);
 				//set room
 				int roomId = resultSet.getInt(4);
 				Room r = new Room();
@@ -171,7 +171,44 @@ public class BookedRoomMapper {
 				RoomMapper rm = new RoomMapper();
 				b.setRoom(rm.findRoomById(r).get(0));
 				
-				b.setOrderId(resultSet.getInt(5));
+				b.setOrderId(resultSet.getLong(5));
+				//put Room Object b in the identity map
+				identityMap.put(b.getBookedRoomId(), b);
+				
+				result.add(b);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public List<BookedRoom> findBookedRoomByOrderId(BookedRoom br){
+		String findBookedRoomByRoomId = "SELECT * from sakura.BookedRoom WHERE orderId=?";
+		List<BookedRoom> result = new ArrayList<BookedRoom>();
+		try {
+			Connection conn = DBConnection.getConnection();
+			PreparedStatement pStatement = (PreparedStatement) conn.prepareStatement(findBookedRoomByRoomId);
+
+			pStatement.setLong(1, br.getOrderId());
+			ResultSet resultSet = pStatement.executeQuery();
+			
+			while(resultSet.next()) {
+				BookedRoom b = new BookedRoom();
+				//adapting IDENTITY MAP, get identityMap for Room.
+				IdentityMap<BookedRoom> identityMap = IdentityMap.getInstance(b);
+				
+				b.setBookedRoomId(resultSet.getInt(1));
+				TimeRange tr = new TimeRange(resultSet.getTimestamp(2),resultSet.getTimestamp(3));
+				b.setTimeRange(tr);
+				//set room
+				int roomId = resultSet.getInt(4);
+				Room r = new Room();
+				r.setRoomId(roomId);
+				RoomMapper rm = new RoomMapper();
+				b.setRoom(rm.findRoomById(r).get(0));
+				
+				b.setOrderId(resultSet.getLong(5));
 				//put Room Object b in the identity map
 				identityMap.put(b.getBookedRoomId(), b);
 				

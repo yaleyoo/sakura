@@ -23,7 +23,7 @@ public class CancelOrderServlet extends HttpServlet{
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		int orderId = Integer.parseInt(request.getParameter("order_id"));
+		long orderId = Long.parseLong(request.getParameter("order_id"));
 		Order order = new Order();
 		order.setOrderId(orderId);
 		order = os.findOrder(order).get(0);
@@ -31,7 +31,9 @@ public class CancelOrderServlet extends HttpServlet{
 		
 		// can only cancel order in 2 days before the check in date.
 		Date now = new Date();
-		if (order.getTimerange().getCheckInTime().getDate() - now.getDate() < 2) {
+		System.out.println(order.getTimerange().getCheckInTime().getTime() - now.getTime());
+		//TODO: still wrong
+		if (order.getTimerange().getCheckInTime().getTime() - now.getTime() < 2*24*60) {
 			result = false;
 		}
 		if (!result) {

@@ -1,9 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,12 +11,8 @@ import javax.servlet.http.HttpSession;
 
 import domain.Customer;
 import domain.Order;
-import domain.Room;
-import domain.TimeRange;
 import service.CustomerService;
 import service.OrderService;
-import service.RoomService;
-import utils.Parameters;
 @WebServlet("/placeOrder")
 public class OrderServlet extends HttpServlet{
 	
@@ -42,7 +35,7 @@ public class OrderServlet extends HttpServlet{
 		// verify user's identity. 
 		if (session.getAttribute("loggedCustomer") != null) {
 			//fetch parameter
-			int orderId = Integer.parseInt(request.getParameter("order_id"));
+			long orderId = Long.parseLong(request.getParameter("order_id"));
 			Order order = new Order();
 			order.setOrderId(orderId);
 			

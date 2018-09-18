@@ -23,7 +23,7 @@ public class OrderMapper {
 		try {
 			Connection conn = DBConnection.getConnection();
 			PreparedStatement pStatement = (PreparedStatement) conn.prepareStatement(insertOrder);
-			pStatement.setInt(1, order.getOrderId());
+			pStatement.setLong(1, order.getOrderId());
 			pStatement.setInt(2, order.getRoom().getRoomId());
 			pStatement.setInt(3, order.getCustomer().getCustomerId());
 			pStatement.setTimestamp(4, new Timestamp(order.getTimerange().getCheckInTime().getTime()));
@@ -50,7 +50,7 @@ public class OrderMapper {
 		try {
 			Connection conn = DBConnection.getConnection();
 			PreparedStatement pStatement = (PreparedStatement) conn.prepareStatement(deleteOrderById);
-			pStatement.setInt(1, order.getOrderId());
+			pStatement.setLong(1, order.getOrderId());
 			
 			result = pStatement.executeUpdate();
 			DBConnection.closePreparedStatement(pStatement);
@@ -81,7 +81,7 @@ public class OrderMapper {
 			pStatement.setFloat(6, order.getSum());
 			pStatement.setString(7, order.getStatus());
 			
-			pStatement.setInt(8, order.getOrderId());
+			pStatement.setLong(8, order.getOrderId());
 			
 			result = pStatement.executeUpdate();
 			DBConnection.closePreparedStatement(pStatement);
@@ -101,7 +101,7 @@ public class OrderMapper {
 		try {
 			Connection conn = DBConnection.getConnection();
 			PreparedStatement pStatement = (PreparedStatement) conn.prepareStatement(findOrderByOrderId);
-			pStatement.setInt(1, order.getOrderId());
+			pStatement.setLong(1, order.getOrderId());
 			ResultSet resultSet = pStatement.executeQuery();
 			
 			while(resultSet.next()) {
@@ -109,7 +109,7 @@ public class OrderMapper {
 				//get Identity Map for Order
 				utils.IdentityMap<Order> identityMap = utils.IdentityMap.getInstance(o);
 				
-				o.setOrderId(resultSet.getInt(1));
+				o.setOrderId(resultSet.getLong(1));
 				//set room
 				Room tempRoom = new Room();
 				tempRoom.setRoomId(resultSet.getInt(2));
@@ -155,7 +155,7 @@ public class OrderMapper {
 				//get Identity Map for Order
 				utils.IdentityMap<Order> identityMap = utils.IdentityMap.getInstance(o);
 				
-				o.setOrderId(resultSet.getInt(1));
+				o.setOrderId(resultSet.getLong(1));
 				//set room
 				Room tempRoom = new Room();
 				tempRoom.setRoomId(resultSet.getInt(2));
@@ -201,7 +201,7 @@ public class OrderMapper {
 				//get Identity Map for Order
 				utils.IdentityMap<Order> identityMap = utils.IdentityMap.getInstance(o);
 				
-				o.setOrderId(resultSet.getInt(1));
+				o.setOrderId(resultSet.getLong(1));
 				//set room
 				Room tempRoom = new Room();
 				tempRoom.setRoomId(resultSet.getInt(2));

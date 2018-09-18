@@ -3,7 +3,7 @@ package domain;
 import java.util.Date;
 
 public class Order extends DomainObject{
-	private int orderId;
+	private long orderId;
 	private Room room;
 	private Customer customer;
 	private TimeRange timerange;
@@ -24,10 +24,10 @@ public class Order extends DomainObject{
 		this.status = status;
 	}
 	
-	public int getOrderId() {
+	public long getOrderId() {
 		return orderId;
 	}
-	public void setOrderId(int orderId) {
+	public void setOrderId(long orderId) {
 		this.orderId = orderId;
 		
 	}
