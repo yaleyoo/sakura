@@ -24,6 +24,7 @@ public class ViewRoomsServlet extends HttpServlet{
 		request.setAttribute("buildings", bs.getAllBuildings());
 		request.setAttribute("rooms", rs.findAllRooms());
 		request.getRequestDispatcher("/jsp/rooms.jsp").forward(request, response);
+		//System.out.println(this.getClass().getName());
 	}
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
