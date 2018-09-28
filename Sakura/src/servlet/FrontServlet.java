@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class FrontServlet
  */
-@WebServlet("/FrontServlet")
+@WebServlet("/frontServlet")
 public class FrontServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -53,11 +53,11 @@ public class FrontServlet extends HttpServlet {
 		Class result;
 		
 		final String commandClassName = "servlet."+(String) request.getParameter("command") + "Command";
-		System.out.println(commandClassName);
+		//System.out.println(commandClassName);
 		
 		try {
 			result = Class.forName(commandClassName);
-			System.out.println(commandClassName);
+			//System.out.println(commandClassName);
 		} catch (ClassNotFoundException e) {
 			result = null;
 		}

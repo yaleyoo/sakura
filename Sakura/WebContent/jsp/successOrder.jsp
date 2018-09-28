@@ -13,7 +13,7 @@
 		<div class="alert alert-success" role="alert" style="margin: 10%; width:80%;">
   			Your order has been placed!
 		</div>
-		<button type="button" style="text-align: right; margin:0 10%;" class="btn btn-success" onclick="javascript:location.href='viewMain'">Return</button>
+		<button type="button" style="text-align: right; margin:0 10%;" class="btn btn-success" onclick="javascript:location.href='frontServlet?command=HomePage'">Return</button>
 	
 		<style type="text/css">
 			html,body{

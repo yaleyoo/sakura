@@ -2,7 +2,7 @@ package utils;
 
 import domain.*;
 import service.*;
-import servlet.GetAvailableRoomsServlet;
+import servlet.GetAvailableRoomsCommand;
 
 import java.lang.reflect.InvocationTargetException;
 import java.text.DateFormat;

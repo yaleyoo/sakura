@@ -14,20 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONObject;
 import service.RoomService;
 
-@WebServlet("/getAvailableRooms")
-public class GetAvailableRoomsServlet extends HttpServlet{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class GetAvailableRoomsCommand extends FrontCommand{
+
 	private RoomService rs;
 	
-	public GetAvailableRoomsServlet() {
-		super();
+	@Override
+	public void process() throws ServletException, IOException {
 		rs = new RoomService();
-	}
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
 		SimpleDateFormat sdf =   new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
 		Date checkInTime = null;
 		Date checkOutTime = null;
@@ -46,16 +39,6 @@ public class GetAvailableRoomsServlet extends HttpServlet{
 		json.put("result", rs.findAvailableRooms(checkInTime, checkOutTime, buildingId));
 		
 		response.getWriter().write(json.toString());
-	}
-	
-	public void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
 		
-	}
-	
-	public void init() throws ServletException {
-	}
-	public void destroy() {
-		super.destroy(); 
 	}
 }

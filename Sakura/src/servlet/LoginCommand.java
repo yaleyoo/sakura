@@ -1,0 +1,33 @@
+package servlet;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import domain.Customer;
+import service.CustomerService;
+
+public class LoginCommand extends FrontCommand {
+
+
+	@Override
+	public void process() throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		/*
+		 * HERE we pretend user already logged in as a customer.
+		 */
+		CustomerService cs = new CustomerService();
+		Customer c = new Customer();
+		c.setCustomerId(1);
+		Customer customer = cs.findCustomer(c).get(0);
+		session.setAttribute("loggedCustomer", customer);
+		
+		forward("/index.jsp");
+		
+	}
+}

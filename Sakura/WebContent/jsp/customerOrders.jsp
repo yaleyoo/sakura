@@ -59,7 +59,7 @@
 					</li>
 				</ul>
 				<c:if test="${order.status != 'cancel'}">
-					<button onclick="javascript:location.href='cancelOrder?order_id=${order.orderId}'" type="button" class="btn btn-info" style="
+					<button onclick="javascript:location.href='frontServlet?command=CancelOrder&&order_id=${order.orderId}'" type="button" class="btn btn-info" style="
 		            text-align:right; margin: 10px 0 0 0;">Cancel Order</button>
 	            </c:if>
 			</div>

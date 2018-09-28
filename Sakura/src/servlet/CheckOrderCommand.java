@@ -21,16 +21,18 @@ import service.RoomService;
 import utils.OrderIdGenerator;
 import utils.Parameters;
 
-@WebServlet("/checkOrder")
-public class CheckOrderServlet extends HttpServlet{
+public class CheckOrderCommand extends FrontCommand{
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+	}
+	
+
+	@Override
+	public void process() throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		/*
 		 * HERE we pretend user already logged in as a customer.
@@ -88,23 +90,13 @@ public class CheckOrderServlet extends HttpServlet{
 			
 			// response client with order details
 			request.setAttribute("order", order);
-			request.getRequestDispatcher("/jsp/checkOrder.jsp").forward(request, response);
+			forward("/jsp/checkOrder.jsp");
 		}
 		else {
-			// TODO: would redirect user to an error page
+			
 			response.getWriter().write("Verification Neccessary");
+			forward("/jsp/error.jsp");
 		}
-	}
-	
-	public void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
 		
-	}
-	
-	public void init() throws ServletException {
-	}
-	
-	public void destroy() {
-		super.destroy(); 
 	}
 }

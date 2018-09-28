@@ -14,7 +14,7 @@
   			Something going wrong!
 		</div>
 		<button type="button" style="text-align: right; margin:0 10%;" 
-			class="btn btn-success" onclick="javascript:location.href='viewMain'">Return</button>
+			class="btn btn-success" onclick="javascript:location.href='frontServlet?command=HomePage'">Return</button>
 		
 		
 		<style type="text/css">

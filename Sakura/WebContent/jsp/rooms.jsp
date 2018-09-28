@@ -32,7 +32,7 @@
 	  <div class="card-body">
 	    <h5 class="card-title">${room.name}</h5>
 	    <p class="card-text">$${room.price}/day</p>
-	    <!-- <a href="checkOrder?checkIn=dd&&checkOut=dd&&roomId=ff" class="btn btn-primary">Book</a>  -->
+	    <!-- <a href="frontServlet?command=CheckOrder&checkIn=dd&&checkOut=dd&&roomId=ff" class="btn btn-primary">Book</a>  -->
 	  </div>
 	</div>
 	</c:forEach>
@@ -69,12 +69,13 @@
         		var building_id = $("#buildingSelector").val();
         		$.ajax({
         	        type: "GET",
-        	        url: "getAvailableRooms",
+        	        url: "frontServlet",
         	        async: false,
         	        data:{
         	        	check_in_time:check_in_time,
         	        	check_out_time:check_out_time,
-        	        	building_id:building_id
+        	        	building_id:building_id,
+        	        	command: "GetAvailableRooms"
         	        },
         	        dataType: "json",
         	        success: function (data) {
@@ -87,7 +88,7 @@
         	        	  "<div class=\"card-body\">"+
         	            			"<h5 class=\"card-title\">"+room.name+"</h5>"+
         	            		    "<p class=\"card-text\">$"+room.price+"/day</p>"+
-        	            		    "<a href=\"checkOrder?check_in_time="+check_in_time+"&&check_out_time="+check_out_time+"&&room_id="+room.roomId+"\" class=\"btn btn-primary\">Book</a>"+
+        	            		    "<a href=\"frontServlet?command=CheckOrder&&check_in_time="+check_in_time+"&&check_out_time="+check_out_time+"&&room_id="+room.roomId+"\" class=\"btn btn-primary\">Book</a>"+
         	            		    		"</div>"+
         	            		    		"</div>");
         	            });

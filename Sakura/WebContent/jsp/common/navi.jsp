@@ -8,12 +8,12 @@
     <div class="collapse navbar-collapse order-1">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="viewMain">
+                <a class="nav-link" href="frontServlet?command=HomePage">
                     <i class="iconfont">&#xe600;</i>&nbsp;Home <span class="sr-only"></span>
                 </a>
             </li>
            <li class="nav-item ml-3">
-                <a class="nav-link" href="viewRooms">
+                <a class="nav-link" href="frontServlet?command=ViewRooms">
                     <i class="iconfont">&#xe601;</i>&nbsp;Book A Room <span class="sr-only"></span>
                 </a>
             </li>
@@ -25,12 +25,12 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item ml-3">
             <c:if test = "${sessionScope.loggedCustomer != null}">
-	            <a class="nav-link" href="viewCustomer">
+	            <a class="nav-link" href="frontServlet?command=ViewCustomer">
 	            	Hello, ${sessionScope.loggedCustomer.firstname} <i class="iconfont">&#xe674;</i></span>
 	            </a>	
             </c:if>
            	<c:if test = "${sessionScope.loggedCustomer == null}">
-           		<a class="nav-link" href="login">
+           		<a class="nav-link" href="frontServlet?command=Login">
             		LOGIN</span>
 	            </a>
            	</c:if>

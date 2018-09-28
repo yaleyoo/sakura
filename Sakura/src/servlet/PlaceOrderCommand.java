@@ -13,15 +13,18 @@ import domain.Customer;
 import domain.Order;
 import service.CustomerService;
 import service.OrderService;
-@WebServlet("/placeOrder")
-public class OrderServlet extends HttpServlet{
+
+public class PlaceOrderCommand extends FrontCommand{
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+	}
+
+
+	@Override
+	public void process() throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		/*
 		 * HERE we pretend user already logged in as a customer.
@@ -44,7 +47,7 @@ public class OrderServlet extends HttpServlet{
 			Order order_inMap = identityMap.get(order.getOrderId());
 			//if order not found
 			if (order_inMap == null) {
-				request.getRequestDispatcher("/jsp/error.jsp").forward(request, response);
+				forward("/jsp/error.jsp");
 			}
 			else {
 				order = order_inMap;
@@ -54,23 +57,13 @@ public class OrderServlet extends HttpServlet{
 			boolean result = os.insertOrder(order);
 			
 			if (result)
-				request.getRequestDispatcher("/jsp/successOrder.jsp").forward(request, response);
+				forward("/jsp/successOrder.jsp");
 			else
-				request.getRequestDispatcher("/jsp/error.jsp").forward(request, response);
+				forward("/jsp/error.jsp");
 		}
 		else {
-			request.getRequestDispatcher("/jsp/error.jsp").forward(request, response);
+			forward("/jsp/error.jsp");
 		}
-	}
-	
-	public void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
 		
-	}
-	
-	public void init() throws ServletException {
-	}
-	public void destroy() {
-		super.destroy(); 
 	}
 }

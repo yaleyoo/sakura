@@ -10,16 +10,22 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import domain.Customer;
+import domain.Order;
 import service.CustomerService;
+import service.OrderService;
 
-@WebServlet("/login")
-public class LoginServlet extends HttpServlet {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class ViewCustomerCommand extends FrontCommand{
+
+	private OrderService os;
+
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+	}
+
+	@Override
+	public void process() throws ServletException, IOException {
+		os = new OrderService();
 		HttpSession session = request.getSession();
 		/*
 		 * HERE we pretend user already logged in as a customer.
@@ -30,16 +36,17 @@ public class LoginServlet extends HttpServlet {
 		Customer customer = cs.findCustomer(c).get(0);
 		session.setAttribute("loggedCustomer", customer);
 		
-		request.getRequestDispatcher("index.jsp").forward(request, response);
-	}
-	public void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+		// verify user's identity. 
+		if (session.getAttribute("loggedCustomer") != null) {
+			Order o = new Order();
+			o.setCustomer(customer);
+			request.setAttribute("orders", os.findOrder(o));
+			forward("/jsp/customerOrders.jsp");
+		}
+		else {			
+			response.getWriter().write("Verification Neccessary");
+			forward("/jsp/error.jsp");
+		}
 		
-	}
-	
-	public void init() throws ServletException {
-	}
-	public void destroy() {
-		super.destroy(); 
 	}
 }
