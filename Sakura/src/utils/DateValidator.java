@@ -13,12 +13,10 @@ public class DateValidator {
 		if (checkOutDate.before(checkInDate)) {
 			return false;
 		}
-		System.out.println(checkInDate.compareTo(checkOutDate));
 		return true;
 	}
 	
 	public static int calculateDateGap(Date checkinDate, Date checkOutDate) {
-		System.out.println((checkOutDate.getTime()-checkinDate.getTime())/1000/60/60/24);
 		return (int) ((checkOutDate.getTime()-checkinDate.getTime())/1000/60/60/24);
 
 	}
