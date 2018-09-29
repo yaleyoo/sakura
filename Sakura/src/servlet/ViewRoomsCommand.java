@@ -20,7 +20,6 @@ public class ViewRoomsCommand extends FrontCommand{
 
 	@Override
 	public void process() throws ServletException, IOException {
-		System.out.println("ViewRoomsCommand process");
 		bs = new BuildingService();
 		rs = new RoomService();
 		List<Building> buildings = bs.getAllBuildings();

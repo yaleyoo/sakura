@@ -18,6 +18,7 @@ import domain.Room;
 import domain.TimeRange;
 import service.CustomerService;
 import service.RoomService;
+import utils.DateValidator;
 import utils.OrderIdGenerator;
 import utils.Parameters;
 
@@ -73,14 +74,11 @@ public class CheckOrderCommand extends FrontCommand{
 			range.setCheckOutTime(checkOutTime);
 			order.setTimerange(range);
 			
-			int days = checkOutTime.getDate() - checkInTime.getDate();
-			if (days < 0) {
+			if (!DateValidator.validateCheckInOutDate(checkInTime, checkOutTime)) {
 				// end date earlier than start date. INVALID.
-				response.getWriter().write("Verification Neccessary");
-				return;
+				forward("/jsp/error.jsp");
 			}
-			else if (days == 0)
-				days = 0;
+			int days = DateValidator.calculateDateGap(checkInTime, checkOutTime);
 			float sum = days * order.getRoom().getPrice();
 			order.setSum(sum);
 			
