@@ -8,7 +8,6 @@ import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
 import domain.Building;
-import domain.Room;
 import utils.DBConnection;
 
 public class BuildingMapper {
@@ -101,16 +100,6 @@ public class BuildingMapper {
 				b.setAddress(resultSet.getString(2));
 				b.setBuildingName(resultSet.getString(3));
 				
-				//set room list
-				List<Room> roomList = new ArrayList<Room>();
-				//RoomMapper rm = new RoomMapper();
-				//Building tempBuilding = new Building();
-				//tempBuilding.setBuildingId(buildingId);
-				//Room tempRoom = new Room();
-				//tempRoom.setBuilding(tempBuilding);
-				//roomList = rm.findRoomByBuildingId(tempRoom);
-				b.setRoomList(roomList);
-				
 				//put order into identity map
 				identityMap.put(b.getBuildingId(), b);
 				
@@ -138,16 +127,6 @@ public class BuildingMapper {
 				b.setBuildingId(buildingId);
 				b.setAddress(resultSet.getString(2));
 				b.setBuildingName(resultSet.getString(3));
-				//set room list
-				List<Room> roomList = new ArrayList<Room>();
-				//RoomMapper rm = new RoomMapper();
-				//Building tempBuilding = new Building();
-				//tempBuilding.setBuildingId(buildingId);
-				//Room tempRoom = new Room();
-				//tempRoom.setBuilding(tempBuilding);
-				
-				//roomList = rm.findRoomByBuildingId(tempRoom);
-				b.setRoomList(roomList);
 				
 				//put order into identity map
 				identityMap.put(b.getBuildingId(), b);

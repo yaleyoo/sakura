@@ -39,6 +39,45 @@ public class Test {
 //		
 		//A a = (A)Class.forName("utils.B").getConstructor().newInstance();
 		//a.print();
+		
+		
+		
+		/*Order o = new Order();
+		o.setCreateTime(new Date());
+		Customer c = new Customer();
+		c.setCustomerId(1);
+		c.setFirstname("aaa");
+		c.setTitle("mr");
+		c.setEmail("sss");
+		c.setIdentityNumber("111");
+		c.setIdentityType("ss");
+		c.setLastname("sss");
+		c.setNumber("341231");
+		o.setCustomer(c);
+		Room r = new Room();
+		Building b = new Building();
+		r.setBuilding(b);
+		o.setRoom(r);
+		o.setOrderId(Long.parseLong("1809182317351"));
+		o.setTimerange(new TimeRange(new Date(), new Date()));
+		
+		OrderAssembler oa = new OrderAssembler();
+		OrderDTO od = oa.writeDTO(o);
+		
+		String s = od.toString();
+		OrderDTO ox = OrderDTO.readString(s);
+		
+		System.out.println(ox);*/
+		
+		BookedRoom br = new BookedRoom();
+		br.setBookedRoomId(1);
+		DomainObject d = br;
+		
+		
+		
+		
+		
+		
 	}
 
 }
