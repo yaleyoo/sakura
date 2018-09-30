@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import security.AuthenticationEnforcer;
+import security.InterceptingValidator;
+
 /**
  * Servlet implementation class FrontServlet
  */
@@ -26,6 +29,16 @@ public class FrontServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//check authentication and authorization
+		if (!AuthenticationEnforcer.checkAuthentication(request)) {
+			request.getRequestDispatcher("/jsp/permissionDenied.jsp").forward(request, response);
+			return;
+		}
+		// validate URI
+		if (!InterceptingValidator.validateURI(request.getRequestURI())) {
+			request.getRequestDispatcher("/jsp/error.jsp").forward(request, response);
+			return;
+		}
 		FrontCommand command = getCommand(request);
 		command.init(getServletContext(), request, response);
 		command.process();

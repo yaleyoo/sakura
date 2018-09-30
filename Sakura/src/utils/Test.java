@@ -1,6 +1,7 @@
 package utils;
 
 import domain.*;
+import security.AuthorisationProvider;
 import service.*;
 import servlet.GetAvailableRoomsCommand;
 
@@ -68,11 +69,9 @@ public class Test {
 		OrderDTO ox = OrderDTO.readString(s);
 		
 		System.out.println(ox);*/
-		
-		BookedRoom br = new BookedRoom();
-		br.setBookedRoomId(1);
-		DomainObject d = br;
-		
+		//String command = "Login";
+		//System.out.println(AuthorisationProvider.checkAuthorisation(command, null));
+		System.out.println(AuthorisationProvider.pemission.size());
 		
 		
 		

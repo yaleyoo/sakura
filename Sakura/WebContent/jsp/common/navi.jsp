@@ -24,12 +24,12 @@
     <div class="navbar-collapse collapse order-2">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item ml-3">
-            <c:if test = "${sessionScope.loggedCustomer != null}">
+            <c:if test = "${sessionScope.loggedUser != null}">
 	            <a class="nav-link" href="frontServlet?command=ViewCustomer">
-	            	Hello, ${sessionScope.loggedCustomer.firstname} <i class="iconfont">&#xe674;</i></span>
+	            	Hello, ${sessionScope.loggedUser.firstname} <i class="iconfont">&#xe674;</i></span>
 	            </a>	
             </c:if>
-           	<c:if test = "${sessionScope.loggedCustomer == null}">
+           	<c:if test = "${sessionScope.loggedUser == null}">
            		<a class="nav-link" href="frontServlet?command=Login">
             		LOGIN</span>
 	            </a>

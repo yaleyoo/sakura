@@ -3,10 +3,6 @@ package servlet;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import domain.Customer;
@@ -25,7 +21,7 @@ public class LoginCommand extends FrontCommand {
 		Customer c = new Customer();
 		c.setCustomerId(1);
 		Customer customer = cs.findCustomer(c).get(0);
-		session.setAttribute("loggedCustomer", customer);
+		session.setAttribute("loggedUser", customer);
 		
 		forward("/index.jsp");
 		
