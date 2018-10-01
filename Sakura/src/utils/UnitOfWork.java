@@ -7,6 +7,7 @@ import dataMapper.*;
 import domain.*;
 
 public class UnitOfWork {
+	@SuppressWarnings("rawtypes")
 	private static ThreadLocal current = new ThreadLocal();
 	
 	private List<DomainObject> newObjects = new ArrayList<DomainObject>();
@@ -18,6 +19,7 @@ public static void newCurrent() {
 	setCurrent(new UnitOfWork());
 }
 
+@SuppressWarnings("unchecked")
 public static void setCurrent(UnitOfWork uow) { 
 	current.set(uow);
 }

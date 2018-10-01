@@ -5,9 +5,11 @@ import java.util.Map;
 
 public class IdentityMap<E> {
 	private Map<Long, E> map = new HashMap<Long, E>();
+	@SuppressWarnings("rawtypes")
 	private static Map<Class, IdentityMap> singletons = new HashMap<Class, IdentityMap>();
 	
 	public static <E> IdentityMap<E> getInstance(E e) {
+		@SuppressWarnings("unchecked")
 		IdentityMap<E> result = singletons.get(e.getClass()); 
 		if (result == null) {
 			result = new IdentityMap<E>();
