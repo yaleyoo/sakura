@@ -3,7 +3,7 @@ package utils;
 import java.util.Date;
 
 public class DateValidator {
-	//TODO: datevalidator
+	
 	public static boolean validateCheckInOutDate(Date checkInDate, Date checkOutDate) {
 		//if checkinDate has past
 		if (checkInDate.before(new Date())) {

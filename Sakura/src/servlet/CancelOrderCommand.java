@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 
 import domain.Order;
 import service.OrderService;
+import utils.DateValidator;
 
 
 
@@ -25,9 +26,8 @@ public class CancelOrderCommand extends FrontCommand{
 		
 		// can only cancel order in 2 days before the check in date.
 		Date now = new Date();
-		System.out.println(order.getTimerange().getCheckInTime().getTime() - now.getTime());
-		//TODO: still wrong
-		if (order.getTimerange().getCheckInTime().getTime() - now.getTime() < 2*24*60) {
+		if (DateValidator.calculateDateGap(
+				order.getTimerange().getCheckInTime(), now) < 2) {
 			result = false;
 		}
 		if (!result) {
