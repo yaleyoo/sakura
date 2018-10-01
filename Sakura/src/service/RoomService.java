@@ -66,9 +66,9 @@ public class RoomService {
 		return rm.findRoomById(room);
 	}
 	
-	public boolean insertBookedRoom(BookedRoom br) {
+	public boolean insertBookedRoom(BookedRoom br, String sessionId) {
 		UnitOfWork.newCurrent();
 		UnitOfWork.getCurrent().registerNew(br);
-		return UnitOfWork.getCurrent().commit();
+		return UnitOfWork.getCurrent().commit(sessionId);
 	}
 }

@@ -13,24 +13,24 @@ public class CustomerService {
 		cm = new CustomerMapper();
 	}
 	
-	public boolean insertCustomer(Customer customer) {
+	public boolean insertCustomer(Customer customer, String sessionId) {
 		UnitOfWork.newCurrent();
 		UnitOfWork.getCurrent().registerNew(customer);
-		return UnitOfWork.getCurrent().commit();
+		return UnitOfWork.getCurrent().commit(sessionId);
 		//return cm.insertCustomer(customer);
 	}
 	
-	public boolean deleteCustomer(Customer customer) {
+	public boolean deleteCustomer(Customer customer, String sessionId) {
 		UnitOfWork.newCurrent();
 		UnitOfWork.getCurrent().registerDeleted(customer);
-		return UnitOfWork.getCurrent().commit();
+		return UnitOfWork.getCurrent().commit(sessionId);
 		//return cm.deleteCustomer(customer);
 	}
 	
-	public boolean updateCustomer(Customer customer) {
+	public boolean updateCustomer(Customer customer, String sessionId) {
 		UnitOfWork.newCurrent();
 		UnitOfWork.getCurrent().registerDirty(customer);
-		return UnitOfWork.getCurrent().commit();
+		return UnitOfWork.getCurrent().commit(sessionId);
 		//return cm.updateCustomer(customer);
 	}
 	

@@ -36,7 +36,7 @@ public class PlaceOrderCommand extends FrontCommand{
 		}
 		// insert order
 		OrderService os = new OrderService();
-		boolean result = os.insertOrder(order);
+		boolean result = os.insertOrder(order, request.getSession().getId());
 		
 		if (result)
 			forward("/jsp/successOrder.jsp");

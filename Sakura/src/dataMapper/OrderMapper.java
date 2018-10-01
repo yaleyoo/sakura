@@ -9,13 +9,17 @@ import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
 import domain.Customer;
+import domain.DomainObject;
 import domain.Order;
 import domain.Room;
 import domain.TimeRange;
 import utils.DBConnection;
 
-public class OrderMapper {
-	public boolean insertOrder(Order order) {
+public class OrderMapper extends DataMapper {
+	
+	@Override
+	public boolean insert(DomainObject obj) {
+		Order order = (Order) obj;
 		String insertOrder="INSERT INTO sakura.Order "
 				+ "(orderId, roomId, customerId, checkIn, checkOut, createTime, sum, status)"
 				+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
@@ -44,7 +48,9 @@ public class OrderMapper {
 			return true;
 	}
 
-	public boolean deleteOrder(Order order) {
+	@Override
+	public boolean delete(DomainObject obj) {
+		Order order = (Order) obj;
 		String deleteOrderById = "DELETE FROM sakura.Order WHERE orderId = ?";
 		int result = 0;
 		try {
@@ -64,8 +70,10 @@ public class OrderMapper {
 		else 
 			return true;
 	}
-
-	public boolean updateOrder (Order order) {
+	
+	@Override
+	public boolean update (DomainObject obj) {
+		Order order = (Order)obj;
 		String updateOrderById = "UPDATE sakura.Order SET "
 				+ "roomId=?, customerId=?, checkIn=?, checkOut=?, createTime=?, sum=?, status=? "
 				+ "WHERE orderId=?";

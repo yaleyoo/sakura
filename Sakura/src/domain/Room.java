@@ -17,9 +17,13 @@ public class Room extends DomainObject{
 		this.type = type;
 		this.price = price;
 		this.building = building;
-		
-		
 	}
+	
+	@Override
+	public String getId() {
+		return ""+this.roomId;
+	}
+	
 	public int getRoomId() {
 		return roomId;
 	}

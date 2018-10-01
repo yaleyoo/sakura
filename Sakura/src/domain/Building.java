@@ -11,6 +11,11 @@ public class Building extends DomainObject{
 		
 	}
 	
+	@Override
+	public String getId() {
+		return ""+this.buildingId;
+	}
+	
 	public Building(String address, String buildingName, List<Room> roomList) {
 		super();
 		this.address = address;

@@ -19,6 +19,12 @@ public class Staff extends DomainObject{
 		this.status = status;
 		
 	}
+	
+	@Override
+	public String getId() {
+		return ""+this.staffId;
+	}
+	
 	public int getStaffId() {
 		return staffId;
 	}

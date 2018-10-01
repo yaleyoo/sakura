@@ -26,27 +26,32 @@ public class ExclusiveWriteLockManager implements LockManager {
 		boolean result = false;
 		
 		if (!hasLock(type, id, sessionId)) {
-			String acquireSQL = "insert into sakura.Lock (Id, locked, sessionId, table)"
-					+ " values ("+id+", 1, "+sessionId+","+type+")"; 
+			String acquireSQL = "insert into sakura.Lock (Id, sessionId, tableName)"
+					+ " values (?,?,?);"; 
 			Connection conn = DBConnection.getConnection();
 			PreparedStatement pStatement = (PreparedStatement) conn.prepareStatement(acquireSQL);
+			pStatement.setString(1, id);
+			pStatement.setString(2, sessionId);
+			pStatement.setString(3, type);
 			pStatement.executeUpdate();
 			
 			DBConnection.closePreparedStatement(pStatement);
 			DBConnection.closeConnection(conn);
 			
 			result = true;
-			
 		}
 		return result;
 	}
 
 	@Override
 	public boolean releaseLock(String type, String id, String sessionId) throws Exception {
-		String releaseSQL = "delect from sakura.Lock where table="+type+"Id="
-				+id+"sessionId="+sessionId;
+		String releaseSQL = "delete from sakura.Lock where tableName=? AND Id=?"
+				+" AND sessionId=?";
 		Connection conn = DBConnection.getConnection();
 		PreparedStatement pStatement = (PreparedStatement) conn.prepareStatement(releaseSQL);
+		pStatement.setString(1, type);
+		pStatement.setString(2, id);
+		pStatement.setString(3, sessionId);
 		
 		int result = pStatement.executeUpdate();
 		
@@ -57,21 +62,22 @@ public class ExclusiveWriteLockManager implements LockManager {
 	}
 	
 	private boolean hasLock(String type, String id, String sessionId) {
-		String hasLockSQL = "select locked from sakura.Lock where id =" + id +
-				"table=" + type;
-		
+		String hasLockSQL = "SELECT sessionId FROM sakura.Lock WHERE id =?" +
+				"AND tableName=?";
+		boolean result = false;
 		Connection conn;
 		try {
 			conn = DBConnection.getConnection();
 			PreparedStatement pStatement = (PreparedStatement) conn.prepareStatement(hasLockSQL);
+			pStatement.setString(1, id);
+			pStatement.setString(2, type);
 			
 			ResultSet resultSet = pStatement.executeQuery();
+			// if current session has the lock
 			while (resultSet.next()) {
-				if (resultSet.getInt(0) == 1) {
-					DBConnection.closePreparedStatement(pStatement);
-					DBConnection.closeConnection(conn);
-					
-					return false;
+				String session_in_DB = resultSet.getString(0);
+				if (session_in_DB.equals(sessionId)) {
+					result = true;
 				}
 			}
 			
@@ -83,7 +89,7 @@ public class ExclusiveWriteLockManager implements LockManager {
 			e.printStackTrace();
 		}
 		
-		return true;
+		return result;
 		
 	}
 

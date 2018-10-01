@@ -8,11 +8,14 @@ import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
 import domain.Building;
+import domain.DomainObject;
 import utils.DBConnection;
 
-public class BuildingMapper {
+public class BuildingMapper extends DataMapper{
 
-	public boolean insertBuilding(Building building) {
+	@Override
+	public boolean insert(DomainObject obj) {
+		Building building = (Building)obj;
 		String insertBuilding="INSERT INTO sakura.Building "
 				+ "(buildingId, address, buildingName)"
 				+ " VALUES (?, ?, ?);";
@@ -36,7 +39,9 @@ public class BuildingMapper {
 			return true;
 	}
 	
-	public boolean deleteBuilding(Building building) {
+	@Override
+	public boolean delete(DomainObject obj) {
+		Building building = (Building)obj;
 		String deleteBuildingById = "DELETE FROM sakura.Building WHERE buildingId = ?";
 		int result = 0;
 		try {
@@ -57,7 +62,9 @@ public class BuildingMapper {
 			return true;
 	}
 	
-	public boolean updateBuilding (Building building) {
+	@Override
+	public boolean update (DomainObject obj) {
+		Building building = (Building)obj;
 		String updateBuildingById = "UPDATE sakura.Building SET "
 				+ "address=?, buildingName=? "
 				+ " WHERE buildingId=?";

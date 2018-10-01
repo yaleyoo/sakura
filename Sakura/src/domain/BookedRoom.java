@@ -10,6 +10,11 @@ public class BookedRoom extends DomainObject{
 		
 	}
 	
+	@Override
+	public String getId() {
+		return this.room.getId();
+	}
+	
 	public BookedRoom(int bookedRoomId, TimeRange timeRange, Room room) {
 		this.bookedRoomId = bookedRoomId;
 		this.setTimeRange(timeRange);

@@ -8,12 +8,15 @@ import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
 import domain.Building;
+import domain.DomainObject;
 import domain.Room;
 import utils.DBConnection;
 import utils.IdentityMap;
 
-public class RoomMapper {
-	public boolean insertRoom(Room room) {
+public class RoomMapper extends DataMapper{
+	@Override
+	public boolean insert(DomainObject obj) {
+		Room room = (Room)obj;
 		String insertRoom="INSERT INTO sakura.Room "
 				+ "(roomId, name, type, price, buildingId)"
 				+ " VALUES (?, ?, ?, ?, ?);";
@@ -39,7 +42,9 @@ public class RoomMapper {
 			return true;
 	}
 	
-	public boolean deleteRoom(Room room) {
+	@Override
+	public boolean delete(DomainObject obj) {
+		Room room = (Room)obj;
 		String deleteRoomById = "DELETE FROM sakura.Room WHERE roomId = ?";
 		int result = 0;
 		try {
@@ -60,7 +65,9 @@ public class RoomMapper {
 			return true;
 	}
 	
-	public boolean updateRoom (Room room) {
+	@Override
+	public boolean update (DomainObject obj) {
+		Room room = (Room)obj;
 		String updateRoomById = "UPDATE sakura.Room SET "
 				+ "name=?, =?, type=?, price=?, buildingId=?,"
 				+ " WHERE roomId=?";

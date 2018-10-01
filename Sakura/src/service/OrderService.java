@@ -19,7 +19,7 @@ public class OrderService {
 		brm = new BookedRoomMapper();
 	}
 	
-	public boolean insertOrder(Order order) {
+	public boolean insertOrder(Order order, String sessionId) {
 		boolean result = true;
 		
 		TimeRange tr = order.getTimerange();
@@ -31,11 +31,11 @@ public class OrderService {
 		UnitOfWork.getCurrent().registerNew(br);
 		UnitOfWork.getCurrent().registerNew(order);
 		
-		result = UnitOfWork.getCurrent().commit();
+		result = UnitOfWork.getCurrent().commit(sessionId);
 		return result;
 	}
 	
-	public boolean cancelOrder(Order order) {
+	public boolean cancelOrder(Order order, String sessionId) {
 		boolean result = true;
 		BookedRoom temp = new BookedRoom();
 		temp.setOrderId(order.getOrderId());
@@ -47,14 +47,14 @@ public class OrderService {
 		order.setStatus(utils.Parameters.CANCEL);
 		UnitOfWork.getCurrent().registerDirty(order);
 		
-		result = UnitOfWork.getCurrent().commit();
+		result = UnitOfWork.getCurrent().commit(sessionId);
 		return result;
 	}
 	
-	public boolean updateOrder(Order order) {
+	public boolean updateOrder(Order order, String sessionId) {
 		UnitOfWork.newCurrent();
 		UnitOfWork.getCurrent().registerDirty(order);
-		return UnitOfWork.getCurrent().commit();
+		return UnitOfWork.getCurrent().commit(sessionId);
 	}
 	
 	public List<Order> findOrder(Order order){
@@ -79,7 +79,7 @@ public class OrderService {
 			return null;
 	}
 	
-	public boolean deleteOrder(Order order) {
+	public boolean deleteOrder(Order order, String sessionId) {
 		boolean result = true;
 		BookedRoom br = new BookedRoom();
 		br.setOrderId(order.getOrderId());
@@ -88,7 +88,7 @@ public class OrderService {
 		UnitOfWork.getCurrent().registerDeleted(br);
 		UnitOfWork.getCurrent().registerDeleted(order);
 		
-		result = UnitOfWork.getCurrent().commit();
+		result = UnitOfWork.getCurrent().commit(sessionId);
 		return result;
 	}
 	

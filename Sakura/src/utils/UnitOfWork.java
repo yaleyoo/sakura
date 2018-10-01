@@ -1,6 +1,5 @@
 package utils;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,7 +57,7 @@ public boolean checkIfInList(DomainObject obj) {
 	 return false;
 }
 
-public boolean commit()  {
+public boolean commit(String sessionId) {
 	boolean addResult = true;
 	boolean updateResult = true;
 	boolean deleteResult = true;
@@ -67,28 +66,13 @@ public boolean commit()  {
 		if(!addResult) {
 			return false;
 		}
-		switch(obj.getClass().getSimpleName()) {			
-			case "BookedRoom":
-				BookedRoomMapper brm = new BookedRoomMapper();
-				addResult = brm.insertBookedRoom((BookedRoom)obj);
-				break;
-			case "Building":
-				BuildingMapper bm = new BuildingMapper();
-				addResult = bm.insertBuilding((Building)obj);
-				break;
-			case "Customer":
-				CustomerMapper cm = new CustomerMapper();
-				addResult = cm.insertCustomer((Customer)obj);
-				break;
-			case "Order":
-				OrderMapper om = new OrderMapper();
-				addResult = om.insertOrder((Order)obj);
-				break;
-			case "Room":
-				RoomMapper rm = new RoomMapper();
-				addResult = rm.insertRoom((Room)obj);
-				break;
-		}		
+		try {
+			DataMapper dm = (DataMapper) Class.forName(
+					"dataMapper."+obj.getClass().getSimpleName()+"Mapper").newInstance();
+			dm.insert(obj);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	//deal with dirty objects
@@ -96,27 +80,15 @@ public boolean commit()  {
 		if(!updateResult) {
 			return false;
 		}
-		switch(obj.getClass().getSimpleName()) {			
-		case "BookedRoom":
-			BookedRoomMapper brm = new BookedRoomMapper();
-			updateResult = brm.updateBookedRoom((BookedRoom)obj);
-			break;
-		case "Building":
-			BuildingMapper bm = new BuildingMapper();
-			updateResult = bm.updateBuilding((Building)obj);
-			break;
-		case "Customer":
-			CustomerMapper cm = new CustomerMapper();
-			updateResult = cm.updateCustomer((Customer)obj);
-			break;
-		case "Order":
-			OrderMapper om = new OrderMapper();
-			updateResult = om.updateOrder((Order)obj);
-			break;
-		case "Room":
-			RoomMapper rm = new RoomMapper();
-			updateResult = rm.updateRoom((Room)obj);
-			break;
+		
+		try {
+			DataMapper dm = (DataMapper) Class.forName(
+					"dataMapper."+obj.getClass().getSimpleName()+"Mapper").newInstance();
+			ImplicitMapper im = new ImplicitMapper(
+					dm, sessionId, obj.getClass().getSimpleName());
+			im.update(obj);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -125,27 +97,15 @@ public boolean commit()  {
 		if(!deleteResult) {
 			return false;
 		}
-		switch(obj.getClass().getSimpleName()) {			
-		case "BookedRoom":
-			BookedRoomMapper brm = new BookedRoomMapper();
-			deleteResult = brm.deleteBookedRoom((BookedRoom)obj);
-			break;
-		case "Building":
-			BuildingMapper bm = new BuildingMapper();
-			deleteResult = bm.deleteBuilding((Building)obj);
-			break;
-		case "Customer":
-			CustomerMapper cm = new CustomerMapper();
-			deleteResult = cm.deleteCustomer((Customer)obj);
-			break;
-		case "Order":
-			OrderMapper om = new OrderMapper();
-			deleteResult = om.deleteOrder((Order)obj);
-			break;
-		case "Room":
-			RoomMapper rm = new RoomMapper();
-			deleteResult = rm.deleteRoom((Room)obj);
-			break;
+		
+		try {
+			DataMapper dm = (DataMapper) Class.forName(
+					"dataMapper."+obj.getClass().getSimpleName()+"Mapper").newInstance();
+			ImplicitMapper im = new ImplicitMapper(
+					dm, sessionId, obj.getClass().getSimpleName());
+			im.delete(obj);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	

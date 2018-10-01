@@ -8,11 +8,15 @@ import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
 import domain.Customer;
+import domain.DomainObject;
 import utils.DBConnection;
 import utils.IdentityMap;
 
-public class CustomerMapper {
-	public boolean insertCustomer(Customer customer) {
+public class CustomerMapper extends DataMapper{
+	
+	@Override
+	public boolean insert(DomainObject obj) {
+		Customer customer = (Customer)obj;
 		String insertCustomer="INSERT INTO sakura.Customer "
 				+ "(customerId, firstname, lastname, title, identityNumber, identityType, number, email)"
 				+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
@@ -41,7 +45,9 @@ public class CustomerMapper {
 			return true;
 	}
 	
-	public boolean deleteCustomer(Customer customer) {
+	@Override
+	public boolean delete(DomainObject obj) {
+		Customer customer = (Customer)obj;
 		String deleteCustomerById = "DELETE FROM sakura.Customer WHERE customerId = ?";
 		int result = 0;
 		try {
@@ -62,7 +68,9 @@ public class CustomerMapper {
 			return true;
 	}
 	
-	public boolean updateCustomer (Customer customer) {
+	@Override
+	public boolean update (DomainObject obj) {
+		Customer customer = (Customer)obj;
 		String updateCustomerById = "UPDATE sakura.Customer SET "
 				+ "firstname=?, lastname=?, title=?, identityNumber=?, identityType=?,"
 				+ " number=?, email=? WHERE customerId=?";

@@ -24,6 +24,11 @@ public class Order extends DomainObject{
 		this.status = status;
 	}
 	
+	@Override
+	public String getId() {
+		return ""+this.orderId;
+	}
+	
 	public long getOrderId() {
 		return orderId;
 	}

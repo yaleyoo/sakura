@@ -27,6 +27,11 @@ public class Customer extends DomainObject{
 		
 	}
 	
+	@Override
+	public String getId() {
+		return ""+this.customerId;
+	}
+	
 	public int getCustomerId() {
 		return customerId;
 	}

@@ -34,7 +34,7 @@ public class CancelOrderCommand extends FrontCommand{
 			forward("/jsp/error.jsp");
 			return;
 		}
-		result = os.cancelOrder(order);
+		result = os.cancelOrder(order, request.getSession().getId());
 		
 		if (result)
 			forward("/jsp/successOrder.jsp");
