@@ -31,6 +31,8 @@ public class CancelOrderCommand extends FrontCommand{
 			result = false;
 		}
 		if (!result) {
+			request.getSession().setAttribute("erroMsg", 
+					"Cannot cancel order within 2 days before check in. Please contact staff.");
 			forward("/jsp/error.jsp");
 			return;
 		}

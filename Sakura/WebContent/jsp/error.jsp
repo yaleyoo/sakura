@@ -11,7 +11,8 @@
 		<%@include file="common/navi.jsp"%>
 		
 		<div class="alert alert-danger" role="alert" style="margin:10%;width:80%;">
-  			Something going wrong!
+  			<p>Something going wrong! <p>
+  			<p><b>Error Message:</b> ${sessionScope.errorMsg}</p>
 		</div>
 		<button type="button" style="text-align: right; margin:0 10%;" 
 			class="btn btn-success" onclick="javascript:location.href='frontServlet?command=HomePage'">Return</button>

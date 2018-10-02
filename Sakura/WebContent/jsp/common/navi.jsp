@@ -23,6 +23,9 @@
     
     <div class="navbar-collapse collapse order-2">
         <ul class="navbar-nav ml-auto">
+        	<li class="nav-item ml-3">
+	            <a class="nav-link" href="frontServlet?command=ViewStaff">STAFF</a>
+            </li>
             <li class="nav-item ml-3">
             <c:if test = "${sessionScope.loggedUser != null}">
             	<a class="nav-link" href="frontServlet?command=ViewCustomer">

@@ -60,6 +60,8 @@ public class CheckOrderCommand extends FrontCommand {
 
 		if (!DateValidator.validateCheckInOutDate(checkInTime, checkOutTime)) {
 			// end date earlier than start date. INVALID.
+			request.getSession().setAttribute("errorMsg",
+					"Invalid date, check out date earlier than check in date.");
 			forward("/jsp/error.jsp");
 			return;
 		}

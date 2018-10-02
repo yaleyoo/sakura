@@ -35,7 +35,7 @@ public class ViewCustomerCommand extends FrontCommand{
 			forward("/jsp/customerOrders.jsp");
 		}
 		else {			
-			response.getWriter().write("Verification Neccessary");
+			request.getSession().setAttribute("errorMsg", "Please login first.");
 			forward("/jsp/error.jsp");
 		}
 		
