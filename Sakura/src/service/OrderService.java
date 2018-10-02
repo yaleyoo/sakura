@@ -9,6 +9,8 @@ import domain.BookedRoom;
 import domain.Order;
 import domain.Room;
 import domain.TimeRange;
+import utils.ExclusiveWriteLockManager;
+import utils.LockManager;
 import utils.UnitOfWork;
 
 public class OrderService {
@@ -89,6 +91,37 @@ public class OrderService {
 		UnitOfWork.getCurrent().registerDeleted(order);
 		
 		result = UnitOfWork.getCurrent().commit(sessionId);
+		return result;
+	}
+	
+	/*check the availability of the booked room, would only be 
+	  invoked by placeOrderCommand*/
+	public boolean validateOrder(Order order, String sessionId) {
+		LockManager lm = ExclusiveWriteLockManager.getInstance();
+		boolean result = false;
+		try {
+			if (lm.acquireLock("BookedRoom", order.getRoom().getId(), sessionId)) {
+				RoomService rs = new RoomService();
+				// if ordered room is now available
+				List<Room> list = rs.findAvailableRooms(order.getTimerange().getCheckInTime(), 
+						order.getTimerange().getCheckOutTime(), 
+						order.getRoom().getBuilding().getBuildingId());
+				boolean isContain = false;
+				for (Room r:list) {
+					if (r.getRoomId() == order.getRoom().getRoomId()) {
+						isContain = true;
+						break;
+					}
+				}
+				if (isContain) {
+					result = insertOrder(order, sessionId);
+				}
+				lm.releaseLock("BookedRoom", order.getRoom().getId(), sessionId);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		return result;
 	}
 	

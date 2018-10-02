@@ -26,12 +26,12 @@
             <li class="nav-item ml-3">
             <c:if test = "${sessionScope.loggedUser != null}">
             	<a class="nav-link" href="frontServlet?command=ViewCustomer">
-	            	Hello, ${sessionScope.loggedUser.firstname} <i class="iconfont">&#xe674;</i></span>
+	            	Hello, ${sessionScope.loggedUser.firstname} <i class="iconfont">&#xe674;</i>
 	            </a>	
             </c:if>
            	<c:if test = "${sessionScope.loggedUser == null}">
            		<a class="nav-link" href="frontServlet?command=Login">
-            		LOGIN</span>
+            		LOGIN
 	            </a>
            	</c:if>
             

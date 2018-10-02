@@ -71,7 +71,7 @@ public boolean commit(String sessionId) {
 		try {
 			DataMapper dm = (DataMapper) Class.forName(
 					"dataMapper."+obj.getClass().getSimpleName()+"Mapper").newInstance();
-			dm.insert(obj);
+			addResult = dm.insert(obj);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -88,7 +88,7 @@ public boolean commit(String sessionId) {
 					"dataMapper."+obj.getClass().getSimpleName()+"Mapper").newInstance();
 			ImplicitMapper im = new ImplicitMapper(
 					dm, sessionId, obj.getClass().getSimpleName());
-			im.update(obj);
+			updateResult = im.update(obj);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -105,7 +105,7 @@ public boolean commit(String sessionId) {
 					"dataMapper."+obj.getClass().getSimpleName()+"Mapper").newInstance();
 			ImplicitMapper im = new ImplicitMapper(
 					dm, sessionId, obj.getClass().getSimpleName());
-			im.delete(obj);
+			deleteResult = im.delete(obj);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -27,7 +27,7 @@ public class CancelOrderCommand extends FrontCommand{
 		// can only cancel order in 2 days before the check in date.
 		Date now = new Date();
 		if (DateValidator.calculateDateGap(
-				order.getTimerange().getCheckInTime(), now) < 2) {
+				now, order.getTimerange().getCheckInTime()) < 2) {
 			result = false;
 		}
 		if (!result) {

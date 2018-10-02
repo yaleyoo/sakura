@@ -7,6 +7,9 @@ import com.mysql.jdbc.PreparedStatement;
 
 public class ExclusiveWriteLockManager implements LockManager {
 	private static ExclusiveWriteLockManager lm;
+	private final int lock_been_taken = -1;
+	private final int lock_can_take = 0;
+	private final int you_hold_lock = 1;
 	
 	private ExclusiveWriteLockManager() {
 		
@@ -25,7 +28,22 @@ public class ExclusiveWriteLockManager implements LockManager {
 		
 		boolean result = false;
 		
-		if (!hasLock(type, id, sessionId)) {
+		int lockStatus = hasLock(type, id, sessionId);
+		
+		// if lock is unavailable now, retry 3 times
+		int i = 0;
+		while (lockStatus == lock_been_taken && i<Parameters.num_of_retry) {
+			if (i!=0) {
+				// wait for 1s
+				Thread.sleep(1000);
+			}
+			lockStatus = hasLock(type, id, sessionId);
+			i++;
+			System.out.println("[RETRY]   "+ i +" retrying..........");
+		}
+		
+		// if current session can take the lock
+		if (lockStatus == lock_can_take) {
 			String acquireSQL = "insert into sakura.Lock (Id, sessionId, tableName)"
 					+ " values (?,?,?);"; 
 			Connection conn = DBConnection.getConnection();
@@ -33,13 +51,19 @@ public class ExclusiveWriteLockManager implements LockManager {
 			pStatement.setString(1, id);
 			pStatement.setString(2, sessionId);
 			pStatement.setString(3, type);
-			pStatement.executeUpdate();
+			int sqlResult = pStatement.executeUpdate();
 			
 			DBConnection.closePreparedStatement(pStatement);
 			DBConnection.closeConnection(conn);
 			
+			if (sqlResult == 1)
+				result = true;
+		}
+		
+		else if (lockStatus == you_hold_lock) {
 			result = true;
 		}
+		
 		return result;
 	}
 
@@ -61,10 +85,17 @@ public class ExclusiveWriteLockManager implements LockManager {
 			return true;
 	}
 	
-	private boolean hasLock(String type, String id, String sessionId) {
+	/**
+	 * check whether current session can acquire the lock
+	 * @param type
+	 * @param id
+	 * @param sessionId
+	 * @return
+	 */
+	private int hasLock(String type, String id, String sessionId) {
 		String hasLockSQL = "SELECT sessionId FROM sakura.Lock WHERE id =?" +
 				"AND tableName=?";
-		boolean result = false;
+		int result = 0;
 		Connection conn;
 		try {
 			conn = DBConnection.getConnection();
@@ -73,12 +104,18 @@ public class ExclusiveWriteLockManager implements LockManager {
 			pStatement.setString(2, type);
 			
 			ResultSet resultSet = pStatement.executeQuery();
-			// if current session has the lock
+			// if current object has been locked
 			while (resultSet.next()) {
-				String session_in_DB = resultSet.getString(0);
+				String session_in_DB = resultSet.getString(1);
+				// if current session has the lock
 				if (session_in_DB.equals(sessionId)) {
-					result = true;
+					result = 1;
 				}
+				// if the lock has been taken by others
+				else {
+					result = -1;
+				}
+				
 			}
 			
 			DBConnection.closePreparedStatement(pStatement);
