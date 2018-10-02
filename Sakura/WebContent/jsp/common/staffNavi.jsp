@@ -22,7 +22,7 @@
             </li>
             <li class="nav-item">
              <c:if test = "${sessionScope.loggedManager != null}">
-                <a class="nav-link" href="frontServlet?command=ManageProperty">
+                <a class="nav-link" href="frontServlet?command=ViewBuildings">
                     <i class="iconfont">&#xe600;</i>&nbsp;Manage Properties <span class="sr-only"></span>
                 </a>
              </c:if>
