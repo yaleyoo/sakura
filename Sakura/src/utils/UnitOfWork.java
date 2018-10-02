@@ -70,7 +70,7 @@ public boolean commit(String sessionId) {
 		}
 		try {
 			DataMapper dm = (DataMapper) Class.forName(
-					"dataMapper."+obj.getClass().getSimpleName()+"Mapper").newInstance();
+					"dataMapper."+obj.getClass().getSimpleName()+"Mapper").getDeclaredConstructor().newInstance();
 			addResult = dm.insert(obj);
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -85,7 +85,7 @@ public boolean commit(String sessionId) {
 		
 		try {
 			DataMapper dm = (DataMapper) Class.forName(
-					"dataMapper."+obj.getClass().getSimpleName()+"Mapper").newInstance();
+					"dataMapper."+obj.getClass().getSimpleName()+"Mapper").getDeclaredConstructor().newInstance();
 			ImplicitMapper im = new ImplicitMapper(
 					dm, sessionId, obj.getClass().getSimpleName());
 			updateResult = im.update(obj);
@@ -102,7 +102,7 @@ public boolean commit(String sessionId) {
 		
 		try {
 			DataMapper dm = (DataMapper) Class.forName(
-					"dataMapper."+obj.getClass().getSimpleName()+"Mapper").newInstance();
+					"dataMapper."+obj.getClass().getSimpleName()+"Mapper").getDeclaredConstructor().newInstance();
 			ImplicitMapper im = new ImplicitMapper(
 					dm, sessionId, obj.getClass().getSimpleName());
 			deleteResult = im.delete(obj);
