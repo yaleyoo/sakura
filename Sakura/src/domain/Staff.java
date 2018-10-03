@@ -6,6 +6,10 @@ public class Staff extends DomainObject{
 	private String lastname;
 	private String number;
 	private String status;
+	private String staffType;
+	
+	public final String manager = "Manager";
+	public final String receptionist = "Receptionist";
 	
 	public Staff() {
 		
@@ -55,7 +59,15 @@ public class Staff extends DomainObject{
 	}
 	public void setStatus(String status) {
 		this.status = status;
-
 	}
+
+	public String getStaffType() {
+		return staffType;
+	}
+
+	public void setStaffType(String staffType) {
+		this.staffType = staffType;
+	}
+	
 	
 }

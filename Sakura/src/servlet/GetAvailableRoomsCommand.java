@@ -17,7 +17,7 @@ public class GetAvailableRoomsCommand extends FrontCommand{
 	@Override
 	public void process() throws ServletException, IOException {
 		rs = new RoomService();
-		SimpleDateFormat sdf =   new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+		SimpleDateFormat sdf =  new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
 		Date checkInTime = null;
 		Date checkOutTime = null;
 		try {
