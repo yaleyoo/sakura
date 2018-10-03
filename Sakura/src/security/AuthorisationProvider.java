@@ -30,6 +30,8 @@ public class AuthorisationProvider {
 		pemission.put("ViewRooms", viewRooms);
 		Class[] logout = null;
 		pemission.put("LogOut", logout);
+		Class[] staffHomePage = null;
+		pemission.put("StaffHomePage", staffHomePage);
 	}
 	
 	public static boolean checkAuthorisation(String command, Object user) {

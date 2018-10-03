@@ -28,7 +28,7 @@
         	
         	<li class="nav-item ml-3">
         		<c:if test = "${sessionScope.loggedUser == null}">
-	            	<a class="nav-link" href="frontServlet?command=StaffLoginPage">STAFF</a>
+	            	<a class="nav-link" href="frontServlet?command=StaffHomePage">STAFF</a>
 	            </c:if>
             </li>
             
