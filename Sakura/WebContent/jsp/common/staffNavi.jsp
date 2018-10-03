@@ -8,7 +8,6 @@
     <div class="collapse navbar-collapse order-1">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
-             <c:if test = "${sessionScope.loggedReceptionist != null || ${sessionScope.loggedManager != null}">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" 
                 role="button" aria-haspopup="true" aria-expanded="false" href="frontServlet?command=ManageOrder">
                     <i class="iconfont">&#xeb2a;</i>&nbsp;Manage Orders <span class="sr-only"></span>
@@ -17,15 +16,12 @@
                 	<a class="dropdown-item" href="frontServlet?command=">Place New Order</a>
                 	<div class="dropdown-divider"></div>
                 	<a class="dropdown-item" href="frontServlet?command=">Check Current Orders</a>
-                </div>               
-             </c:if>
+                </div>
             </li>
             <li class="nav-item">
-             <c:if test = "${sessionScope.loggedManager != null}">
                 <a class="nav-link" href="frontServlet?command=ViewBuildings">
                     <i class="iconfont">&#xe600;</i>&nbsp;Manage Properties <span class="sr-only"></span>
                 </a>
-             </c:if>
             </li>            
             
         </ul>
@@ -34,24 +30,25 @@
     <div class="navbar-collapse collapse order-2">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item ml-3">
-            <c:if test = "${sessionScope.loggedReceptionist != null}">
-	            Hello, Receptionist ${sessionScope.loggedReceptionist.firstname} <i class="iconfont">&#xe674;</i>	
+            <c:if test = "${sessionScope.loggedUser != null}">
+	            Hello, ${sessionScope.loggedUser.firstname} <i class="iconfont">&#xe674;</i>	
             </c:if>
-           	<c:if test = "${sessionScope.loggedManager != null}">
-            	Hello, Manager ${sessionScope.loggedManager.firstname} <i class="iconfont">&#xe674;</i>
-           	</c:if>
-            <c:if test = "${sessionScope.loggedManager == null && sessionScope.loggedReceptionist == null}">
-           		<a class="nav-link" href="frontServlet?command=Login&&role=manager">
-           			MANAGER
-	            </a>
-	            <a class="nav-link" href="frontServlet?command=Login&&role=receptionist">
-           			RECEPTIONIST
-	            </a>
-           	</c:if>
-           	
+          	
             </li>
+            <c:if test = "${sessionScope.loggedUser == null}">
+	            <li class="nav-item ml-3">
+		            <a class="nav-link" href="frontServlet?command=Login&&role=manager">
+	           			MANAGER
+		            </a>
+	            </li>
+	            <li class="nav-item ml-3">
+		            <a class="nav-link" href="frontServlet?command=Login&&role=manager">
+	           			RECEPTIONIST
+		            </a>
+	            </li>
+            </c:if>        
             <li class="nav-item ml-3">
-	            <c:if test = "${sessionScope.loggedManager != null || sessionScope.loggedReceptionist != null}">
+	            <c:if test = "${sessionScope.loggedUser != null}">
 	            	<a class="nav-link" href="frontServlet?command=LogOut">Log Out</a>
 	            </c:if>
             </li>
