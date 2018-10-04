@@ -31,10 +31,10 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item ml-3">
             <c:if test = "${sessionScope.loggedUser != null}">
-	            Hello, ${sessionScope.loggedUser.firstname} <i class="iconfont">&#xe674;</i>	
+            	<a class="nav-link" href="frontServlet?command=ViewCustomer">
+	            	Hello, ${sessionScope.loggedUser.firstname} <i class="iconfont">&#xe674;</i>
+	            </a>	
             </c:if>
-          	
-            </li>
             <c:if test = "${sessionScope.loggedUser == null}">
 	            <li class="nav-item ml-3">
 		            <a class="nav-link" href="frontServlet?command=Login&&role=manager">
@@ -42,7 +42,7 @@
 		            </a>
 	            </li>
 	            <li class="nav-item ml-3">
-		            <a class="nav-link" href="frontServlet?command=Login&&role=manager">
+		            <a class="nav-link" href="frontServlet?command=Login&&role=receptionist">
 	           			RECEPTIONIST
 		            </a>
 	            </li>
