@@ -36,6 +36,7 @@ public class FrontServlet extends HttpServlet {
 		}
 		// validate URI
 		if (!InterceptingValidator.validateURI(request.getRequestURI())) {
+			request.getSession().setAttribute("errorMsg", "invalid URI.");
 			request.getRequestDispatcher("/jsp/error.jsp").forward(request, response);
 			return;
 		}

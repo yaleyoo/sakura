@@ -15,7 +15,7 @@ public class StaffBuildingsCommand extends FrontCommand{
 		
 		BuildingService bs = new BuildingService();
 		List<Building> buildingList = bs.getAllBuildings();
-		request.setAttribute("buildingList", buildingList);
+		request.setAttribute("buildings", buildingList);
 		forward("/jsp/staff/staffBuildings.jsp");
 	}
 

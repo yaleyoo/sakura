@@ -61,7 +61,6 @@ public class AuthorisationProvider {
 		Class userClass = null;
 		if (user != null)
 			userClass = user.getClass();
-		
 		// if the command is invalid
 		if (!permission.containsKey(command)) {
 			return false;

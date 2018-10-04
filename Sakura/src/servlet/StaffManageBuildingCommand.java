@@ -21,7 +21,34 @@ public class StaffManageBuildingCommand extends FrontCommand{
 			building = bs.getBuildingById(building).get(0);
 			
 			request.setAttribute("building", building);
-			forward("/jsp/staffManageBuilding.jsp");
+			forward("/jsp/staff/staffManageBuilding.jsp");
+		}
+		else if (method.equals("checkRooms")) {
+			
+		}
+		else if (method.equals("delete")) {
+			String sessionId = request.getSession().getId();
+			String buildingId = request.getParameter("buildingId");
+			Building building = new Building();
+			building.setBuildingId(Integer.parseInt(buildingId));
+			BuildingService bs = new BuildingService();
+			
+			boolean result = bs.deleteBuilding(building, sessionId);
+			if (result) {
+				forward("/jsp/staff/staffBuildings.jsp");
+			}
+			else {
+				request.getSession().setAttribute("errorMsg", 
+						"Something going wrong when delete the building, please try again later.");
+				forward("/jsp/staff/staffError.jsp");
+			}
+		}
+		else if (method.equals("newBuilding")) {
+			forward("/jsp/staff/staffNewBuilding.jsp");
+		}
+		else {
+			request.getSession().setAttribute("errorMsg", "Invalid method.");
+			forward("/jsp/error.jsp");
 		}
 		
 	}

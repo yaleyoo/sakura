@@ -17,7 +17,6 @@ public class AuthenticationEnforcer {
 	public static boolean checkAuthentication(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		Object user = session.getAttribute("loggedUser");
-		
 		// if haven't logged in, check authorisation
 		if (user == null) {
 			return AuthorisationEnforcer.checkAuthorisation(request);
@@ -27,7 +26,7 @@ public class AuthenticationEnforcer {
 			CustomerService cs = new CustomerService();
 			// if is already validated list
 			if (UserStore.authenticatedCustomer.contains(user)) {
-				return true;
+				return AuthorisationEnforcer.checkAuthorisation(request);
 			}
 			// if not in validated list, check the authentication in DB
 			if (cs.findCustomer((Customer) user).size() == 1) {
@@ -45,7 +44,7 @@ public class AuthenticationEnforcer {
 			StaffService ss = new StaffService();
 			// if is already validated list
 			if (UserStore.authenticatedManager.contains(user)) {
-				return true;
+				return AuthorisationEnforcer.checkAuthorisation(request);
 			}
 			// if not in validated list, check the authentication in DB
 			List<Staff> staffList = ss.findStaff((Staff)user);
@@ -64,7 +63,7 @@ public class AuthenticationEnforcer {
 			StaffService ss = new StaffService();
 			// if is already validated list
 			if (UserStore.authenticatedReceptionist.contains(user)) {
-				return true;
+				return AuthorisationEnforcer.checkAuthorisation(request);
 			}
 			// if not in validated list, check the authentication in DB
 			List<Staff> staffList = ss.findStaff((Staff)user);

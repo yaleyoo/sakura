@@ -16,22 +16,21 @@
 			<h4>Edit Building</h4>
 			<form>
 			  <div class="form-group row">
-			  	{$building.address}
 			    <label for="staticBuildingId" class="col-sm-2 col-form-label">Building ID</label>
 			    <div class="col-sm-10">
-			      <input type="text" readonly class="form-control-plaintext" id="staticBuildingId" value="building id">
+			      <input type="text" readonly class="form-control-plaintext" id="staticBuildingId" value="${building.buildingId}">
 			    </div>
 			  </div>
 			  <div class="form-group row">
 			    <label for="inputBuildingName" class="col-sm-2 col-form-label">Building Name</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" id="inputBuildingName" placeholder="original building name">
+			      <input type="text" class="form-control" id="inputBuildingName" value="${building.buildingName}" placeholder="original building name">
 			    </div>
 			  </div>
 			  <div class="form-group row">
 			    <label for="inputBuildingAddress" class="col-sm-2 col-form-label">Building Address</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" id="inputBuildingAddress" placeholder="original building address">
+			      <input type="text" class="form-control" id="inputBuildingAddress" value="${building.address}" placeholder="original building address">
 			    </div>
 			  </div>
 			  <button type="submit" class="btn btn-primary">Confirm</button>
