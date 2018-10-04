@@ -25,7 +25,7 @@
 						<div class="tab-content choose-customer-form" id="nav-tabContent">
 						  <div class="tab-pane fade show active" id="new-customer" role="tabpanel" aria-labelledby="nav-new-customer-tab">
 						  <!-- NEW CUSTOMER FORM START -->
-								<form>
+								<form action="frontServlet?command=StaffPlaceOrder">
 								  <div class="form-group">
 								    
 								    <input type="text" class="form-control" id="InputFirstName" placeholder="First Name">
@@ -56,8 +56,11 @@
 								  </div>
 								  <div class="form-row">
 								    <div class="col-12">
-										<button type="submit" class="btn btn-primary">Create</button>  
-										<button class="btn btn-primary btn-secondary">Cancel</button>     
+										<button class="btn btn-primary"
+										 	onclick="javascript:location.href='frontServlet?command=StaffCreateCustomer'">Create</button> 
+										<button type="submit" class="btn btn-primary">Next</button>   
+										<button class="btn btn-primary btn-secondary"
+											onclick="javascript:location.href='frontServlet?command=StaffHomePage'">Cancel</button>     
 								    </div>
 								  </div>
 								</form>						  
@@ -65,7 +68,7 @@
 						  </div>
 						  <div class="tab-pane fade" id="exsiting-customer" role="tabpanel" aria-labelledby="nav-exsiting-customer-tab">
 						  <!-- EXSISTING CUSTOMER FORM START -->
-								<form>
+								<form action="frontServlet?command=StaffPlaceOrder">
 								  <div class="form-group">
 								    
 								    <input type="text" class="form-control" id="InputFirstName" placeholder="First Name">
@@ -78,10 +81,11 @@
 								    
 								    <input type="text" class="form-control" id="InputEmail" placeholder="Email">
 								  </div>
-								  <button type="submit" class="btn btn-primary">Search</button>
-								</form>
+								  <button class="btn btn-primary"
+								  	onclick="javascript:location.href='frontServlet?command=StaffSearchCustomer'">Search</button>
+								
 								<hr>
-								<form>
+	
 								  <div class="form-row">
 								    <div class="col-6">
 								      <input type="text" class="form-control" placeholder="Title">
@@ -101,7 +105,8 @@
 								  <div class="form-row">
 								    <div class="col-12">
 										<button type="submit" class="btn btn-primary">Next</button>    
-										<button class="btn btn-primary btn-secondary">Cancel</button>     
+										<button class="btn btn-primary btn-secondary"
+											onclick="javascript:location.href='frontServlet?command=StaffHomePage'">Cancel</button>     
 								    </div>
 								  </div>
 								</form>			
