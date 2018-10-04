@@ -12,12 +12,12 @@
 		
 		<div id="header-wrapper" style="width: 100%;
 	            height: 100%;   
-	            background-image: url(img/sakura.jpg);
+	            background-image: url(img/Konoha_Hot_Springs.png);
 	            background-size: cover;
 	            background-position: center center;">
 	            
 	            <button onclick="javascript:location.href='frontServlet?command=ViewRooms'" type="button" class="btn btn-info" style="
-	            width: 20%; margin: 40% 40% 0 40%; height:60px;"><i class="iconfont">&#xe601;</i>&nbsp;Book Your Room Now!</button>
+	            width: 30%;margin: 20% 35% 0 35%;height: 60px;"><i class="iconfont">&#xe601;</i>&nbsp;Book Your Room Now!</button>
 	    </div>
 	
 		<style type="text/css">

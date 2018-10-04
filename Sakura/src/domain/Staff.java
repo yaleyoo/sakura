@@ -20,8 +20,7 @@ public class Staff extends DomainObject{
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.number = number;
-		this.status = status;
-		
+		this.status = status;		
 	}
 	
 	@Override
