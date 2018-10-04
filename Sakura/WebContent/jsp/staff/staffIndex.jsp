@@ -12,7 +12,7 @@
 		
 		<div id="header-wrapper" style="width: 100%;
 	            height: 100%;   
-	            background-image: url(img/sakura.jpg);
+	            background-image: url(img/staff_bg.jpeg);
 	            background-size: cover;
 	            background-position: center center;">
 	            
