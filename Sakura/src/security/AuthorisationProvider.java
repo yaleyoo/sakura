@@ -35,25 +35,25 @@ public class AuthorisationProvider {
 		Class[] staffIndex = null;
 		permission.put("StaffIndex", staffIndex);
 		Class[] staffChooseCustomer = {Manager.class, Receptionist.class};
-		permission.put("staffChooseCustomer", staffChooseCustomer);
+		permission.put("StaffChooseCustomer", staffChooseCustomer);
 		Class[] staffCreateCustomer = {Manager.class, Receptionist.class};
-		permission.put("staffCreateCustomer", staffCreateCustomer);
+		permission.put("StaffCreateCustomer", staffCreateCustomer);
 		Class[] staffSearchCustomer = {Manager.class, Receptionist.class};
-		permission.put("staffSearchCustomer", staffSearchCustomer);
+		permission.put("StaffSearchCustomer", staffSearchCustomer);
 		Class[] staffViewPlaceOrder = {Manager.class, Receptionist.class};
-		permission.put("staffViewPlaceOrder", staffViewPlaceOrder);
+		permission.put("StaffViewPlaceOrder", staffViewPlaceOrder);
 		Class[] staffPlaceOrder = {Manager.class, Receptionist.class};
-		permission.put("staffPlaceOrder", staffPlaceOrder);
+		permission.put("StaffPlaceOrder", staffPlaceOrder);
 		Class[] staffCheckOrder = {Manager.class, Receptionist.class};
-		permission.put("staffCheckOrder", staffCheckOrder);
+		permission.put("StaffCheckOrder", staffCheckOrder);
 		Class[] staffBuilding = {Manager.class};
-		permission.put("staffBuilding", staffBuilding);
+		permission.put("StaffBuilding", staffBuilding);
 		Class[] staffManageBuilding = {Manager.class};
-		permission.put("staffManageBuilding", staffManageBuilding);
+		permission.put("StaffManageBuilding", staffManageBuilding);
 		Class[] staffRooms = {Manager.class};
-		permission.put("staffRooms", staffRooms);
+		permission.put("StaffRooms", staffRooms);
 		Class[] staffManageRooms = {Manager.class};
-		permission.put("staffManageRooms", staffManageRooms);
+		permission.put("StaffManageRooms", staffManageRooms);
 		
 	}
 	

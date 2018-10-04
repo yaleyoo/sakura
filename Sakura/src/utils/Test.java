@@ -71,7 +71,7 @@ public class Test {
 		System.out.println(ox);*/
 		//String command = "Login";
 		//System.out.println(AuthorisationProvider.checkAuthorisation(command, null));
-		System.out.println(AuthorisationProvider.pemission.size());
+		System.out.println(AuthorisationProvider.permission.size());
 		
 		
 		

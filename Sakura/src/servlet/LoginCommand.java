@@ -10,10 +10,15 @@ import service.CustomerService;
 
 public class LoginCommand extends FrontCommand {
 
-
+	//private static String[] = ['1'];
+	
 	@Override
 	public void process() throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		
+		String role = request.getParameter("role");
+		
+
 		/*
 		 * HERE we pretend user already logged in as a customer.
 		 */
