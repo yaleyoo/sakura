@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="css/bootstrap.css">
 </head>
 <body>
-	<%@include file="common/staffNavi.jsp"%>
+	<%@include file="../common/staffNavi.jsp"%>
 
 <nav class="navbar navbar-light bg-light">
   <form class="form-inline text-center">

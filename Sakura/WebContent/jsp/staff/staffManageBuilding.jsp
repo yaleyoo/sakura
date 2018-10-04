@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="css/bootstrap.css">
 </head>
 <body>
-	<%@include file="common/staffNavi.jsp"%>
+	<%@include file="../common/staffNavi.jsp"%>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="well">

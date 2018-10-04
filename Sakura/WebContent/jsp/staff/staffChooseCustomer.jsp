@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="css/bootstrap.css">
 	</head>
 	<body>
-		<%@include file="common/staffNavi.jsp"%>
+		<%@include file="../common/staffNavi.jsp"%>
 		
 		<div class="container-fluid text-center">
 			<div class="row">

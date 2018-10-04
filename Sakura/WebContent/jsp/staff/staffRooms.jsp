@@ -5,24 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Room List - Sakura Hotel</title>
+<title>Rooms in Building - Sakura Hotel</title>
 <link rel="stylesheet" href="css/bootstrap.css">
 </head>
 <body>
-	<%@include file="common/staffNavi.jsp"%>
-
-<nav class="navbar navbar-light bg-light">
-  <form class="form-inline text-center">
-    Check in time:&nbsp; <input id="check_in_time" class="form-control mr-sm-2" type="search" placeholder="yyyy-mm-dd hh:mm:ss" aria-label="Search">
-    Check out time:&nbsp; <input id="check_out_time"class="form-control mr-sm-2" type="search" placeholder="yyyy-mm-dd hh:mm:ss" aria-label="Search">
-	<select class="form-control" id="buildingSelector">
-      <c:forEach var="building" items="${buildings}">
-      	<option value="${building.buildingId}">${building.buildingName}</option>
-      </c:forEach>      
-    </select>
-    <button class="btn btn-outline-success my-2 my-sm-0" onclick="javascript:search()">Search</button>
-  </form>
-</nav>	
+	<%@include file="../common/staffNavi.jsp"%>
+	
 <div id="roomList">
 	<c:forEach var="room" items="${rooms}">
 	<div class="card text-center room-card">
@@ -32,12 +20,13 @@
 	  <div class="card-body">
 	    <h5 class="card-title">${room.name}</h5>
 	    <p class="card-text">$${room.price}/day</p>
-	    <!-- <a href="frontServlet?command=CheckOrder&checkIn=dd&&checkOut=dd&&roomId=ff" class="btn btn-primary">Book</a>  -->
+	    <a class="btn btn-primary" href="#" role="button">Edit</a>
+	    <a class="btn btn-light" href="#" role="button">Delete</a>
 	  </div>
 	</div>
 	</c:forEach>
 </div>
-
+<a role="button" class="btn btn-primary btn-lg btn-block" href="#">Add a New Room</a>
 		<style type="text/css">
 			html,body{
 				background-color:rgb(232,232,232)!important;
@@ -58,6 +47,7 @@
         
         <script src="js/bootstrap.js"></script>
         <script type="text/javascript">
+
 
         </script>
 </body>
