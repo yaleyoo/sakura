@@ -66,6 +66,12 @@ public class RoomService {
 		return rm.findRoomById(room);
 	}
 	
+	public List<Room> findRoomByBuildingId(Room room){
+		
+		return rm.findRoomByBuildingId(room);
+	}
+	
+	
 	public boolean insertBookedRoom(BookedRoom br, String sessionId) {
 		UnitOfWork.newCurrent();
 		UnitOfWork.getCurrent().registerNew(br);

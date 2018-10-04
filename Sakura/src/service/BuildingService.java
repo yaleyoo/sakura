@@ -32,7 +32,10 @@ public class BuildingService {
 	}
 	
 	public boolean updateBuilding(Building building, String sessionId) {
-		return bm.update(building);
+		UnitOfWork.newCurrent();
+		UnitOfWork.getCurrent().registerDirty(building);
+		
+		return UnitOfWork.getCurrent().commit(sessionId);
 	}
 	
 	public boolean deleteBuilding(Building building, String sessionId) {
@@ -42,6 +45,7 @@ public class BuildingService {
 		room.setBuilding(building);
 		List<Room> roomList = rm.findRoomByBuildingId(room);
 		
+		UnitOfWork.newCurrent();
 		//register to delete rooms in that building
 		for (Room r:roomList) {
 			UnitOfWork.getCurrent().registerDeleted(r);
@@ -49,8 +53,13 @@ public class BuildingService {
 		//register to delete building
 		UnitOfWork.getCurrent().registerDeleted(building);
 		
-		boolean result = UnitOfWork.getCurrent().commit(sessionId);
+		return UnitOfWork.getCurrent().commit(sessionId);
+	}
+	
+	public boolean insertBuilding(Building building, String sessionId) {
+		UnitOfWork.newCurrent();
+		UnitOfWork.getCurrent().registerNew(building);
 		
-		return result;
+		return UnitOfWork.getCurrent().commit(sessionId);
 	}
 }
