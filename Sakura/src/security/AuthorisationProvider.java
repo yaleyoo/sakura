@@ -30,8 +30,29 @@ public class AuthorisationProvider {
 		pemission.put("ViewRooms", viewRooms);
 		Class[] logout = null;
 		pemission.put("LogOut", logout);
-		Class[] staffHomePage = null;
-		pemission.put("StaffHomePage", staffHomePage);
+		Class[] staffIndex = null;
+		pemission.put("StaffIndex", staffIndex);
+		Class[] staffChooseCustomer = {Manager.class, Receptionist.class};
+		pemission.put("staffChooseCustomer", staffChooseCustomer);
+		Class[] staffCreateCustomer = {Manager.class, Receptionist.class};
+		pemission.put("staffCreateCustomer", staffCreateCustomer);
+		Class[] staffSearchCustomer = {Manager.class, Receptionist.class};
+		pemission.put("staffSearchCustomer", staffSearchCustomer);
+		Class[] staffViewPlaceOrder = {Manager.class, Receptionist.class};
+		pemission.put("staffViewPlaceOrder", staffViewPlaceOrder);
+		Class[] staffPlaceOrder = {Manager.class, Receptionist.class};
+		pemission.put("staffPlaceOrder", staffPlaceOrder);
+		Class[] staffCheckOrder = {Manager.class, Receptionist.class};
+		pemission.put("staffCheckOrder", staffCheckOrder);
+		Class[] staffBuilding = {Manager.class};
+		pemission.put("staffBuilding", staffBuilding);
+		Class[] staffManageBuilding = {Manager.class};
+		pemission.put("staffManageBuilding", staffManageBuilding);
+		Class[] staffRooms = {Manager.class};
+		pemission.put("staffRooms", staffRooms);
+		Class[] staffManageRooms = {Manager.class};
+		pemission.put("staffManageRooms", staffManageRooms);
+		
 	}
 	
 	public static boolean checkAuthorisation(String command, Object user) {
