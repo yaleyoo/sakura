@@ -13,7 +13,7 @@
                     <i class="iconfont">&#xeb2a;</i>&nbsp;Manage Orders <span class="sr-only"></span>
                 </a>
                 <div class="dropdown-menu">
-                	<a class="dropdown-item" href="frontServlet?command=">Place New Order</a>
+                	<a class="dropdown-item" href="frontServlet?command=StaffChooseCustomer">Place New Order</a>
                 	<div class="dropdown-divider"></div>
                 	<a class="dropdown-item" href="frontServlet?command=">Check Current Orders</a>
                 </div>
