@@ -16,6 +16,7 @@
 			<h4>Edit Building</h4>
 			<form>
 			  <div class="form-group row">
+			  	{$building.address}
 			    <label for="staticBuildingId" class="col-sm-2 col-form-label">Building ID</label>
 			    <div class="col-sm-10">
 			      <input type="text" readonly class="form-control-plaintext" id="staticBuildingId" value="building id">

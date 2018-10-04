@@ -19,7 +19,7 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="frontServlet?command=ViewBuildings">
+                <a class="nav-link" href="frontServlet?command=StaffBuildings">
                     <i class="iconfont">&#xe600;</i>&nbsp;Manage Properties <span class="sr-only"></span>
                 </a>
             </li>            
@@ -31,7 +31,7 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item ml-3">
             <c:if test = "${sessionScope.loggedUser != null}">
-            	<a class="nav-link" href="frontServlet?command=ViewCustomer">
+            	<a class="nav-link">
 	            	Hello, ${sessionScope.loggedUser.firstname} <i class="iconfont">&#xe674;</i>
 	            </a>	
             </c:if>

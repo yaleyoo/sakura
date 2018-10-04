@@ -47,7 +47,7 @@ public class AuthorisationProvider {
 		Class[] staffCheckOrder = {Manager.class, Receptionist.class};
 		permission.put("StaffCheckOrder", staffCheckOrder);
 		Class[] staffBuilding = {Manager.class};
-		permission.put("StaffBuilding", staffBuilding);
+		permission.put("StaffBuildings", staffBuilding);
 		Class[] staffManageBuilding = {Manager.class};
 		permission.put("StaffManageBuilding", staffManageBuilding);
 		Class[] staffRooms = {Manager.class};

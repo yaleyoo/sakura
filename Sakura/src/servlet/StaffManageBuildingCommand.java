@@ -21,7 +21,7 @@ public class StaffManageBuildingCommand extends FrontCommand{
 			building = bs.getBuildingById(building).get(0);
 			
 			request.setAttribute("building", building);
-			forward("/jsp/")
+			forward("/jsp/staffManageBuilding.jsp");
 		}
 		
 	}
