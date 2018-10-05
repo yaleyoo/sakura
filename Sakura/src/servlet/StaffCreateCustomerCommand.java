@@ -11,11 +11,11 @@ import utils.DateValidator;
 
 
 
-public class StaffChooseCustomerCommand extends FrontCommand{
+public class StaffCreateCustomerCommand extends FrontCommand{
 
 
 	@Override
 	public void process() throws ServletException, IOException {
-		forward("/jsp/staff/staffChooseCustomer.jsp");
+		System.out.println(request.getParameter("first_name"));
 	}
 }

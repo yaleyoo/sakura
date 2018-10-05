@@ -28,7 +28,7 @@
 								<form action="frontServlet?command=StaffPlaceOrder">
 								  <div class="form-group">
 								    
-								    <input type="text" class="form-control" id="InputFirstName" placeholder="First Name">
+								    <input type="text" class="form-control" name="first_name" id="InputFirstName" placeholder="First Name">
 								  </div>
 								  <div class="form-group">
 								    
@@ -56,11 +56,11 @@
 								  </div>
 								  <div class="form-row">
 								    <div class="col-12">
-										<button class="btn btn-primary"
-										 	onclick="javascript:location.href='frontServlet?command=StaffCreateCustomer'">Create</button> 
+										<a role="button" class="btn btn-primary"
+										 	href="frontServlet?command=StaffCreateCustomer">Create</a> 
 										<button type="submit" class="btn btn-primary">Next</button>   
-										<button class="btn btn-primary btn-secondary"
-											onclick="javascript:location.href='frontServlet?command=StaffHomePage'">Cancel</button>     
+										<a role="button" class="btn btn-primary btn-secondary"
+											href="frontServlet?command=StaffIndex">Cancel</a>     
 								    </div>
 								  </div>
 								</form>						  
@@ -81,9 +81,8 @@
 								    
 								    <input type="text" class="form-control" id="InputEmail" placeholder="Email">
 								  </div>
-								  <button class="btn btn-primary"
-								  	onclick="javascript:location.href='frontServlet?command=StaffSearchCustomer'">Search</button>
-								
+								  <a role="button" class="btn btn-primary"
+								  	href="frontServlet?command=StaffSearchCustomer">Search</a>								
 								<hr>
 	
 								  <div class="form-row">
@@ -105,8 +104,8 @@
 								  <div class="form-row">
 								    <div class="col-12">
 										<button type="submit" class="btn btn-primary">Next</button>    
-										<button class="btn btn-primary btn-secondary"
-											onclick="javascript:location.href='frontServlet?command=StaffHomePage'">Cancel</button>     
+										<a role="button" class="btn btn-primary btn-secondary"
+											href="frontServlet?command=StaffIndex">Cancel</a>     
 								    </div>
 								  </div>
 								</form>			
@@ -159,5 +158,9 @@
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
         <script src="js/bootstrap.js"></script>
+        <script type="text/javascript">
+
+
+        </script>
 	</body>
 </html>
