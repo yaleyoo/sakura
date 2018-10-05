@@ -25,7 +25,7 @@
 						<div class="tab-content choose-customer-form" id="nav-tabContent">
 						  <div class="tab-pane fade show active" id="new-customer" role="tabpanel" aria-labelledby="nav-new-customer-tab">
 						  <!-- NEW CUSTOMER FORM START -->
-								<form action="frontServlet?command=StaffPlaceOrder">
+								<form id="js-create-customer-form" action="frontServlet?command=StaffPlaceOrder">
 								  <div class="form-group">
 								    
 								    <input type="text" class="form-control" name="c_first_name" id="c_first_name" placeholder="First Name">
@@ -187,7 +187,19 @@
         	        },
         	        dataType: "json",
         	        success: function (data) {
-        	            console.log("sucessful");
+        	            /*
+        	            $("#js-create-customer-form input").each(()=>{
+        	            	let original_text = $(this).val();
+        	            	console.log(original_text);
+        	            	let new_text = $(this).attr("placeholder")+": "+original_text;
+        	            	console.log(original_text);
+        	            	$(this).val(new_text);
+        	            });
+        	            */
+        	            $("#js-create-customer-form input")
+        	            	.removeClass("form-control")
+        	            	.addClass("form-control-plaintext")
+        	            	.prop('readonly', true);
         	        },
         	        error: function (jqXHR, textStatus, errorThrown) {
         	            alert("something going WRONG there.\n" +

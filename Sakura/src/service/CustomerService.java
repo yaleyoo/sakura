@@ -47,4 +47,18 @@ public class CustomerService {
 		//if not in the identity map
 		return cm.findCustomerById(customer);
 	}
+	
+	public List<Customer> findCustomerByEmail(Customer customer){
+		//search identity map first
+		utils.IdentityMap<Customer> identityMap = utils.IdentityMap.getInstance(customer);
+		Customer customer_inMap = identityMap.get(customer.getCustomerId());
+		//if object is found
+		if (customer_inMap != null) {
+			List<Customer> result = new ArrayList<Customer>();
+			result.add(customer_inMap);
+			return result;
+		}
+		//if not in the identity map
+		return cm.findCustomerByEmail(customer);
+	}
 }
