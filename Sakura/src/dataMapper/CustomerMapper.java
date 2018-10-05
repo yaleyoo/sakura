@@ -131,4 +131,36 @@ public class CustomerMapper extends DataMapper{
 		}
 		return result;
 	}
+	
+	public List<Customer> findCustomerByEmail(Customer customer){
+		String findCustomerById = "SELECT * from sakura.Customer WHERE email = ?";
+		List<Customer> result = new ArrayList<Customer>();
+		try {
+			Connection conn = DBConnection.getConnection();
+			PreparedStatement pStatement = (PreparedStatement) conn.prepareStatement(findCustomerById);
+			pStatement.setString(1, customer.getEmail());
+			ResultSet resultSet = pStatement.executeQuery();
+			
+			while(resultSet.next()) {
+				Customer c = new Customer();
+				//adapting IDENTITY MAP, get identityMap for Customer.
+				IdentityMap<Customer> identityMap = IdentityMap.getInstance(c);
+				c.setCustomerId(resultSet.getInt(1));
+				c.setFirstname(resultSet.getString(2));
+				c.setLastname(resultSet.getString(3));
+				c.setTitle(resultSet.getString(4));
+				c.setIdentityNumber(resultSet.getString(5));
+				c.setIdentityType(resultSet.getString(6));
+				c.setNumber(resultSet.getString(7));
+				c.setEmail(resultSet.getString(8));
+				
+				//put Room Object r in the identity map
+				identityMap.put(c.getCustomerId(), c);
+				result.add(c);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }

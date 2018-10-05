@@ -20,7 +20,28 @@ public abstract class FrontCommand {
 		this.response = response;
 	}
 	
-	abstract public void process() throws ServletException, IOException;
+	protected void safeProcess() throws ServletException, IOException {
+		try {
+			process();
+		}
+		catch (Exception e) {
+			String[] refererArray = request.getHeader("referer").split("/Sakura/");
+			String referer = null;
+			
+			//redirect user to the referer page 
+			if (refererArray.length == 2) {
+				referer = refererArray[1];
+				redirect("/Sakura/" + referer);
+			}
+			else {
+				request.setAttribute("errorMsg", 
+						"Invalid referer. Please don't manipulate the URI!");
+				forward("/jsp/error.jsp");
+			}
+		}
+	}
+	
+	protected void process() throws ServletException, IOException{};
 	
 	protected void forward (String target) throws ServletException, IOException
 	{

@@ -48,7 +48,7 @@ public class StaffManageBuildingCommand extends FrontCommand{
 			
 			boolean result = bs.deleteBuilding(building, sessionId);
 			if (result) {
-				forward("/jsp/staff/staffBuildings.jsp");
+				redirect("frontServlet?command=StaffBuildings");
 			}
 			else {
 				request.setAttribute("errorMsg", 
