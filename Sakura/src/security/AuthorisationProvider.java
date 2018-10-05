@@ -47,13 +47,17 @@ public class AuthorisationProvider {
 		Class[] staffCheckOrder = {Manager.class, Receptionist.class};
 		permission.put("StaffCheckOrder", staffCheckOrder);
 		Class[] staffBuilding = {Manager.class};
-		permission.put("StaffBuilding", staffBuilding);
+		permission.put("StaffBuildings", staffBuilding);
 		Class[] staffManageBuilding = {Manager.class};
 		permission.put("StaffManageBuilding", staffManageBuilding);
+		permission.put("StaffNewBuilding", staffManageBuilding);
+		permission.put("StaffEditBuilding", staffManageBuilding);
 		Class[] staffRooms = {Manager.class};
 		permission.put("StaffRooms", staffRooms);
 		Class[] staffManageRooms = {Manager.class};
-		permission.put("StaffManageRooms", staffManageRooms);
+		permission.put("StaffManageRoom", staffManageRooms);
+		permission.put("StaffNewRoom", staffManageRooms);
+		permission.put("StaffEditRoom", staffManageRooms);
 		
 	}
 	
@@ -61,7 +65,6 @@ public class AuthorisationProvider {
 		Class userClass = null;
 		if (user != null)
 			userClass = user.getClass();
-		
 		// if the command is invalid
 		if (!permission.containsKey(command)) {
 			return false;

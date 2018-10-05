@@ -17,14 +17,17 @@
 	  <div class="card-body">
 	    <h5 class="card-title">${building.buildingName}</h5>
         <p class="card-text">${building.address}</p>
-	    <a class="btn btn-primary" href="#" role="button">Check Rooms</a>
-	    <a class="btn btn-primary" href="#" role="button">Edit</a>
-	    <a class="btn btn-light" href="#" role="button">Delete</a>
+	    <a class="btn btn-primary" href="frontServlet?command=StaffManageBuilding&method=checkRooms&buildingId=${building.buildingId}" 
+	    	role="button">Check Rooms</a>
+	    <a class="btn btn-primary" href="frontServlet?command=StaffManageBuilding&method=edit&buildingId=${building.buildingId}"
+	     	role="button">Edit</a>
+	    <a class="btn btn-light" href="frontServlet?command=StaffManageBuilding&method=delete&buildingId=${building.buildingId}"
+	    	role="button">Delete</a>
 	  </div>
 	</div>
 	</c:forEach>
 </div>
-<a role="button" class="btn btn-primary btn-lg btn-block" href="#">Add a New Building</a>
+<a role="button" class="btn btn-primary btn-lg btn-block" href="frontServlet?command=StaffManageBuilding&method=newBuilding">Add a New Building</a>
 
 		<style type="text/css">
 			html,body{

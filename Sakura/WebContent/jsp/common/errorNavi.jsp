@@ -12,12 +12,6 @@
                     <i class="iconfont">&#xe600;</i>&nbsp;Home <span class="sr-only"></span>
                 </a>
             </li>
-           <li class="nav-item ml-3">
-	           <a class="nav-link" href="frontServlet?command=ViewRooms">
-	                <i class="iconfont">&#xe601;</i>&nbsp;Book A Room <span class="sr-only"></span>
-	           </a>
-            </li>
-            
         </ul>
     </div>
     

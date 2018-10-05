@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Edit Building - Sakura Hotel</title>
+<title>New Building - Sakura Hotel</title>
 <link rel="stylesheet" href="css/bootstrap.css">
 </head>
 <body>
@@ -13,28 +13,28 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="well">
-			<h4>Edit Building</h4>
-			<form>
+			<h4>New Building</h4>
+			<form action="frontServlet?command=StaffNewBuilding" method="POST">
 			  <div class="form-group row">
 			    <label for="staticBuildingId" class="col-sm-2 col-form-label">Building ID</label>
 			    <div class="col-sm-10">
-			      <input type="text" readonly class="form-control-plaintext" id="staticBuildingId" value="building id">
+			      <input type="text" class="form-control-plaintext" id="staticBuildingId">
 			    </div>
 			  </div>
 			  <div class="form-group row">
 			    <label for="inputBuildingName" class="col-sm-2 col-form-label">Building Name</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" id="inputBuildingName" placeholder="original building name">
+			      <input type="text" class="form-control" id="inputBuildingName" name="buildingName" placeholder="new building name">
 			    </div>
 			  </div>
 			  <div class="form-group row">
 			    <label for="inputBuildingAddress" class="col-sm-2 col-form-label">Building Address</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" id="inputBuildingAddress" placeholder="original building address">
+			      <input type="text" class="form-control" id="inputBuildingAddress" name="address" placeholder="new building address">
 			    </div>
 			  </div>
 			  <button type="submit" class="btn btn-primary">Confirm</button>
-			  <button type="submit" class="btn btn-light">Cancel</button>
+			  <button type="button" class="btn btn-light" onclick="javascript:history.go(-1);">Cancel</button>
 			</form>
 			</div>
 		</div>

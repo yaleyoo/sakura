@@ -28,4 +28,8 @@ public abstract class FrontCommand {
 		dispatcher.forward(request, response);
 	}
 	
+	protected void redirect (String target) throws ServletException, IOException{
+		response.sendRedirect(target);
+	}
+	
 }

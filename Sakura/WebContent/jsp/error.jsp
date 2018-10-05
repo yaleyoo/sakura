@@ -8,11 +8,11 @@
 	<link rel="stylesheet" href="css/bootstrap.css">
 	</head>
 	<body>
-		<%@include file="common/navi.jsp"%>
+		<%@include file="common/errorNavi.jsp"%>
 		
 		<div class="alert alert-danger" role="alert" style="margin:10%;width:80%;">
   			<p>Something going wrong! <p>
-  			<p><b>Error Message:</b> ${sessionScope.errorMsg}</p>
+  			<p><b>Error Message:</b> ${errorMsg}</p>
 		</div>
 		<button type="button" style="text-align: right; margin:0 10%;" 
 			class="btn btn-success" onclick="javascript:location.href='frontServlet?command=HomePage'">Return</button>

@@ -10,8 +10,18 @@ public class LogOutCommand extends FrontCommand {
 	public void process() throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		session.removeAttribute("loggedUser");
+		String[] refererArray = request.getHeader("referer").split("/Sakura/");
+		String referer = null;
 		
-		forward("/index.jsp");
-		
+		//redirect user to the referer page 
+		if (refererArray.length == 2) {
+			referer = refererArray[1];
+			redirect("/Sakura/" + referer);
+		}
+		else {
+			request.setAttribute("errorMsg", 
+					"Invalid referer. Please don't manipulate the URI!");
+			forward("/jsp/error.jsp");
+		}
 	}
 }

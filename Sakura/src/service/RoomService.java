@@ -66,9 +66,33 @@ public class RoomService {
 		return rm.findRoomById(room);
 	}
 	
+	public List<Room> findRoomByBuildingId(Room room){
+		
+		return rm.findRoomByBuildingId(room);
+	}
+	
+	
 	public boolean insertBookedRoom(BookedRoom br, String sessionId) {
 		UnitOfWork.newCurrent();
 		UnitOfWork.getCurrent().registerNew(br);
+		return UnitOfWork.getCurrent().commit(sessionId);
+	}
+	
+	public boolean deleteRoom(Room room, String sessionId) {
+		UnitOfWork.newCurrent();
+		UnitOfWork.getCurrent().registerDeleted(room);
+		return UnitOfWork.getCurrent().commit(sessionId);
+	}
+	
+	public boolean insertRoom(Room room, String sessionId) {
+		UnitOfWork.newCurrent();
+		UnitOfWork.getCurrent().registerNew(room);
+		return UnitOfWork.getCurrent().commit(sessionId);
+	}
+	
+	public boolean updateRoom(Room room, String sessionId) {
+		UnitOfWork.newCurrent();
+		UnitOfWork.getCurrent().registerDirty(room);
 		return UnitOfWork.getCurrent().commit(sessionId);
 	}
 }

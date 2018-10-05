@@ -31,7 +31,7 @@ public class LoginCommand extends FrontCommand {
 				c.setCustomerId(1);
 				Customer customer = cs.findCustomer(c).get(0);
 				session.setAttribute("loggedUser", customer);
-				forward("/index.jsp");
+				redirect("frontServlet?command=HomePage");
 				break;
 			case "receptionist":
 				StaffService ss = new StaffService();
@@ -39,7 +39,7 @@ public class LoginCommand extends FrontCommand {
 				r.setStaffId(2);
 				Receptionist receptionist = new Receptionist(ss.findStaff(r).get(0));
 				session.setAttribute("loggedUser", receptionist);
-				forward("/jsp/staff/staffIndex.jsp");
+				redirect("frontServlet?command=StaffIndex");
 				break;
 			case "manager":
 				StaffService ss1 = new StaffService();
@@ -47,9 +47,10 @@ public class LoginCommand extends FrontCommand {
 				m.setStaffId(1);
 				Manager manager = new Manager(ss1.findStaff(m).get(0));
 				session.setAttribute("loggedUser", manager);
-				forward("/jsp/staff/staffIndex.jsp");
+				redirect("frontServlet?command=StaffIndex");
 				break;		
 			default:
+				request.setAttribute("errorMsg", "Invalid role.");
 				forward("/jsp/error.jsp");
 		}
 				

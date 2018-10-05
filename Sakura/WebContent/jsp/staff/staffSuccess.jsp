@@ -4,19 +4,17 @@
 <html>
 	<head>
 	<meta charset="UTF-8">
-	<title>Error - Sakura Hotel</title>
+	<title>Success - Sakura Hotel</title>
 	<link rel="stylesheet" href="css/bootstrap.css">
 	</head>
 	<body>
-		<%@include file="common/errorNavi.jsp"%>
+		<%@include file="../common/staffNavi.jsp"%>
 		
-		<div class="alert alert-danger" role="alert" style="margin:10%;width:80%;">
-  			Permission Denied!
+		<div class="alert alert-success" role="alert" style="margin: 10%; width:80%;">
+  			Successfully ${successReason}
 		</div>
-		<button type="button" style="text-align: right; margin:0 10%;" 
-			class="btn btn-success" onclick="javascript:window.location='frontServlet?command=HomePage'">Return</button>
-		
-		
+		<button type="button" style="text-align: right; margin:0 10%;" class="btn btn-success" onclick="javascript:location.href='frontServlet?command=StaffIndex'">Return</button>
+	
 		<style type="text/css">
 			html,body{
 				background-color:rgb(232,232,232)!important;
