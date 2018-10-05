@@ -25,7 +25,7 @@ public class StaffEditBuildingCommand extends FrontCommand{
 			redirect("frontServlet?command=StaffBuildings");
 		}
 		else {
-			request.getSession().setAttribute("errorMsg", 
+			request.setAttribute("errorMsg", 
 					"something wrong happened when update building.");
 		}
 	}

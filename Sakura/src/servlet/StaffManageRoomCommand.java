@@ -40,13 +40,13 @@ public class StaffManageRoomCommand extends FrontCommand{
 				forward("/jsp/staff/staffSuccess.jsp");
 			}
 			else {
-				request.getSession().setAttribute("errorMsg", 
+				request.setAttribute("errorMsg", 
 						"Something going wrong when deleteing the room, please try again later.");
 				forward("/jsp/staff/staffError.jsp");
 			}
 		}
 		else {
-			request.getSession().setAttribute("errorMsg", "invalid method.");
+			request.setAttribute("errorMsg", "invalid method.");
 			forward("/jsp/staff/staffError.jsp");
 		}
 	}

@@ -29,7 +29,7 @@ public class PlaceOrderCommand extends FrontCommand{
 		Order order_inMap = identityMap.get(order.getOrderId());
 		//if order not found
 		if (order_inMap == null) {
-			request.getSession().setAttribute("errorMsg", 
+			request.setAttribute("errorMsg", 
 					"Order is not found, please try agin.");
 			forward("/jsp/error.jsp");
 		}
@@ -43,7 +43,7 @@ public class PlaceOrderCommand extends FrontCommand{
 		if (result)
 			forward("/jsp/successOrder.jsp");
 		else {
-			request.getSession().setAttribute("errorMsg",
+			request.setAttribute("errorMsg",
 					"Something wrong happened (e.g. this room has been taken), please try agin later.");
 			forward("/jsp/error.jsp");
 		}

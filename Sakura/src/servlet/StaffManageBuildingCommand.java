@@ -51,7 +51,7 @@ public class StaffManageBuildingCommand extends FrontCommand{
 				forward("/jsp/staff/staffBuildings.jsp");
 			}
 			else {
-				request.getSession().setAttribute("errorMsg", 
+				request.setAttribute("errorMsg", 
 						"Something going wrong when delete the building, please try again later.");
 				forward("/jsp/staff/staffError.jsp");
 			}
@@ -60,7 +60,7 @@ public class StaffManageBuildingCommand extends FrontCommand{
 			forward("/jsp/staff/staffNewBuilding.jsp");
 		}
 		else {
-			request.getSession().setAttribute("errorMsg", "Invalid method.");
+			request.setAttribute("errorMsg", "Invalid method.");
 			forward("/jsp/error.jsp");
 		}
 		

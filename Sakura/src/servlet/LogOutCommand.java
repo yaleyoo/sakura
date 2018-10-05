@@ -19,7 +19,7 @@ public class LogOutCommand extends FrontCommand {
 			redirect("/Sakura/" + referer);
 		}
 		else {
-			session.setAttribute("errorMsg", 
+			request.setAttribute("errorMsg", 
 					"Invalid referer. Please don't manipulate the URI!");
 			forward("/jsp/error.jsp");
 		}

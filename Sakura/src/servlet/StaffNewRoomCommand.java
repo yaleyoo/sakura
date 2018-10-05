@@ -32,7 +32,7 @@ public class StaffNewRoomCommand extends FrontCommand{
 			forward("/jsp/staff/staffSuccess.jsp");
 		}
 		else {
-			request.getSession().setAttribute("errorMsg", 
+			request.setAttribute("errorMsg", 
 					"Something going wrong when delete the room, please try again later.");
 			forward("/jsp/staff/staffError.jsp");
 		}

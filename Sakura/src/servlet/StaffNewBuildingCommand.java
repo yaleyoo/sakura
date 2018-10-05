@@ -22,11 +22,13 @@ public class StaffNewBuildingCommand extends FrontCommand {
 		boolean result = bs.insertBuilding(building, request.getSession().getId());
 		
 		if (result) {
-			redirect("frontServlet?command=StaffBuildings");
+			request.setAttribute("successReason", "insert new building.");
+			forward("/jsp/staff/staffSuccess.jsp");
 		}
 		else {
-			request.getSession().setAttribute("errorMsg", 
+			request.setAttribute("errorMsg", 
 					"something wrong happened when insert building.");
+			forward("/jsp/staff/staffError.jsp");
 		}
 	}
 

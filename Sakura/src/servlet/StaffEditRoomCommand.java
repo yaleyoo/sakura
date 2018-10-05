@@ -30,11 +30,11 @@ public class StaffEditRoomCommand extends FrontCommand {
 		RoomService rs = new RoomService();
 		boolean result = rs.updateRoom(room, request.getSession().getId());
 		if (result) {
-			request.setAttribute("successReason", "update the room information.");
+			request.setAttribute("successReason", "updated the room information.");
 			forward("/jsp/staff/staffSuccess.jsp");
 		}
 		else {
-			request.getSession().setAttribute("errorMsg", 
+			request.setAttribute("errorMsg", 
 					"Something going wrong when update the room, please try again later.");
 			forward("/jsp/staff/staffError.jsp");
 		}

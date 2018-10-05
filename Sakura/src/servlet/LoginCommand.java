@@ -50,6 +50,7 @@ public class LoginCommand extends FrontCommand {
 				redirect("frontServlet?command=StaffIndex");
 				break;		
 			default:
+				request.setAttribute("errorMsg", "Invalid role.");
 				forward("/jsp/error.jsp");
 		}
 				
