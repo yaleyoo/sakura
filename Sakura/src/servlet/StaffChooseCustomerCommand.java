@@ -16,6 +16,6 @@ public class StaffChooseCustomerCommand extends FrontCommand{
 
 	@Override
 	public void process() throws ServletException, IOException {
-		forward("/jsp/staffChooseCustomer.jsp");
+		forward("/jsp/staff/staffChooseCustomer.jsp");
 	}
 }

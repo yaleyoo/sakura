@@ -15,7 +15,7 @@
                 <div class="dropdown-menu">
                 	<a class="dropdown-item" href="frontServlet?command=StaffChooseCustomer">Place New Order</a>
                 	<div class="dropdown-divider"></div>
-                	<a class="dropdown-item" href="frontServlet?command=">Check Current Orders</a>
+                	<a class="dropdown-item" href="frontServlet?command=StaffManageCurrentOrders">Check Current Orders</a>
                 </div>
             </li>
             <li class="nav-item">
@@ -31,7 +31,7 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item ml-3">
             <c:if test = "${sessionScope.loggedUser != null}">
-            	<a class="nav-link">
+            	<a class="nav-link" href="frontServlet?command=StaffIndex">
 	            	Hello, ${sessionScope.loggedUser.firstname} <i class="iconfont">&#xe674;</i>
 	            </a>	
             </c:if>
