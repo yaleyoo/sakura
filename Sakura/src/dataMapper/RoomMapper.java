@@ -69,7 +69,7 @@ public class RoomMapper extends DataMapper{
 	public boolean update (DomainObject obj) {
 		Room room = (Room)obj;
 		String updateRoomById = "UPDATE sakura.Room SET "
-				+ "name=?, =?, type=?, price=?, buildingId=?,"
+				+ "name=?, type=?, price=?, buildingId=?"
 				+ " WHERE roomId=?";
 		int result = 0;
 		try {

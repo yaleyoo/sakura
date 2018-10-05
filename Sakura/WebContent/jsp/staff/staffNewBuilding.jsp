@@ -34,7 +34,7 @@
 			    </div>
 			  </div>
 			  <button type="submit" class="btn btn-primary">Confirm</button>
-			  <button type="submit" class="btn btn-light">Cancel</button>
+			  <button type="button" class="btn btn-light" onclick="javascript:history.go(-1);">Cancel</button>
 			</form>
 			</div>
 		</div>

@@ -20,13 +20,13 @@
 	  <div class="card-body">
 	    <h5 class="card-title">${room.name}</h5>
 	    <p class="card-text">$${room.price}/day</p>
-	    <a class="btn btn-primary" href="#" role="button">Edit</a>
-	    <a class="btn btn-light" href="#" role="button">Delete</a>
+	    <a class="btn btn-primary" href="frontServlet?command=StaffManageRoom&method=edit&roomId=${room.roomId}" role="button">Edit</a>
+	    <a class="btn btn-light" href="frontServlet?command=StaffManageRoom&method=delete&roomId=${room.roomId}" role="button">Delete</a>
 	  </div>
 	</div>
 	</c:forEach>
 </div>
-<a role="button" class="btn btn-primary btn-lg btn-block" href="#">Add a New Room</a>
+<a role="button" class="btn btn-primary btn-lg btn-block" href="frontServlet?command=StaffManageRoom&method=create&buildingId=${buildingId}">Add a New Room</a>
 		<style type="text/css">
 			html,body{
 				background-color:rgb(232,232,232)!important;

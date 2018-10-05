@@ -24,7 +24,7 @@ public class StaffManageBuildingCommand extends FrontCommand{
 			building = bs.getBuildingById(building).get(0);
 			
 			request.setAttribute("building", building);
-			forward("/jsp/staff/staffManageBuilding.jsp");
+			forward("/jsp/staff/staffEditBuilding.jsp");
 		}
 		else if (method.equals("checkRooms")) {
 			String buildingId = request.getParameter("buildingId");
@@ -35,6 +35,7 @@ public class StaffManageBuildingCommand extends FrontCommand{
 			RoomService rs = new RoomService();
 			List<Room> rooms = rs.findRoomByBuildingId(room);
 			request.setAttribute("rooms", rooms);
+			request.setAttribute("buildingId", buildingId);
 			
 			forward("/jsp/staff/staffRooms.jsp");
 		}
