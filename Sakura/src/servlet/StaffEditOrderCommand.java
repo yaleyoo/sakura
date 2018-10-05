@@ -28,6 +28,13 @@ public class StaffEditOrderCommand extends FrontCommand {
 			
 			OrderService os = new OrderService();
 			List<Order> result = os.findOrder(order);
+			if (order.getStatus().equals("finish") && 
+					request.getSession().getAttribute("loggedUser").getClass()
+					==Receptionist.class) {
+				request.setAttribute("errorMsg", "Receptionist can only edit unfinished orders.");
+				forward("/jsp/staff/staffError.jsp");
+				return;
+			}
 			if (result.size() > 0) {
 				order = result.get(0);
 				request.setAttribute("order", order);
