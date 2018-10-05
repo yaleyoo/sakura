@@ -42,7 +42,7 @@ public class FrontServlet extends HttpServlet {
 		}
 		FrontCommand command = getCommand(request);
 		command.init(getServletContext(), request, response);
-		command.process();
+		command.safeProcess();
 	}
 
 	/**

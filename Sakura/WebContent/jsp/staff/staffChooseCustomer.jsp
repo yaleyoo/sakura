@@ -28,39 +28,38 @@
 								<form action="frontServlet?command=StaffPlaceOrder">
 								  <div class="form-group">
 								    
-								    <input type="text" class="form-control" name="first_name" id="InputFirstName" placeholder="First Name">
+								    <input type="text" class="form-control" name="c_first_name" id="c_first_name" placeholder="First Name">
 								  </div>
 								  <div class="form-group">
 								    
-								    <input type="text" class="form-control" id="InputLastName" placeholder="Last Name">
+								    <input type="text" class="form-control" id="c_last_name" name="c_last_name" placeholder="Last Name">
 								  </div>
 								  <div class="form-group">
 								    
-								    <input type="text" class="form-control" id="InputEmail" placeholder="Email">
+								    <input type="text" class="form-control" id="c_email" name="c_email" placeholder="Email">
 								  </div>
 								  <div class="form-row">
 								    <div class="col-6">
-								      <input type="text" class="form-control" placeholder="Title">
+								      <input type="text" class="form-control" id="c_title" name="c_title" placeholder="Title">
 								    </div>
 								    <div class="col-6">
-								      <input type="text" class="form-control" placeholder="Identity Type">
+								      <input type="text" class="form-control" id="c_iden_type" name="c_iden_type" placeholder="Identity Type">
 								    </div>
 								  </div>
 								  <div class="form-row">
 								    <div class="col">
-								      <input type="text" class="form-control" placeholder="Identity Number">
+								      <input type="text" class="form-control" id="c_iden_num" name="c_iden_num" placeholder="Identity Number">
 								    </div>
 								    <div class="col">
-								      <input type="text" class="form-control" placeholder="Mobile Number">
+								      <input type="text" class="form-control" id="c_mob_num" name="c_mob_num" placeholder="Mobile Number">
 								    </div>
 								  </div>
 								  <div class="form-row">
 								    <div class="col-12">
-										<a role="button" class="btn btn-primary"
-										 	href="frontServlet?command=StaffCreateCustomer">Create</a> 
+										<button type="button" role="button" class="btn btn-primary js-create-customer">Create</button> 
 										<button type="submit" class="btn btn-primary">Next</button>   
-										<a role="button" class="btn btn-primary btn-secondary"
-											href="frontServlet?command=StaffIndex">Cancel</a>     
+										<button type="button" class="btn btn-primary btn-secondary"
+											onclick="javascript:window.location='frontServlet?command=StaffIndex'">Cancel</button>     
 								    </div>
 								  </div>
 								</form>						  
@@ -104,8 +103,8 @@
 								  <div class="form-row">
 								    <div class="col-12">
 										<button type="submit" class="btn btn-primary">Next</button>    
-										<a role="button" class="btn btn-primary btn-secondary"
-											href="frontServlet?command=StaffIndex">Cancel</a>     
+										<button type="button" class="btn btn-primary btn-secondary"
+											onclick="javascript:window.location='frontServlet?command=StaffIndex'">Cancel</button>  
 								    </div>
 								  </div>
 								</form>			
@@ -159,7 +158,43 @@
         crossorigin="anonymous"></script>
         <script src="js/bootstrap.js"></script>
         <script type="text/javascript">
-
+			$(()=>{
+				$(".js-create-customer").click(createCustomer);
+			});
+			
+			function createCustomer() {
+				let firstName = $("#c_first_name").val();
+				let lastName = $("#c_last_name").val();
+				let email = $("#c_email").val();
+				let title = $("#c_title").val();
+				let identityType = $("#c_iden_type").val();
+				let identityNumber = $("#c_iden_num").val();
+				let mobileNumber = $("#c_mob_num").val();
+				
+        		$.ajax({
+        	        type: "GET",
+        	        url: "frontServlet",
+        	        async: false,
+        	        data:{
+        	        	first_name:firstName,
+        	        	last_name:lastName,
+        	        	email:email,
+        	        	title: title,
+        	        	identity_type: identityType,
+        	        	identity_number: identityNumber,
+        	        	mobile_number: mobileNumber,
+        	        	command: "StaffCreateCustomer"
+        	        },
+        	        dataType: "json",
+        	        success: function (data) {
+        	            console.log("sucessful");
+        	        },
+        	        error: function (jqXHR, textStatus, errorThrown) {
+        	            alert("something going WRONG there.\n" +
+        	                "Caused by:" + textStatus);
+        	        }
+        	    })				
+			}
 
         </script>
 	</body>
