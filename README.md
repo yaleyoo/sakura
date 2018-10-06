@@ -77,6 +77,12 @@ In this step, check-out-time should after the check-in-time, also check-in-time 
 ![](https://s1.ax1x.com/2018/10/06/i87d8s.png)
 Do the neccessary modification. Then click **Edit Order** button to perform the modification. **NOTE that the Receptionist cannot modify the order which the status is finished.** When the receptionist trying to search the detail about finished order, the request will be denied.
 
+10. In case the customer is already the existing customer of the Sakura Hotel, select the **Existing Customer** when choosing customer. 
+![](https://s1.ax1x.com/2018/10/06/i8O0Bt.png)
+11. Inputting customer's email address and press **Search** button, if there is any existing customer in the database, that customer's details would be shown.
+![](https://s1.ax1x.com/2018/10/06/i8OrAf.png)
+12. If the information is correct, click **Next** button. Then doing the remaining steps of placing order, which is exactly the same as the case that customer is new.
+
 #### Manager manage the properties
 1. From the [Index Page](https://www.yaleyoo.com/Sakura/), click the **Staff** on the top-right corner to access the staff management page.
 ![](https://s1.ax1x.com/2018/10/06/i8ohFJ.png)
