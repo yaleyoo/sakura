@@ -2,7 +2,7 @@
 This system is developed for a start-up hotel company named Sakura Hotel to support their daily operation and enable customer to book online. Sakura Hotel is a hot-spring hotel and currently owns two buildings, and is considering to extend its business. 
 
 ## Live Demo
-[Sakura Hotel Booking System](https://www.yaleyoo.com/Sakura/)
+### [Sakura Hotel Booking System](https://www.yaleyoo.com/Sakura/)
 
 ## Roles
 - Customer
@@ -41,8 +41,7 @@ Customer has checked out, the order is finished.
 6. Select the building in the building dropdown list. Click **Search** button, a list of the available rooms would be shown up.
 ![](https://s1.ax1x.com/2018/10/06/i8IW8I.png)
 7. Select a room, click the **Book** button to place the order. The details about the order would shows up. (This step is authorisaiton required, you have to login first, otherwise, you would be redirect into a permissionDenied page.)
-
-In this step, check-out-time should after the check-in-time, also check-in-time should be a future time. If those requirements are fail to achive, an error message would shows up.
+In this step, check-out-time should after the check-in-time, also check-in-time should be a future time. If those requirements are fail to meet, an error message would shows up.
 ![](https://s1.ax1x.com/2018/10/06/i8I5Kf.png)
 8. Check the details of the orders. If they are correc, click **confirm** button, your order. If the order is successfully placed, a successfully booked message would shows up.
 ![](https://s1.ax1x.com/2018/10/06/i8IIr8.png)
@@ -59,4 +58,42 @@ In this step, check-out-time should after the check-in-time, also check-in-time 
 		`Receptionist` can help customer to place the order. `Receptionist` can also modify the information of **unfinished** history order.
 	- Manager
 		`Manager` can also help customer to place the order. `Manager` can modify the information of **all** history order, including finished orders. `Manager` is able to manage the property information, including the information about **buildings** and **rooms**.
+#### Receptionist manage orders
+1. From the [Index Page](https://www.yaleyoo.com/Sakura/), click the **Staff** button to access the staff management page.
+![](https://s1.ax1x.com/2018/10/06/i8ohFJ.png)
+2. Then click **Receptionist** to login as a receptionist. Then click the **Manage Orders** link, a dropdown list would shows up. Click the **Place New Order** link to place a new order. The user will be navigated to a choose customer page. (**NOTE that this step is authorisation required**).
+![](https://s1.ax1x.com/2018/10/06/i8Tyhd.png)
+3. Receptionist should ask whether the customer already has an account, if ther are not, using **New Customer** tablet to create an account for them. Click the **Create** button to insert the new customer or click the **Cancel** button to return to the previous page.
+4. Check the customer details again, if they are all correct, click **Next** button to confirm or click the **Cancel** button to cancel the create action.
+![](https://s1.ax1x.com/2018/10/06/i8T2ct.png)
+5. If the customer has been successfully created, user would be navigated to the page that listed all of the rooms. Then input the check-in-time and check-out-time to search the available rooms. That step is similar with how customer place the order by themselves. Except the the current customer id would shown on the left-top coner.
+![](https://s1.ax1x.com/2018/10/06/i8TRjP.png)
+6. Then similar with the customer place order processes, select a room, book it, confirm the order's details, then place the order.
+7. Receptionist can also check the details of history orders. In **Staff Management Page**, click the **Manage Orders** link, then select **Check Current Orders**, a page for searching the orders will shows up.
+![](https://s1.ax1x.com/2018/10/06/i8ohFJ.png)
+8.  Then input the order ID to search a specific order. A example order ID is **1810052334281**.
+![](https://s1.ax1x.com/2018/10/06/i87ig1.png)
+9. Click the **search** button, if the order with the specific orderId has been found, its detail will be listed.
+![](https://s1.ax1x.com/2018/10/06/i87d8s.png)
+Do the neccessary modification. Then click **Edit Order** button to perform the modification. **NOTE that the Receptionist cannot modify the order which the status is finished.** When the receptionist trying to search the detail about finished order, the request will be denied.
+
+#### Manager manage the properties
+1. From the [Index Page](https://www.yaleyoo.com/Sakura/), click the **Staff** on the top-right corner to access the staff management page.
+![](https://s1.ax1x.com/2018/10/06/i8ohFJ.png)
+2. Click the **Manager** button on the top-right side to login as a manager. Then click the **Manage Properties** button, a list of buildings would shows up.
+![](https://s1.ax1x.com/2018/10/06/i8o4Y9.png)
+3. Click **Delete** button to delete a building. **NOTE: please don't delete the first 2 buildings, otherwise the related rooms would be deleted as well.**
+4. Click **Add a New Building** button at the button to insert a new building. User would be navigated to a page to input the new building information. Then input the details of the new building, click **confirm** button to make the change. Or click the **cancel** button to return to the last history page.
+![](https://s1.ax1x.com/2018/10/06/i8o5WR.png)
+5. By clicking the **confirm** button, the new building would be created. A success or error message will be shown. Then check the properties again (by clicking the **manage properties** link on the navibar), the information about new building will be listed.
+![](https://s1.ax1x.com/2018/10/06/i8oHOK.png)
+6. To edit the building's details, click the **edit** button, the details of the selected building would be automatically filled in the form. **Note that** the building Id is uneditable. When finish the modification, click **confirm** button to make the change, or click the **cancel** button to return to the previous page.
+![](https://s1.ax1x.com/2018/10/06/i8T96P.png)
+7. Then user would be redirected to the Manage Properties page, the details of the building has been changed.
+8. Click the **check rooms** button to view the rooms in that building.  
+![](https://s1.ax1x.com/2018/10/06/i8TtpR.png)
+Doing the modification on room list is similar with modifying the buildings.
+
+#### Manager place the order
+The process of how manager place the order is pretty the same with Receptionist place the order except the manager can also modify the finished orders.
 

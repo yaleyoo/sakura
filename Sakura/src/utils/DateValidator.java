@@ -17,7 +17,9 @@ public class DateValidator {
 	}
 	
 	public static int calculateDateGap(Date checkinDate, Date checkOutDate) {
-		return (int) Math.ceil((checkOutDate.getTime()-checkinDate.getTime())/1000/60/60/24);
+		return (int) Math.ceil(
+				(double)(checkOutDate.getTime()-checkinDate.getTime())
+				/1000/60/60/24);
 
 	}
 }
