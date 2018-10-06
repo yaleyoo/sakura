@@ -19,7 +19,7 @@ import dataMapper.*;
 
 public class Test {
 
-	public static void main(String[] args) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, ClassNotFoundException {
+	public static void main(String[] args) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, ClassNotFoundException, ParseException {
 		
 		
 //		RoomService rs = new RoomService();
@@ -71,7 +71,12 @@ public class Test {
 		System.out.println(ox);*/
 		//String command = "Login";
 		//System.out.println(AuthorisationProvider.checkAuthorisation(command, null));
-		System.out.println(AuthorisationProvider.permission.size());
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		df.parse("2018-10-08 14:00:00");
+		System.out.println(
+				DateValidator.calculateDateGap(
+						df.parse("2018-10-08 14:00:00"), 
+						df.parse("2018-10-09 10:00:00")));
 		
 		
 		
