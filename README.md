@@ -9,22 +9,21 @@ However, it will not interference the process.
 
 ## Roles
 - Customer
-	`Customer` can search for the available rooms based on his/her **check-in time** and **check-out time** and book the available room. After the order has been placed, `customer` can check his order in **user center**. In user center, `customer` can also cancel his order in **at least 2 days advance**.
+	`Customer` can search for the available rooms based on his/her **check-in time** and **check-out time** and book the available room. After the order has been placed, `customer` can check his order in **user center**. In user center, `customer` can also cancel his order **at least in 2 days advance**.
 - Staff
 	- Receptionist
-		`Receptionist` can help customer to place the order. `Receptionist` can also modify the information of orders whose status are not **finished**.
+		`Receptionist` can help customer to place the order. `Receptionist` can also modify the information of orders whose status are not **Finished**.
 	- Manager
-		`Manager` can also help customer to place the order. `Manager` can modify the information of **all** history order, including **finished** orders. `Manager` is able to manage the property information regarding **buildings** and **rooms**.
+		`Manager` can also help customer to place the order. `Manager` can modify the information of **all** history order, including **Finished** orders. `Manager` is able to manage the property information regarding **buildings** and **rooms**.
 
 ## Order Status
-The order has four possible status:
-- booking 
+- Booking 
 Order has been placed and the related room has been booked during the **check-in time** to **check-out time**.
-- cancel
+- Cancel
 Order has been cancelled, the related room has been released.
-- active
+- Active
 Customer has checked in, but hasn't checked out yet.
-- finished
+- Finished
 Customer has checked out, the order is finished.
 
 ## Test Senario
