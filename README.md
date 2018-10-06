@@ -12,9 +12,9 @@ However, it will not interference the process.
 	`Customer` can search for the available rooms based on his/her **check-in time** and **check-out time** and book the available room. After the order has been placed, `customer` can check his order in **user center**. In user center, `customer` can also cancel his order in **at least 2 days advance**.
 - Staff
 	- Receptionist
-		`Receptionist` can help customer to place the order. `Receptionist` can also modify the information of **unfinished** history order.
+		`Receptionist` can help customer to place the order. `Receptionist` can also modify the information of orders whose status are not **finished**.
 	- Manager
-		`Manager` can also help customer to place the order. `Manager` can modify the information of **all** history order, including finished orders. `Manager` is able to manage the property information, including the information about **buildings** and **rooms**.
+		`Manager` can also help customer to place the order. `Manager` can modify the information of **all** history order, including **finished** orders. `Manager` is able to manage the property information regarding **buildings** and **rooms**.
 
 ## Order Status
 The order has four possible status:
