@@ -14,7 +14,7 @@
 		<div class="col-md-12">
 			<div class="well">
 			
-				<h4>Your order details: </h4>
+				<h4>Order details: </h4>
 				<ul class="list-group">
 					<li class="list-group-item">
 						<span class="prefix">Customer name: </span>
@@ -58,7 +58,7 @@
 			<button onclick="javascript:confirm()" type="button" id="btnConfirm" class="btn btn-success">
 				Confirm
 			</button>
-			<button onclick="javascript:location.href='frontServlet?command=HomePage'" type="button" id="btnConfirm" class="btn">
+			<button onclick="javascript:location.href='frontServlet?command=StaffIndex'" type="button" id="btnConfirm" class="btn">
 				Cancel
 			</button>
 		</div>
@@ -99,7 +99,7 @@
             	var check_out_time = "${order.timerange.checkOutTime}"
      			//var url = "placeOrder?check_in_time="+formatTime(check_in_time)+
         		//		"&check_out_time="+formatTime(check_out_time)+"&room_id="+${order.room.roomId};
-        		var url = "frontServlet?command=PlaceOrder&order_id="+${order.orderId};
+        		var url = "frontServlet?command=StaffPlaceOrder&order_id="+${order.orderId};
         		location.href=url;
         	}
         	

@@ -54,7 +54,7 @@ public class StaffCreateCustomerCommand extends FrontCommand{
 		// Put order into identity map
 		utils.IdentityMap<Customer> identityMap = utils.IdentityMap.getInstance(customer);
 		identityMap.put(newCustomer.getCustomerId(), newCustomer);
-		
+				
 		// Response client with successful information
 		response.setContentType("application/json; charset=utf-8");
 		JSONObject json = new JSONObject();

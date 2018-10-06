@@ -25,9 +25,11 @@
 						<div class="tab-content choose-customer-form" id="nav-tabContent">
 						  <div class="tab-pane fade show active" id="new-customer" role="tabpanel" aria-labelledby="nav-new-customer-tab">
 						  <!-- NEW CUSTOMER FORM START -->
-								<form id="js-create-customer-form" action="frontServlet?command=StaffPlaceOrder">
-								  <div class="form-group">
-								    
+								<form id="js-create-customer-form" action="frontServlet?command=StaffOrderRooms">
+								  <div class="form-group js-create-customer-id" style="display:none;">			    
+								    <input type="text" class="form-control js-create-customer-id-input" name="c_customer_id" id="c_customer_id" placeholder="Customer ID">
+								  </div>
+								  <div class="form-group">						    
 								    <input type="text" class="form-control" name="c_first_name" id="c_first_name" placeholder="First Name">
 								  </div>
 								  <div class="form-group">
@@ -57,7 +59,7 @@
 								  <div class="form-row">
 								    <div class="col-12">
 										<button type="button" role="button" class="btn btn-primary js-create-customer">Create</button> 
-										<button type="submit" class="btn btn-primary">Next</button>   
+										<button type="button" class="btn btn-primary js-create-customer-next" style="display:none;">Next</button>   
 										<button type="button" class="btn btn-primary btn-secondary"
 											onclick="javascript:window.location='frontServlet?command=StaffIndex'">Cancel</button>     
 								    </div>
@@ -160,7 +162,14 @@
         <script type="text/javascript">
 			$(()=>{
 				$(".js-create-customer").click(createCustomer);
+				$(".js-create-customer-next").click(redirectToOrderRooms);
 			});
+			function redirectToOrderRooms() {
+				let newUrl = "frontServlet?command=StaffOrderRooms&&customer_id="+customerId;
+				window.location = newUrl;
+			}
+
+			var customerId;
 			
 			function createCustomer() {
 				let firstName = $("#c_first_name").val();
@@ -187,25 +196,32 @@
         	        },
         	        dataType: "json",
         	        success: function (data) {
-        	            /*
-        	            $("#js-create-customer-form input").each(()=>{
-        	            	let original_text = $(this).val();
-        	            	console.log(original_text);
-        	            	let new_text = $(this).attr("placeholder")+": "+original_text;
-        	            	console.log(original_text);
-        	            	$(this).val(new_text);
+        	            
+        	            $("#js-create-customer-form input").each((i,e)=>{
+        	            	let original_text = $(e).val();
+        	            	//console.log(original_text);
+        	            	let new_text = $(e).attr("placeholder")+": "+original_text;
+        	            	console.log(new_text);
+        	            	$(e).val(new_text);
         	            });
-        	            */
+        	            
+        	            //console.log(data.customer);
         	            $("#js-create-customer-form input")
         	            	.removeClass("form-control")
         	            	.addClass("form-control-plaintext")
         	            	.prop('readonly', true);
+        	            
+        	            $(".js-create-customer").hide();
+        	            $(".js-create-customer-next").show();
+        	            $(".js-create-customer-id").show();
+        	            $(".js-create-customer-id-input").val("Customer ID: "+data.customer.customerId);
+        	            customerId = data.customer.customerId;
         	        },
         	        error: function (jqXHR, textStatus, errorThrown) {
         	            alert("something going WRONG there.\n" +
         	                "Caused by:" + textStatus);
         	        }
-        	    })				
+        	    });				
 			}
 
         </script>
