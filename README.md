@@ -4,6 +4,8 @@ This system is developed for a start-up hotel company named Sakura Hotel to supp
 ## Live Demo
 ### [Sakura Hotel Booking System](https://www.yaleyoo.com/Sakura/) (This server shared the database with other webapps, if this one is down, please try backup server)
 ### [Sakura Hotel Booking System(Backup)](https://sakura-hotel.herokuapp.com/)
+Note: a known bug in backup server is, in error page, servlet would trying to navigate the user into the referer page (previous page). But the uri in backup server is slightly different with the main server, that would makes the servlet regards the uri illegal.
+However, it will not interference the process.
 
 ## Roles
 - Customer
