@@ -9,7 +9,7 @@ However, it will not interference the process.
 
 ## Roles
 - Customer
-	`Customer` can search for the available rooms based on his/her **check-in time** and **check-out time** and book the available room. After the order has been placed, `customer` can check his order in **user center**. In user center, `customer` can also cancel his order **at least in 2 days advance**.
+`Customer` can search for the available rooms based on his/her **check-in time** and **check-out time** and book the available room. After the order has been placed, `customer` can check his order in **user center**. In user center, `customer` can also cancel his order **at least in 2 days advance**.
 - Staff
 	- Receptionist
 		`Receptionist` can help customer to place the order. `Receptionist` can also modify the information of orders whose status are not **Finished**.
