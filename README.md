@@ -2,7 +2,7 @@
 This system is developed for a start-up hotel company named Sakura Hotel to support their daily operation and enable customer to book online. Sakura Hotel is a hot-spring hotel and currently owns two buildings, and is considering to extend its business. 
 
 ## Live Demo
-### [Sakura Hotel Booking System](https://www.yaleyoo.com/Sakura/) (This URI shared the database with other webapps, if this one is down, please try backup URI)
+### [Sakura Hotel Booking System](https://www.yaleyoo.com/Sakura/) (This server shared the database with other webapps, if this one is down, please try backup server)
 ### [Sakura Hotel Booking System(Backup)](https://sakura-hotel.herokuapp.com/)
 
 ## Roles
