@@ -40,8 +40,11 @@ public class StaffPlaceOrderCommand extends FrontCommand{
 		OrderService os = new OrderService();
 		boolean result = os.validateOrder(order, request.getSession().getId());
 		
-		if (result)
+		if (result) {
+			request.setAttribute("successReadon", 
+					"placed order for customerId "+ order.getCustomer().getCustomerId()+".");
 			forward("/jsp/staff/staffSuccess.jsp");
+		}
 		else {
 			request.setAttribute("errorMsg",
 					"Something wrong happened (e.g. this room has been taken), please try agin later.");

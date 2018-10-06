@@ -111,7 +111,7 @@ public boolean commit(String sessionId) {
 		}
 	}
 	
-	return true;
+	return addResult&&updateResult&&deleteResult;
 }
 	
 }

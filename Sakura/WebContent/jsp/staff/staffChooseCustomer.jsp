@@ -237,26 +237,32 @@
         	        },
         	        dataType: "json",
         	        success: function (data) {
-        	            
-        	            $("#js-create-customer-form input").each((i,e)=>{
-        	            	let original_text = $(e).val();
-        	            	//console.log(original_text);
-        	            	let new_text = $(e).attr("placeholder")+": "+original_text;
-        	            	console.log(new_text);
-        	            	$(e).val(new_text);
-        	            });
-        	            
-        	            //console.log(data.customer);
-        	            $("#js-create-customer-form input")
-        	            	.removeClass("form-control")
-        	            	.addClass("form-control-plaintext")
-        	            	.prop('readonly', true);
-        	            
-        	            $(".js-create-customer").hide();
-        	            $(".js-create-customer-next").show();
-        	            $(".js-create-customer-id").show();
-        	            $(".js-create-customer-id-input").val("Customer ID: "+data.customer.customerId);
-        	            customerId = data.customer.customerId;
+        	        	
+        	        	if(data.result === "successful") {
+            	            
+            	            $("#js-create-customer-form input").each((i,e)=>{
+            	            	let original_text = $(e).val();
+            	            	//console.log(original_text);
+            	            	let new_text = $(e).attr("placeholder")+": "+original_text;
+            	            	console.log(new_text);
+            	            	$(e).val(new_text);
+            	            });
+            	            
+            	            //console.log(data.customer);
+            	            $("#js-create-customer-form input")
+            	            	.removeClass("form-control")
+            	            	.addClass("form-control-plaintext")
+            	            	.prop('readonly', true);
+            	            
+            	            $(".js-create-customer").hide();
+            	            $(".js-create-customer-next").show();
+            	            $(".js-create-customer-id").show();
+            	            $(".js-create-customer-id-input").val("Customer ID: "+data.customer.customerId);
+            	            customerId = data.customer.customerId;        	        		
+        	        	} else if (data.result === "failed") {
+        	        		alert(data.reason);
+        	        	}
+
         	        },
         	        error: function (jqXHR, textStatus, errorThrown) {
         	            alert("something going WRONG there.\n" +

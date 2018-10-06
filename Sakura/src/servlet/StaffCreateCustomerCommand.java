@@ -36,7 +36,7 @@ public class StaffCreateCustomerCommand extends FrontCommand{
 				|| identityType == "" || identityNumber == "") {
 			request.setAttribute("errorMsg",
 					"Please make sure you fill all the inputs in the form");
-			forward("/jsp/error.jsp");
+			forward("/jsp/staff/staffError.jsp");
 			return;
 		}
 		
@@ -46,7 +46,15 @@ public class StaffCreateCustomerCommand extends FrontCommand{
 				identityNumber, identityType, email, mobileNumber);
 		
 		// Insert new customer into database
-		cs.insertCustomer(customer, request.getSession().getId());
+		boolean result = cs.insertCustomer(customer, request.getSession().getId());
+		if(!result) {
+			response.setContentType("application/json; charset=utf-8");
+			JSONObject json = new JSONObject();
+			json.put("result", "failed");
+			json.put("reason", "User's email already exists");
+			response.getWriter().write(json.toString());
+			return;
+		}
 		
 		//get customer id so that the customer can be put into identity map
 		Customer newCustomer = cs.findCustomerByEmail(customer).get(0);
@@ -59,7 +67,7 @@ public class StaffCreateCustomerCommand extends FrontCommand{
 		response.setContentType("application/json; charset=utf-8");
 		JSONObject json = new JSONObject();
 		json.put("customer", newCustomer);
-		
+		json.put("result", "successful");
 		response.getWriter().write(json.toString());
 	}
 }
