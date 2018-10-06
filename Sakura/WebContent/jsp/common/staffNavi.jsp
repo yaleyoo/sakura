@@ -10,12 +10,12 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" 
                 role="button" aria-haspopup="true" aria-expanded="false" href="frontServlet?command=ManageOrder">
-                    <i class="iconfont">&#xeb2a;</i>&nbsp;Manage Orders <span class="sr-only"></span>
+                    <i class="iconfont">&#xe6db;</i>&nbsp;Manage Orders <span class="sr-only"></span>
                 </a>
                 <div class="dropdown-menu">
                 	<a class="dropdown-item" href="frontServlet?command=StaffChooseCustomer">Place New Order</a>
                 	<div class="dropdown-divider"></div>
-                	<a class="dropdown-item" href="frontServlet?command=">Check Current Orders</a>
+                	<a class="dropdown-item" href="frontServlet?command=StaffManageCurrentOrders">Check Current Orders</a>
                 </div>
             </li>
             <li class="nav-item">
@@ -31,7 +31,7 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item ml-3">
             <c:if test = "${sessionScope.loggedUser != null}">
-            	<a class="nav-link">
+            	<a class="nav-link" href="frontServlet?command=StaffIndex">
 	            	Hello, ${sessionScope.loggedUser.firstname} <i class="iconfont">&#xe674;</i>
 	            </a>	
             </c:if>
@@ -59,11 +59,11 @@
 <style type="text/css">
 @font-face {
   font-family: 'iconfont';  /* project id 828466 */
-  src: url('//at.alicdn.com/t/font_828466_occazemv8d.eot');
-  src: url('//at.alicdn.com/t/font_828466_occazemv8d.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_828466_occazemv8d.woff') format('woff'),
-  url('//at.alicdn.com/t/font_828466_occazemv8d.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_828466_occazemv8d.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_828466_9rd45zi8pbo.eot');
+  src: url('//at.alicdn.com/t/font_828466_9rd45zi8pbo.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_828466_9rd45zi8pbo.woff') format('woff'),
+  url('//at.alicdn.com/t/font_828466_9rd45zi8pbo.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_828466_9rd45zi8pbo.svg#iconfont') format('svg');
 }
 .iconfont{
     font-family:"iconfont" !important;

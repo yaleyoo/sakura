@@ -54,8 +54,19 @@ public class OrderService {
 	}
 	
 	public boolean updateOrder(Order order, String sessionId) {
+		BookedRoom temp = new BookedRoom();
+		temp.setOrderId(order.getOrderId());
+		BookedRoom br = brm.findBookedRoomByOrderId(temp).get(0);
 		UnitOfWork.newCurrent();
+		if (br.getRoom().getRoomId() != order.getRoom().getRoomId()
+				||br.getTimeRange().getCheckInTime()!=order.getTimerange().getCheckInTime()
+				||br.getTimeRange().getCheckOutTime()!=order.getTimerange().getCheckOutTime()) {
+			br.setTimeRange(order.getTimerange());
+			br.setRoom(order.getRoom());
+			UnitOfWork.getCurrent().registerDirty(br);
+		}
 		UnitOfWork.getCurrent().registerDirty(order);
+		
 		return UnitOfWork.getCurrent().commit(sessionId);
 	}
 	

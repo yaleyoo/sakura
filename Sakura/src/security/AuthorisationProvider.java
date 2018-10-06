@@ -58,11 +58,17 @@ public class AuthorisationProvider {
 		permission.put("StaffManageRoom", staffManageRooms);
 		permission.put("StaffNewRoom", staffManageRooms);
 		permission.put("StaffEditRoom", staffManageRooms);
+
 		Class[] staffOrderRooms = {Manager.class, Receptionist.class};
 		permission.put("StaffOrderRooms", staffOrderRooms);
-		
+		Class[] staffManageCurrentOrders = {Manager.class, Receptionist.class};
+		permission.put("StaffManageCurrentOrders", staffManageCurrentOrders);
+		Class[] staffEditOrder = {Manager.class, Receptionist.class};
+		permission.put("StaffEditOrder", staffEditOrder);
+
+
 	}
-	
+
 	public static boolean checkAuthorisation(String command, Object user) {
 		Class userClass = null;
 		if (user != null)
