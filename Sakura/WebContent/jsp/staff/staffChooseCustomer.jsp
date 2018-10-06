@@ -69,45 +69,45 @@
 						  </div>
 						  <div class="tab-pane fade" id="exsiting-customer" role="tabpanel" aria-labelledby="nav-exsiting-customer-tab">
 						  <!-- EXSISTING CUSTOMER FORM START -->
-								<form action="frontServlet?command=StaffPlaceOrder">
+								<form id="js-search-customer-form">
+
 								  <div class="form-group">
 								    
-								    <input type="text" class="form-control" id="InputFirstName" placeholder="First Name">
+								    <input type="text" class="form-control" name="s_email" id="s_email" placeholder="Email">
 								  </div>
-								  <div class="form-group">
-								    
-								    <input type="text" class="form-control" id="InputLastName" placeholder="Last Name">
-								  </div>
-								  <div class="form-group">
-								    
-								    <input type="text" class="form-control" id="InputEmail" placeholder="Email">
-								  </div>
-								  <a role="button" class="btn btn-primary"
-								  	href="frontServlet?command=StaffSearchCustomer">Search</a>								
-								<hr>
-	
-								  <div class="form-row">
-								    <div class="col-6">
-								      <input type="text" class="form-control" placeholder="Title">
-								    </div>
-								    <div class="col-6">
-								      <input type="text" class="form-control" placeholder="Identity Type">
-								    </div>
-								  </div>
-								  <div class="form-row">
-								    <div class="col">
-								      <input type="text" class="form-control" placeholder="Identity Number">
-								    </div>
-								    <div class="col">
-								      <input type="text" class="form-control" placeholder="Mobile Number">
-								    </div>
-								  </div>
-								  <div class="form-row">
-								    <div class="col-12">
-										<button type="submit" class="btn btn-primary">Next</button>    
-										<button type="button" class="btn btn-primary btn-secondary"
-											onclick="javascript:window.location='frontServlet?command=StaffIndex'">Cancel</button>  
-								    </div>
+								  <button type="button" class="btn btn-primary js-search-customer">Search</button>								
+									
+									<div class="back-value" style="display:none;">
+									<hr>
+									  <div class="form-group">
+									    <input type="text" class="form-control back-input" name="s_customer_id" id="customerId" placeholder="Customer ID">
+									  </div>
+									  <div class="form-group">						    
+									    <input type="text" class="form-control back-input" name="s_first_name" id="firstname" placeholder="First Name">
+									  </div>
+									  <div class="form-group">
+									    <input type="text" class="form-control back-input" name="s_last_name" id="lastname" placeholder="Last Name">
+									  </div>
+									  <div class="form-group">
+									    <input type="text" class="form-control back-input" name="s_title" id="title" placeholder="Title">
+									  </div>
+									  <div class="form-group">
+									    <input type="text" class="form-control back-input" name="s_iden_type" id="identityType" placeholder="Identity Type">
+									  </div>
+									  <div class="form-group">
+									    <input type="text" class="form-control back-input" name="s_iden_num" id="identityNumber" placeholder="Identity Number">
+									  </div>
+									  <div class="form-group">
+									    <input type="text" class="form-control back-input" name="s_mob_num" id="number" placeholder="Mobile Number">
+									  </div>									 
+									  
+									  <div class="form-row">
+									    <div class="col-12">
+											<button type="button" class="btn btn-primary js-search-customer-next" style="display: none;">Next</button>    
+											<button type="button" class="btn btn-primary btn-secondary"
+												onclick="javascript:window.location='frontServlet?command=StaffIndex'">Cancel</button>  
+									    </div>
+									  </div>
 								  </div>
 								</form>			
 		  					<!-- EXSISTING CUSTOMER FORM END -->
@@ -160,16 +160,57 @@
         crossorigin="anonymous"></script>
         <script src="js/bootstrap.js"></script>
         <script type="text/javascript">
+        	var customerId;
 			$(()=>{
 				$(".js-create-customer").click(createCustomer);
 				$(".js-create-customer-next").click(redirectToOrderRooms);
+				$(".js-search-customer").click(searchCustomer);
+				$(".js-search-customer-next").click(redirectToOrderRooms);
 			});
 			function redirectToOrderRooms() {
 				let newUrl = "frontServlet?command=StaffOrderRooms&&customer_id="+customerId;
 				window.location = newUrl;
 			}
 
-			var customerId;
+			function searchCustomer() {
+				let email = $("#s_email").val();
+				
+        		$.ajax({
+        	        type: "GET",
+        	        url: "frontServlet",
+        	        async: false,
+        	        data:{
+        	        	email:email,
+        	        	command: "StaffSearchCustomer"
+        	        },
+        	        dataType: "json",
+        	        success: function (data) {
+        	        	console.log(data.customer);
+        	        	
+        	            $("#js-search-customer-form input.back-input").each((i,e)=>{
+        	            	let attributeName = $(e).attr("id");
+        	            	let original_text = data.customer[attributeName];
+        	            	//console.log(original_text);
+        	            	let new_text = $(e).attr("placeholder")+": "+original_text;
+        	            	console.log(new_text);
+        	            	$(e).val(new_text);
+        	            });
+        	                   	            
+        	            $(".back-value").show();
+        	            $("#js-search-customer-form input.back-input")
+        	            	.removeClass("form-control")
+        	            	.addClass("form-control-plaintext")
+        	            	.prop('readonly', true);
+        	            
+        	            $(".js-search-customer-next").show();
+        	            customerId = data.customer.customerId;
+        	        },
+        	        error: function (jqXHR, textStatus, errorThrown) {
+        	            alert("something going WRONG there.\n" +
+        	                "Caused by:" + textStatus);
+        	        }
+        	    });
+			}
 			
 			function createCustomer() {
 				let firstName = $("#c_first_name").val();
