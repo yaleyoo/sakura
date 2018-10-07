@@ -27,7 +27,7 @@ However, it will not interference the process.
 	- Customer has checked out, the order is completed.
 
 ## Test Senario
-### Part 2:
+### Part 2 (Feature A):
 > `Customer` can search for the available rooms based on his/her **check-in time** and **check-out time** and book the available room. After the order has been placed, `customer` can check his order in **user center**. In user center, `customer` can also cancel his order in **at least 2 days advance**.
 
 1. Enter [Sakura Hotel Index Page](https://www.yaleyoo.com/Sakura)
@@ -54,7 +54,7 @@ In this step, check-out-time should after the check-in-time, also check-in-time 
 11. If an order has been successfully cancelled, when you check it in the user center, its status should be **cancel**.
 ![](https://s1.ax1x.com/2018/10/06/i8oAR1.png)
 
-### Part 3
+### Part 3 (Feature B)
 > - Staff
 	- Receptionist
 		`Receptionist` can help customer to place the order. `Receptionist` can also modify the information of **unfinished** history order.
