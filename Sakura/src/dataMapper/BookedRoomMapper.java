@@ -20,7 +20,7 @@ public class BookedRoomMapper extends DataMapper {
 	@Override
 	public boolean insert(DomainObject obj) {
 		BookedRoom br = (BookedRoom)obj;
-		String insertBookedRoom="INSERT INTO sakura.BookedRoom "
+		String insertBookedRoom="INSERT INTO fuhnw47e9sr8fzla.BookedRoom "
 				+ "(bookedRoomId, checkInTime, checkOutTime, roomId, orderId)"
 				+ " VALUES (?, ?, ?, ?, ?);";
 		int result = 0;
@@ -48,7 +48,7 @@ public class BookedRoomMapper extends DataMapper {
 	@Override
 	public boolean delete(DomainObject obj) {
 		BookedRoom br = (BookedRoom)obj;
-		String deleteBookedRoomById = "DELETE FROM sakura.BookedRoom WHERE bookedRoomId = ?";
+		String deleteBookedRoomById = "DELETE FROM fuhnw47e9sr8fzla.BookedRoom WHERE bookedRoomId = ?";
 		int result = 0;
 		try {
 			Connection conn = DBConnection.getConnection();
@@ -69,7 +69,7 @@ public class BookedRoomMapper extends DataMapper {
 	}
 	
 	public boolean deleteBookedRoomByOrderId(BookedRoom br) {
-		String deleteBookedRoomById = "DELETE FROM sakura.BookedRoom WHERE orderId = ?";
+		String deleteBookedRoomById = "DELETE FROM fuhnw47e9sr8fzla.BookedRoom WHERE orderId = ?";
 		int result = 0;
 		try {
 			Connection conn = DBConnection.getConnection();
@@ -92,7 +92,7 @@ public class BookedRoomMapper extends DataMapper {
 	@Override
 	public boolean update (DomainObject obj) {
 		BookedRoom br = (BookedRoom)obj;
-		String updateBookedRoomById = "UPDATE sakura.BookedRoom SET "
+		String updateBookedRoomById = "UPDATE fuhnw47e9sr8fzla.BookedRoom SET "
 				+ "checkInTime=?, checkOutTime=?, roomId=?, orderId=? "
 				+ " WHERE bookedRoomId=?";
 		int result = 0;
@@ -119,7 +119,7 @@ public class BookedRoomMapper extends DataMapper {
 	}
 	
 	public List<BookedRoom> findAllBookedRoom(){
-		String findAllBuilding = "SELECT * from sakura.BookedRoom";
+		String findAllBuilding = "SELECT * from fuhnw47e9sr8fzla.BookedRoom";
 		List<BookedRoom> result = new ArrayList<BookedRoom>();
 		try {
 			Connection conn = DBConnection.getConnection();
@@ -155,7 +155,7 @@ public class BookedRoomMapper extends DataMapper {
 	}
 	
 	public List<BookedRoom> findBookedRoomByRoomId(BookedRoom br){
-		String findBookedRoomByRoomId = "SELECT * from sakura.BookedRoom WHERE roomId=?";
+		String findBookedRoomByRoomId = "SELECT * from fuhnw47e9sr8fzla.BookedRoom WHERE roomId=?";
 		List<BookedRoom> result = new ArrayList<BookedRoom>();
 		try {
 			Connection conn = DBConnection.getConnection();
@@ -192,7 +192,7 @@ public class BookedRoomMapper extends DataMapper {
 	}
 	
 	public List<BookedRoom> findBookedRoomByOrderId(BookedRoom br){
-		String findBookedRoomByRoomId = "SELECT * from sakura.BookedRoom WHERE orderId=?";
+		String findBookedRoomByRoomId = "SELECT * from fuhnw47e9sr8fzla.BookedRoom WHERE orderId=?";
 		List<BookedRoom> result = new ArrayList<BookedRoom>();
 		try {
 			Connection conn = DBConnection.getConnection();

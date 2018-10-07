@@ -44,7 +44,7 @@ public class ExclusiveWriteLockManager implements LockManager {
 		
 		// if current session can take the lock
 		if (lockStatus == lock_can_take) {
-			String acquireSQL = "insert into sakura.Lock (Id, sessionId, tableName)"
+			String acquireSQL = "insert into fuhnw47e9sr8fzla.Lock (Id, sessionId, tableName)"
 					+ " values (?,?,?);"; 
 			Connection conn = DBConnection.getConnection();
 			PreparedStatement pStatement = (PreparedStatement) conn.prepareStatement(acquireSQL);
@@ -69,7 +69,7 @@ public class ExclusiveWriteLockManager implements LockManager {
 
 	@Override
 	public boolean releaseLock(String type, String id, String sessionId) throws Exception {
-		String releaseSQL = "delete from sakura.Lock where tableName=? AND Id=?"
+		String releaseSQL = "delete from fuhnw47e9sr8fzla.Lock where tableName=? AND Id=?"
 				+" AND sessionId=?";
 		Connection conn = DBConnection.getConnection();
 		PreparedStatement pStatement = (PreparedStatement) conn.prepareStatement(releaseSQL);
@@ -93,7 +93,7 @@ public class ExclusiveWriteLockManager implements LockManager {
 	 * @return
 	 */
 	private int hasLock(String type, String id, String sessionId) {
-		String hasLockSQL = "SELECT sessionId FROM sakura.Lock WHERE id =?" +
+		String hasLockSQL = "SELECT sessionId FROM fuhnw47e9sr8fzla.Lock WHERE id =?" +
 				"AND tableName=?";
 		int result = 0;
 		Connection conn;

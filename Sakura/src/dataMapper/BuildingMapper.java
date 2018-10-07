@@ -16,7 +16,7 @@ public class BuildingMapper extends DataMapper{
 	@Override
 	public boolean insert(DomainObject obj) {
 		Building building = (Building)obj;
-		String insertBuilding="INSERT INTO sakura.Building "
+		String insertBuilding="INSERT INTO fuhnw47e9sr8fzla.Building "
 				+ "(buildingId, address, buildingName)"
 				+ " VALUES (?, ?, ?);";
 		int result = 0;
@@ -42,7 +42,7 @@ public class BuildingMapper extends DataMapper{
 	@Override
 	public boolean delete(DomainObject obj) {
 		Building building = (Building)obj;
-		String deleteBuildingById = "DELETE FROM sakura.Building WHERE buildingId = ?";
+		String deleteBuildingById = "DELETE FROM fuhnw47e9sr8fzla.Building WHERE buildingId = ?";
 		int result = 0;
 		try {
 			Connection conn = DBConnection.getConnection();
@@ -65,7 +65,7 @@ public class BuildingMapper extends DataMapper{
 	@Override
 	public boolean update (DomainObject obj) {
 		Building building = (Building)obj;
-		String updateBuildingById = "UPDATE sakura.Building SET "
+		String updateBuildingById = "UPDATE fuhnw47e9sr8fzla.Building SET "
 				+ "address=?, buildingName=? "
 				+ " WHERE buildingId=?";
 		int result = 0;
@@ -90,7 +90,7 @@ public class BuildingMapper extends DataMapper{
 	}
 	
 	public List<Building> findBuildingById(Building building){
-		String findBuildingById = "SELECT * from sakura.Building WHERE buildingId = ?";
+		String findBuildingById = "SELECT * from fuhnw47e9sr8fzla.Building WHERE buildingId = ?";
 		List<Building> result = new ArrayList<Building>();
 		try {
 			Connection conn = DBConnection.getConnection();
@@ -119,7 +119,7 @@ public class BuildingMapper extends DataMapper{
 	}
 	
 	public List<Building> findAllBuilding(){
-		String findBuildingById = "SELECT * from sakura.Building";
+		String findBuildingById = "SELECT * from fuhnw47e9sr8fzla.Building";
 		List<Building> result = new ArrayList<Building>();
 		try {
 			Connection conn = DBConnection.getConnection();

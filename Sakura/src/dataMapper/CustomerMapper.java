@@ -17,7 +17,7 @@ public class CustomerMapper extends DataMapper{
 	@Override
 	public boolean insert(DomainObject obj) {
 		Customer customer = (Customer)obj;
-		String insertCustomer="INSERT INTO sakura.Customer "
+		String insertCustomer="INSERT INTO fuhnw47e9sr8fzla.Customer "
 				+ "(customerId, firstname, lastname, title, identityNumber, identityType, number, email)"
 				+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 		int result = 0;
@@ -48,7 +48,7 @@ public class CustomerMapper extends DataMapper{
 	@Override
 	public boolean delete(DomainObject obj) {
 		Customer customer = (Customer)obj;
-		String deleteCustomerById = "DELETE FROM sakura.Customer WHERE customerId = ?";
+		String deleteCustomerById = "DELETE FROM fuhnw47e9sr8fzla.Customer WHERE customerId = ?";
 		int result = 0;
 		try {
 			Connection conn = DBConnection.getConnection();
@@ -71,7 +71,7 @@ public class CustomerMapper extends DataMapper{
 	@Override
 	public boolean update (DomainObject obj) {
 		Customer customer = (Customer)obj;
-		String updateCustomerById = "UPDATE sakura.Customer SET "
+		String updateCustomerById = "UPDATE fuhnw47e9sr8fzla.Customer SET "
 				+ "firstname=?, lastname=?, title=?, identityNumber=?, identityType=?,"
 				+ " number=?, email=? WHERE customerId=?";
 		int result = 0;
@@ -101,7 +101,7 @@ public class CustomerMapper extends DataMapper{
 	}
 	
 	public List<Customer> findCustomerById(Customer customer){
-		String findCustomerById = "SELECT * from sakura.Customer WHERE customerId = ?";
+		String findCustomerById = "SELECT * from fuhnw47e9sr8fzla.Customer WHERE customerId = ?";
 		List<Customer> result = new ArrayList<Customer>();
 		try {
 			Connection conn = DBConnection.getConnection();
@@ -133,7 +133,7 @@ public class CustomerMapper extends DataMapper{
 	}
 	
 	public List<Customer> findCustomerByEmail(Customer customer){
-		String findCustomerById = "SELECT * from sakura.Customer WHERE email = ?";
+		String findCustomerById = "SELECT * from fuhnw47e9sr8fzla.Customer WHERE email = ?";
 		List<Customer> result = new ArrayList<Customer>();
 		try {
 			Connection conn = DBConnection.getConnection();

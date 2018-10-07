@@ -17,7 +17,7 @@ public class StaffMapper extends DataMapper{
 	@Override
 	public boolean insert(DomainObject obj) {
 		Staff staff = (Staff)obj;
-		String insertStaff="INSERT INTO sakura.Staff "
+		String insertStaff="INSERT INTO fuhnw47e9sr8fzla.Staff "
 				+ "(staffId, firstname, lastname, number, status, staffType)"
 				+ " VALUES (?, ?, ?, ?, ?, ?);";
 		int result = 0;
@@ -46,7 +46,7 @@ public class StaffMapper extends DataMapper{
 	@Override
 	public boolean delete(DomainObject obj) {
 		Staff staff = (Staff)obj;
-		String deleteStaffById = "DELETE FROM sakura.Staff WHERE staffId = ?";
+		String deleteStaffById = "DELETE FROM fuhnw47e9sr8fzla.Staff WHERE staffId = ?";
 		int result = 0;
 		try {
 			Connection conn = DBConnection.getConnection();
@@ -69,7 +69,7 @@ public class StaffMapper extends DataMapper{
 	@Override
 	public boolean update (DomainObject obj) {
 		Staff staff = (Staff)obj;
-		String updateStaffById = "UPDATE sakura.Staff SET "
+		String updateStaffById = "UPDATE fuhnw47e9sr8fzla.Staff SET "
 				+ "firstname=?, lastname=?, number=?, status=?, staffType=? "
 				+ "WHERE staffId=?";
 		int result = 0;
@@ -97,7 +97,7 @@ public class StaffMapper extends DataMapper{
 	}
 	
 	public List<Staff> findStaffById (Staff staff){
-		String findStaffById = "SELECT * FROM sakura.Staff WHERE staffId=?";
+		String findStaffById = "SELECT * FROM fuhnw47e9sr8fzla.Staff WHERE staffId=?";
 		List<Staff> result = new ArrayList<Staff>();
 		try {
 			Connection conn = DBConnection.getConnection();

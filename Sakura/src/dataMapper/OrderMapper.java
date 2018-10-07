@@ -20,7 +20,7 @@ public class OrderMapper extends DataMapper {
 	@Override
 	public boolean insert(DomainObject obj) {
 		Order order = (Order) obj;
-		String insertOrder="INSERT INTO sakura.Order "
+		String insertOrder="INSERT INTO fuhnw47e9sr8fzla.Order "
 				+ "(orderId, roomId, customerId, checkIn, checkOut, createTime, sum, status)"
 				+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 		int result = 0;
@@ -51,7 +51,7 @@ public class OrderMapper extends DataMapper {
 	@Override
 	public boolean delete(DomainObject obj) {
 		Order order = (Order) obj;
-		String deleteOrderById = "DELETE FROM sakura.Order WHERE orderId = ?";
+		String deleteOrderById = "DELETE FROM fuhnw47e9sr8fzla.Order WHERE orderId = ?";
 		int result = 0;
 		try {
 			Connection conn = DBConnection.getConnection();
@@ -74,7 +74,7 @@ public class OrderMapper extends DataMapper {
 	@Override
 	public boolean update (DomainObject obj) {
 		Order order = (Order)obj;
-		String updateOrderById = "UPDATE sakura.Order SET "
+		String updateOrderById = "UPDATE fuhnw47e9sr8fzla.Order SET "
 				+ "roomId=?, customerId=?, checkIn=?, checkOut=?, createTime=?, sum=?, status=? "
 				+ "WHERE orderId=?";
 		int result = 0;
@@ -104,7 +104,7 @@ public class OrderMapper extends DataMapper {
 	}
 	
 	public List<Order> findOrderByOrderId(Order order){
-		String findOrderByOrderId = "SELECT * from sakura.Order WHERE orderId = ?";
+		String findOrderByOrderId = "SELECT * from fuhnw47e9sr8fzla.Order WHERE orderId = ?";
 		List<Order> result = new ArrayList<Order>();
 		try {
 			Connection conn = DBConnection.getConnection();
@@ -150,7 +150,7 @@ public class OrderMapper extends DataMapper {
 	}
 	
 	public List<Order> findOrderByRoomId(Order order){
-		String findOrderByRoomId = "SELECT * from sakura.Order WHERE roomId = ?";
+		String findOrderByRoomId = "SELECT * from fuhnw47e9sr8fzla.Order WHERE roomId = ?";
 		List<Order> result = new ArrayList<Order>();
 		try {
 			Connection conn = DBConnection.getConnection();
@@ -196,7 +196,7 @@ public class OrderMapper extends DataMapper {
 	}
 	
 	public List<Order> findOrderByCustomerId(Order order){
-		String findOrderByCustomerId = "SELECT * from sakura.Order WHERE customerId = ?";
+		String findOrderByCustomerId = "SELECT * from fuhnw47e9sr8fzla.Order WHERE customerId = ?";
 		List<Order> result = new ArrayList<Order>();
 		try {
 			Connection conn = DBConnection.getConnection();
