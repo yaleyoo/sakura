@@ -11,6 +11,8 @@ import domain.Receptionist;
 public class AuthorisationProvider {
 	/**
 	 * Initialize the permission settings
+	 * Those settings can be finished in XML configure file, which can be 
+	 * improved in future.
 	 */
 	public static Map<String, Class[]> permission = new HashMap<String, Class[]>();
 	static {
@@ -69,6 +71,12 @@ public class AuthorisationProvider {
 
 	}
 
+	/**
+	 * based on logged user and type of command to check authorisation
+	 * @param attribute 'command' in the request 
+	 * @param attribute 'loggedUser' saved in session  
+	 * @return
+	 */
 	public static boolean checkAuthorisation(String command, Object user) {
 		Class userClass = null;
 		if (user != null)

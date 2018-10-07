@@ -12,16 +12,27 @@ import domain.Staff;
 import service.CustomerService;
 import service.StaffService;
 
+/**
+ * A class for authentication check
+ * @author steve
+ *
+ */
 public class AuthenticationEnforcer {
 
+	/**
+	 * check authentication based on the attribute 'loggedUser' saved in session
+	 * @param request
+	 * @return
+	 */
 	public static boolean checkAuthentication(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		Object user = session.getAttribute("loggedUser");
-		// if haven't logged in, check authorisation
+		// if haven't logged in, check authorisation, some actions doesn't required login
 		if (user == null) {
 			return AuthorisationEnforcer.checkAuthorisation(request);
 		}
 		
+		// check customer's authentication
 		if (user.getClass() == Customer.class) {
 			CustomerService cs = new CustomerService();
 			// if is already validated list
@@ -40,6 +51,7 @@ public class AuthenticationEnforcer {
 			}
 		}
 		
+		// check Manager's authentication authentication
 		else if (user.getClass() == Manager.class) {
 			StaffService ss = new StaffService();
 			// if is already validated list
@@ -59,6 +71,7 @@ public class AuthenticationEnforcer {
 			}
 		}
 		
+		// check Receptionist's authentication authentication
 		else if (user.getClass() == Receptionist.class) {
 			StaffService ss = new StaffService();
 			// if is already validated list
@@ -77,6 +90,8 @@ public class AuthenticationEnforcer {
 				return false;
 			}
 		}
+		
+		// if the data saved in session doesn't match any of those class, return false
 		else {
 			return false;
 		}

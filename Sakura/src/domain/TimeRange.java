@@ -3,6 +3,10 @@ package domain;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * This class is embedded value for order object and bookedroom object 
+ *
+ */
 public class TimeRange extends DomainObject implements Serializable{
 	/**
 	 * 

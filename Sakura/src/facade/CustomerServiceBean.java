@@ -4,7 +4,9 @@ import dataMapper.CustomerMapper;
 import domain.Customer;
 import domain.CustomerAssembler;
 import domain.CustomerDTO;
-
+/**
+ * a class for remote invoke
+ */
 public class CustomerServiceBean {
 
 	public CustomerDTO getCustomer(int id) {

@@ -7,6 +7,11 @@ import domain.Customer;
 
 public class OrderIdGenerator {
 
+	/**
+	 * Based on customer's information generate an unique orderId.
+	 * @param customer
+	 * @return an unique orderId
+	 */
 	public static long getOrderId(Customer customer) {
 		SimpleDateFormat sdf =   new SimpleDateFormat("yyMMddHHmmss");
 		Date current = new Date();

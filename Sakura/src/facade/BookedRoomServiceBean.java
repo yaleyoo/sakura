@@ -5,6 +5,9 @@ import domain.BookedRoom;
 import domain.BookedRoomAssembler;
 import domain.BookedRoomDTO;
 
+/**
+ * a class for remote invoke
+ */
 public class BookedRoomServiceBean {
 	
 	public BookedRoomDTO getBookedRoom(int id) {

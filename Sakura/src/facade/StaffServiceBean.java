@@ -3,7 +3,9 @@ package facade;
 import domain.Staff;
 import domain.StaffAssembler;
 import domain.StaffDTO;
-
+/**
+ * a class for remote invoke
+ */
 public class StaffServiceBean {
 	public StaffDTO getStaff(int id) {
 		Staff br = new Staff();

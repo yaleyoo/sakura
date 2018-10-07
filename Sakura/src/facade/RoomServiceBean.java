@@ -4,7 +4,9 @@ import dataMapper.RoomMapper;
 import domain.Room;
 import domain.RoomAssembler;
 import domain.RoomDTO;
-
+/**
+ * a class for remote invoke
+ */
 public class RoomServiceBean {
 	public RoomDTO getRoom(int id) {
 		Room br = new Room();

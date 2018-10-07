@@ -76,6 +76,11 @@ public class OrderDTO implements Serializable{
 		
 	}
 	
+	/**
+	 * convert from a string to orderDTO object
+	 * @param s
+	 * @return
+	 */
 	public static OrderDTO readString(String s) {
 		JSONObject json = JSONObject.fromObject(s);
 		return (OrderDTO) JSONObject.toBean(json, OrderDTO.class);

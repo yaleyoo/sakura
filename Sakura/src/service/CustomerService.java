@@ -13,6 +13,12 @@ public class CustomerService {
 		cm = new CustomerMapper();
 	}
 	
+	/**
+	 * insert customer information
+	 * @param customer - a customer object which need to be inserted into db
+	 * @param sessionId -  the id for the session who performs this insert
+	 * @return
+	 */
 	public boolean insertCustomer(Customer customer, String sessionId) {
 		UnitOfWork.newCurrent();
 		UnitOfWork.getCurrent().registerNew(customer);
@@ -20,6 +26,12 @@ public class CustomerService {
 		//return cm.insertCustomer(customer);
 	}
 	
+	/**
+	 * delete customer information
+	 * @param customer - a customer object which need to be deleted from db
+	 * @param sessionId -  the id for the session who performs this delete
+	 * @return
+	 */
 	public boolean deleteCustomer(Customer customer, String sessionId) {
 		UnitOfWork.newCurrent();
 		UnitOfWork.getCurrent().registerDeleted(customer);
@@ -27,6 +39,12 @@ public class CustomerService {
 		//return cm.deleteCustomer(customer);
 	}
 	
+	/**
+	 * update customer information
+	 * @param building - a updated customer object which need to be wrote into db
+	 * @param sessionId -  the id for the session who performs this update
+	 * @return
+	 */
 	public boolean updateCustomer(Customer customer, String sessionId) {
 		UnitOfWork.newCurrent();
 		UnitOfWork.getCurrent().registerDirty(customer);
@@ -34,6 +52,12 @@ public class CustomerService {
 		//return cm.updateCustomer(customer);
 	}
 	
+	/**
+	 * find customer by customerId, it would search the identity map first,
+	 * if not in identity map, search database
+	 * @param customer
+	 * @return a list of customer objects
+	 */
 	public List<Customer> findCustomer(Customer customer){
 		//search identity map first
 		utils.IdentityMap<Customer> identityMap = utils.IdentityMap.getInstance(customer);
@@ -48,6 +72,12 @@ public class CustomerService {
 		return cm.findCustomerById(customer);
 	}
 	
+	/**
+	 * find customer by email, it would search the identity map first,
+	 * if not in identity map, search database
+	 * @param customer
+	 * @return a list of customer objects
+	 */
 	public List<Customer> findCustomerByEmail(Customer customer){
 		//search identity map first
 		utils.IdentityMap<Customer> identityMap = utils.IdentityMap.getInstance(customer);

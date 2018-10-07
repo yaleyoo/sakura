@@ -19,10 +19,22 @@ public class RoomService {
 		brm = new BookedRoomMapper();
 	}
 	
+	/**
+	 * find all rooms
+	 * @return a list of room objects
+	 */
 	public List<Room> findAllRooms(){
 		return rm.findAllRoom();
 	}
 	
+	/**
+	 * Given the time period and the building id, find out all of the available rooms 
+	 * in this building.
+	 * @param checkInTime - the check in Date object
+	 * @param checkOutTime - the check out Date object
+	 * @param buildingId
+	 * @return a list of available rooms during this period in this building.
+	 */
 	public List<Room> findAvailableRooms(Date checkInTime, Date checkOutTime, int buildingId){
 		List<BookedRoom> allBookedRooms = brm.findAllBookedRoom();
 		// a list for unavailable room id
@@ -53,6 +65,12 @@ public class RoomService {
 		return availableRooms;
 	}
 	
+	/**
+	 * find room by roomId, it would search the identity map first,
+	 * if not in identity map, search database
+	 * @param room
+	 * @return a list of room objects
+	 */
 	public List<Room> findRoomById(Room room){
 		//search Identity Map first
 		utils.IdentityMap<Room> identityMap = utils.IdentityMap.getInstance(room);
@@ -66,30 +84,58 @@ public class RoomService {
 		return rm.findRoomById(room);
 	}
 	
+	/**
+	 * find room by buildingId
+	 * @param room
+	 * @return a list of room objects
+	 */
 	public List<Room> findRoomByBuildingId(Room room){
 		
 		return rm.findRoomByBuildingId(room);
 	}
 	
-	
+	/**
+	 * insert BookedRoom information
+	 * @param br - a bookedRoom object which need to be inserted into BookedRoom table
+	 * @param sessionId -  the id for the session who performs this insert
+	 * @return
+	 */
 	public boolean insertBookedRoom(BookedRoom br, String sessionId) {
 		UnitOfWork.newCurrent();
 		UnitOfWork.getCurrent().registerNew(br);
 		return UnitOfWork.getCurrent().commit(sessionId);
 	}
 	
+	/**
+	 * delete room information
+	 * @param room - a room object which need to be deleted from db
+	 * @param sessionId - the id for the session who performs this insert
+	 * @return
+	 */
 	public boolean deleteRoom(Room room, String sessionId) {
 		UnitOfWork.newCurrent();
 		UnitOfWork.getCurrent().registerDeleted(room);
 		return UnitOfWork.getCurrent().commit(sessionId);
 	}
 	
+	/**
+	 * insert Room information
+	 * @param room - a room object which need to be inserted into db
+	 * @param sessionId -  the id for the session who performs this insert
+	 * @return
+	 */
 	public boolean insertRoom(Room room, String sessionId) {
 		UnitOfWork.newCurrent();
 		UnitOfWork.getCurrent().registerNew(room);
 		return UnitOfWork.getCurrent().commit(sessionId);
 	}
 	
+	/**
+	 * update room information
+	 * @param room - a room object which need to be updated into db
+	 * @param sessionId - the id for the session who performs this insert
+	 * @return
+	 */
 	public boolean updateRoom(Room room, String sessionId) {
 		UnitOfWork.newCurrent();
 		UnitOfWork.getCurrent().registerDirty(room);

@@ -21,6 +21,12 @@ public class OrderService {
 		brm = new BookedRoomMapper();
 	}
 	
+	/**
+	 * insert order information
+	 * @param order - an order object which need to be wrote into db
+	 * @param sessionId - the id for the session who performs this update
+	 * @return
+	 */
 	public boolean insertOrder(Order order, String sessionId) {
 		boolean result = true;
 		
@@ -37,6 +43,13 @@ public class OrderService {
 		return result;
 	}
 	
+	/**
+	 * update a order information, set its status to 'cancel', 
+	 * and delete the relevant bookedRoom record.  
+	 * @param order - an order object which need to be canceled from db
+	 * @param sessionId - the id for the session who performs this cancel performance
+	 * @return
+	 */
 	public boolean cancelOrder(Order order, String sessionId) {
 		boolean result = true;
 		BookedRoom temp = new BookedRoom();
@@ -53,6 +66,12 @@ public class OrderService {
 		return result;
 	}
 	
+	/**
+	 * update order information
+	 * @param order - an order object which need to be update in db
+	 * @param sessionId - the id for the session who performs this update
+	 * @return
+	 */
 	public boolean updateOrder(Order order, String sessionId) {
 		BookedRoom temp = new BookedRoom();
 		temp.setOrderId(order.getOrderId());
@@ -70,6 +89,13 @@ public class OrderService {
 		return UnitOfWork.getCurrent().commit(sessionId);
 	}
 	
+	
+	/**
+	 * find building by buildingId, it would search the identity map first,
+	 * if not in identity map, search database
+	 * @param building
+	 * @return a list of building objects
+	 */
 	public List<Order> findOrder(Order order){
 		if (order.getOrderId() != 0) {
 			//search identity map first
@@ -92,6 +118,13 @@ public class OrderService {
 			return null;
 	}
 	
+	/**
+	 * Implemented for potential further usage. This function should not be invoked
+	 * for now.
+	 * @param order - an order object which need to be deleted in db
+	 * @param sessionId - the id for the session who performs this delete
+	 * @return
+	 */
 	public boolean deleteOrder(Order order, String sessionId) {
 		boolean result = true;
 		BookedRoom br = new BookedRoom();
@@ -105,8 +138,19 @@ public class OrderService {
 		return result;
 	}
 	
-	/*check the availability of the booked room, would only be 
-	  invoked by placeOrderCommand*/
+	/**
+	 * check the availability of the booked room, and if the room is available,
+	 * place the order, would only be invoked by placeOrderCommand.
+	 * --------------------------
+	 * Lock the records in table BookedRoom with given roomId when 
+	 * performing the search available rooms action.
+	 * --------------------------
+	 * And release the lock when the order has been placed (no matter success or not).
+	 * 
+	 * @param order
+	 * @param sessionId
+	 * @return
+	 */
 	public boolean validateOrder(Order order, String sessionId) {
 		LockManager lm = ExclusiveWriteLockManager.getInstance();
 		boolean result = false;

@@ -4,7 +4,9 @@ import dataMapper.OrderMapper;
 import domain.Order;
 import domain.OrderAssembler;
 import domain.OrderDTO;
-
+/**
+ * a class for remote invoke
+ */
 public class OrderServiceBean {
 
 	public OrderDTO getOrder(long id) {

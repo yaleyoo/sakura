@@ -20,6 +20,11 @@ public abstract class FrontCommand {
 		this.response = response;
 	}
 	
+	/**
+	 * Catch the exceptions. If exception occurs, return to the referer page.
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	protected void safeProcess() throws ServletException, IOException {
 		try {
 			process();

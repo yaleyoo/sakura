@@ -59,6 +59,11 @@ public class RoomDTO implements Serializable{
 		
 	}
 	
+	/**
+	 * convert a string into a roomDTO object
+	 * @param s
+	 * @return
+	 */
 	public static RoomDTO readString(String s) {
 		JSONObject json = JSONObject.fromObject(s);
 		return (RoomDTO) JSONObject.toBean(json, RoomDTO.class);

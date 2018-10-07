@@ -4,7 +4,9 @@ import dataMapper.BuildingMapper;
 import domain.Building;
 import domain.BuildingAssembler;
 import domain.BuildingDTO;
-
+/**
+ * a class for remote invoke
+ */
 public class BuildingServiceBean {
 	
 	public BuildingDTO getBuilding(int id) {

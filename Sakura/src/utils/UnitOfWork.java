@@ -14,38 +14,65 @@ public class UnitOfWork {
 	private List<DomainObject> dirtyObjects = new ArrayList<DomainObject>();
 	private List<DomainObject> deletedObjects = new ArrayList<DomainObject>();
 	
-
+/**
+ * create a new UnitOfWork instance in current thread
+ */
 public static void newCurrent() { 
 	setCurrent(new UnitOfWork());
 }
 
 @SuppressWarnings("unchecked")
+/**
+ * create set a UnitOfWork instance to current thread
+ * @param uow
+ */
 public static void setCurrent(UnitOfWork uow) { 
 	current.set(uow);
 }
 
+/**
+ * Get UnitOfWork instance in current thread
+ * @return
+ */
 public static UnitOfWork getCurrent() {
 	return (UnitOfWork) current.get();
 }
 
+/**
+ * register the domain object which need to be registered
+ * @param obj
+ */
 public void registerDirty(DomainObject obj) {
 	 if(!checkIfInList(obj)) {
 		 dirtyObjects.add(obj);
 	 }	 
 }
 
+/**
+ * register the domain object which need to be deleted
+ * @param obj
+ */
 public void registerDeleted(DomainObject obj) {
 	 if(!checkIfInList(obj)) {
 		 deletedObjects.add(obj);
 	 }	 
 }
 
+/**
+ * register the domain object which need to be created
+ * @param obj
+ */
 public void registerNew(DomainObject obj) {
 	 if(!checkIfInList(obj)) {
 		 newObjects.add(obj);
 	 }
 }
 
+/**
+ * check whether the domain object is in any of the object lists.
+ * @param obj
+ * @return
+ */
 public boolean checkIfInList(DomainObject obj) {
 	 if(dirtyObjects.contains(obj)) {
 		 return true;
@@ -59,6 +86,11 @@ public boolean checkIfInList(DomainObject obj) {
 	 return false;
 }
 
+/**
+ * execute the update
+ * @param sessionId
+ * @return
+ */
 public boolean commit(String sessionId) {
 	boolean addResult = true;
 	boolean updateResult = true;

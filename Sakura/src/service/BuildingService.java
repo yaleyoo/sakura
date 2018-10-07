@@ -15,10 +15,20 @@ public class BuildingService {
 		bm = new BuildingMapper();
 	}
 	
+	/**
+	 * find all buildings
+	 * @return a list of building objects
+	 */
 	public List<Building> getAllBuildings(){
 		return bm.findAllBuilding();
 	}
 	
+	/**
+	 * find building by buildingId, it would search the identity map first,
+	 * if not in identity map, search database
+	 * @param building
+	 * @return a list of building objects
+	 */
 	public List<Building> getBuildingById(Building building){
 		utils.IdentityMap<Building> identityMap = utils.IdentityMap.getInstance(building);
 		Building building_inMap = identityMap.get(building.getBuildingId());
@@ -30,7 +40,13 @@ public class BuildingService {
 		}
 		return bm.findBuildingById(building);
 	}
-	
+
+	/**
+	 * update building information
+	 * @param building - a updated building object which need to be wrote into db
+	 * @param sessionId -  the id for the session who performs this update
+	 * @return
+	 */
 	public boolean updateBuilding(Building building, String sessionId) {
 		UnitOfWork.newCurrent();
 		UnitOfWork.getCurrent().registerDirty(building);
@@ -38,6 +54,12 @@ public class BuildingService {
 		return UnitOfWork.getCurrent().commit(sessionId);
 	}
 	
+	/**
+	 * delete building information
+	 * @param building - a building object which need to be deleted from db
+	 * @param sessionId -  the id for the session who performs this delete
+	 * @return
+	 */
 	public boolean deleteBuilding(Building building, String sessionId) {
 		RoomMapper rm = new RoomMapper();
 		//find rooms in that building
@@ -56,6 +78,12 @@ public class BuildingService {
 		return UnitOfWork.getCurrent().commit(sessionId);
 	}
 	
+	/**
+	 * insert building information
+	 * @param building - a building object which need to be inserted into db
+	 * @param sessionId -  the id for the session who performs this insert
+	 * @return
+	 */
 	public boolean insertBuilding(Building building, String sessionId) {
 		UnitOfWork.newCurrent();
 		UnitOfWork.getCurrent().registerNew(building);

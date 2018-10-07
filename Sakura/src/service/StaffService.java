@@ -13,6 +13,11 @@ public class StaffService {
 		sm = new StaffMapper();
 	}
 	
+	/**
+	 * search for the staff object with specific staffId
+	 * @param staff - a staff object used for provide staffId
+	 * @return a list of staff object with specific staffId (typically size()==1)
+	 */
 	public List<Staff> findStaff(Staff staff){
 		//search identity map first
 		utils.IdentityMap<Staff> identityMap = utils.IdentityMap.getInstance(staff);

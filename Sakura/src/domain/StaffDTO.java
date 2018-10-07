@@ -60,6 +60,11 @@ public class StaffDTO implements Serializable{
 		
 	}
 	
+	/**
+	 * convert a string into a staffDTO object
+	 * @param s
+	 * @return
+	 */
 	public static StaffDTO readString(String s) {
 		JSONObject json = JSONObject.fromObject(s);
 		return (StaffDTO) JSONObject.toBean(json, StaffDTO.class);

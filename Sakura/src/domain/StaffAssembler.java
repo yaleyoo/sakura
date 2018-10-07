@@ -1,6 +1,11 @@
 package domain;
 
 public class StaffAssembler {
+	/**
+	 * write a staffDTO object based on a staff object
+	 * @param staff
+	 * @return
+	 */
 	public StaffDTO writeDTO(Staff staff) {
 		StaffDTO result = new StaffDTO();
 		result.setFirstname(staff.getFirstname());
