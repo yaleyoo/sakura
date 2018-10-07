@@ -41,8 +41,10 @@ However, it will not interference the process.
 	| 2018-11-06 10:00:00| 2018-11-08 17:00:00 |
 	
 	![](https://s1.ax1x.com/2018/10/06/i8IRPA.png)
+	
 6. Select the building in the building dropdown list. Click **Search** button, a list of the available rooms would be shown up.
 	![](https://s1.ax1x.com/2018/10/06/i8IW8I.png)
+	
 7. Select a room, click the **Book** button to place the order. The details about the order would shows up. (This step is authorisaiton required, you have to login first, otherwise, you would be redirect into a permissionDenied page.)
 	In this step, check-out-time should after the check-in-time, also check-in-time should be a future time. If those requirements are fail to meet, an error message would shows up.
 	![](https://s1.ax1x.com/2018/10/06/i8I5Kf.png)
