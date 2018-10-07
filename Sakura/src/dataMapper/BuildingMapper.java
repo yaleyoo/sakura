@@ -13,6 +13,11 @@ import utils.DBConnection;
 
 public class BuildingMapper extends DataMapper{
 
+	/**
+	 * function to insert record to table Building
+	 * @param Building obj
+	 * @return success or failed
+	 */
 	@Override
 	public boolean insert(DomainObject obj) {
 		Building building = (Building)obj;
@@ -39,6 +44,11 @@ public class BuildingMapper extends DataMapper{
 			return true;
 	}
 	
+	/**
+	 * function to delete record by buildingId from table Building
+	 * @param Building obj
+	 * @return success or failed
+	 */
 	@Override
 	public boolean delete(DomainObject obj) {
 		Building building = (Building)obj;
@@ -62,6 +72,11 @@ public class BuildingMapper extends DataMapper{
 			return true;
 	}
 	
+	/**
+	 * function to update record by buildingId to table Building
+	 * @param Building obj
+	 * @return success or failed
+	 */
 	@Override
 	public boolean update (DomainObject obj) {
 		Building building = (Building)obj;
@@ -89,6 +104,11 @@ public class BuildingMapper extends DataMapper{
 			return true;
 	}
 	
+	/**
+	 * function to find record by buildingId from table Building
+	 * @param Building obj
+	 * @return a list of building objects
+	 */
 	public List<Building> findBuildingById(Building building){
 		String findBuildingById = "SELECT * from fuhnw47e9sr8fzla.Building WHERE buildingId = ?";
 		List<Building> result = new ArrayList<Building>();
@@ -118,6 +138,10 @@ public class BuildingMapper extends DataMapper{
 		return result;
 	}
 	
+	/**
+	 * function to find all record from table Building
+	 * @return a list of building objects
+	 */
 	public List<Building> findAllBuilding(){
 		String findBuildingById = "SELECT * from fuhnw47e9sr8fzla.Building";
 		List<Building> result = new ArrayList<Building>();

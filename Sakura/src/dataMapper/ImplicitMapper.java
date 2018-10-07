@@ -4,6 +4,11 @@ import domain.DomainObject;
 import utils.ExclusiveWriteLockManager;
 import utils.LockManager;
 
+/**
+ * This class is used for implement the concurrency-safe datamappers
+ * @author steve
+ *
+ */
 public class ImplicitMapper extends DataMapper {
 	private DataMapper impl;
 	private LockManager lm;
@@ -17,10 +22,16 @@ public class ImplicitMapper extends DataMapper {
 		this.type = type;
 	}
 	
+	/**
+	 * insert function don't need to apply for the lock
+	 */
 	public boolean insert(DomainObject obj) {
 		return impl.insert(obj);
 	}
 	
+	/**
+	 * before update, apply for the lock
+	 */
 	public boolean update(DomainObject obj) {
 		try {
 			if (lm.acquireLock(type, obj.getId(), sessionId)) {
@@ -36,6 +47,9 @@ public class ImplicitMapper extends DataMapper {
 		return false;
 	}
 	
+	/**
+	 * before delete, apply for the lock
+	 */
 	public boolean delete (DomainObject obj) {
 		try {
 			if (lm.acquireLock(type, obj.getId(), sessionId)) {

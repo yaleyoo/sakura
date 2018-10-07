@@ -14,6 +14,11 @@ import utils.IdentityMap;
 
 public class CustomerMapper extends DataMapper{
 	
+	/**
+	 * function to insert record to table Customer
+	 * @param Customer obj
+	 * @return success or failed
+	 */
 	@Override
 	public boolean insert(DomainObject obj) {
 		Customer customer = (Customer)obj;
@@ -45,6 +50,11 @@ public class CustomerMapper extends DataMapper{
 			return true;
 	}
 	
+	/**
+	 * function to delete record by customerId from table Customer
+	 * @param Customer obj
+	 * @return success or failed
+	 */
 	@Override
 	public boolean delete(DomainObject obj) {
 		Customer customer = (Customer)obj;
@@ -68,6 +78,11 @@ public class CustomerMapper extends DataMapper{
 			return true;
 	}
 	
+	/**
+	 * function to update record by customerId in table Customer
+	 * @param Customer obj
+	 * @return success or failed
+	 */
 	@Override
 	public boolean update (DomainObject obj) {
 		Customer customer = (Customer)obj;
@@ -100,6 +115,11 @@ public class CustomerMapper extends DataMapper{
 			return true;
 	}
 	
+	/**
+	 * function to find record by customerId from table Customer
+	 * @param Customer obj
+	 * @return list of Customer objects
+	 */
 	public List<Customer> findCustomerById(Customer customer){
 		String findCustomerById = "SELECT * from fuhnw47e9sr8fzla.Customer WHERE customerId = ?";
 		List<Customer> result = new ArrayList<Customer>();
@@ -131,7 +151,12 @@ public class CustomerMapper extends DataMapper{
 		}
 		return result;
 	}
-	
+
+	/**
+	 * function to find record by email from table Customer
+	 * @param Customer obj
+	 * @return list of Customer objects
+	 */
 	public List<Customer> findCustomerByEmail(Customer customer){
 		String findCustomerById = "SELECT * from fuhnw47e9sr8fzla.Customer WHERE email = ?";
 		List<Customer> result = new ArrayList<Customer>();

@@ -2,6 +2,11 @@ package domain;
 
 public class BookedRoomAssembler {
 
+	/**
+	 * create a bookedRoom DTO based on a bookedRoom object
+	 * @param bookedRoom
+	 * @return
+	 */
 	public BookedRoomDTO writeDTO(BookedRoom bookedRoom) {
 		BookedRoomDTO result = new BookedRoomDTO();
 		result.setBookedRoomId(bookedRoom.getBookedRoomId());
@@ -12,7 +17,12 @@ public class BookedRoomAssembler {
 		return result;
 	}
 	
-	public void writeRoom(BookedRoomDTO bookedRoomDTO, BookedRoom bookedRoom) {
+	/**
+	 * fill the room property in bookRoomDTO
+	 * @param bookedRoomDTO
+	 * @param bookedRoom
+	 */
+	private void writeRoom(BookedRoomDTO bookedRoomDTO, BookedRoom bookedRoom) {
 		RoomDTO room = new RoomDTO();
 		room.setName(bookedRoom.getRoom().getName());
 		room.setPrice(bookedRoom.getRoom().getPrice());
@@ -23,8 +33,12 @@ public class BookedRoomAssembler {
 		bookedRoomDTO.setRoomDTO(room);
 		
 	}
-	
-	public void writeBuilding(RoomDTO bookedRoomDTO, Room room) {
+	/**
+	 * fill the building property in roomDTO
+	 * @param bookedRoomDTO
+	 * @param room
+	 */
+	private void writeBuilding(RoomDTO bookedRoomDTO, Room room) {
 		BuildingDTO building = new BuildingDTO();
 		building.setAddress(room.getBuilding().getAddress());
 		building.setBuildingId(room.getBuilding().getBuildingId());

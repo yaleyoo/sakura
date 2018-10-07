@@ -43,6 +43,11 @@ public class BuildingDTO implements Serializable{
 		
 	}
 	
+	/**
+	 * convert a string into a buildingDTO
+	 * @param s
+	 * @return buildingDTO
+	 */
 	public static BuildingDTO readString(String s) {
 		JSONObject json = JSONObject.fromObject(s);
 		return (BuildingDTO) JSONObject.toBean(json, BuildingDTO.class);

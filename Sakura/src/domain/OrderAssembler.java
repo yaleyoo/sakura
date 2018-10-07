@@ -2,6 +2,11 @@ package domain;
 
 public class OrderAssembler {
 
+	/**
+	 * 
+	 * @param order
+	 * @return
+	 */
 	public OrderDTO writeDTO(Order order) {
 		OrderDTO result = new OrderDTO();
 		result.setCreateTime(order.getCreateTime());
@@ -17,7 +22,7 @@ public class OrderAssembler {
 		return result;
 	}
 	
-	public void writeCustomerDTO(OrderDTO orderDTO, Order order) {
+	private void writeCustomerDTO(OrderDTO orderDTO, Order order) {
 		CustomerDTO customerDTO = new CustomerDTO();
 		Customer customer = order.getCustomer();
 		customerDTO.setCustomerId(customer.getCustomerId());
@@ -32,7 +37,7 @@ public class OrderAssembler {
 		orderDTO.setCustomer(customerDTO);
 	}
 	
-	public void writeRoomDTO(OrderDTO orderDTO, Order order) {
+	private void writeRoomDTO(OrderDTO orderDTO, Order order) {
 		RoomDTO roomDTO = new RoomDTO();
 		Room room = order.getRoom();
 		roomDTO.setName(room.getName());

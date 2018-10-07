@@ -2,16 +2,27 @@ package dataMapper;
 
 import domain.DomainObject;
 
-public class DataMapper {
-	public boolean insert(DomainObject object) {
-		return true;
-	}
+public abstract class DataMapper {
+	/**
+	 * an abstract function to perform insert action to database
+	 * @param object
+	 * @return
+	 */
+	public abstract boolean insert(DomainObject object);
 	
-	public boolean delete(DomainObject object) throws Exception {
-		return true;
-	}
+	/**
+	 * an abstract function to perform delete action by domainObject's id to database.
+	 * @param object
+	 * @return
+	 * @throws Exception
+	 */
+	public abstract boolean delete(DomainObject object) throws Exception;
 	
-	public boolean update(DomainObject object) throws Exception {
-		return true;
-	}
+	/**
+	 * an abstract function to perform update action by domainObject's id to database.
+	 * @param object
+	 * @return
+	 * @throws Exception
+	 */
+	public abstract boolean update(DomainObject object) throws Exception;
 }

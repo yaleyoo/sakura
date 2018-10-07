@@ -17,6 +17,11 @@ import utils.DBConnection;
 
 public class OrderMapper extends DataMapper {
 	
+	/**
+	 * function to insert record to table Order
+	 * @param Order obj
+	 * @return success or failed
+	 */
 	@Override
 	public boolean insert(DomainObject obj) {
 		Order order = (Order) obj;
@@ -48,6 +53,11 @@ public class OrderMapper extends DataMapper {
 			return true;
 	}
 
+	/**
+	 * function to delete record by orderId to table Order
+	 * @param Order obj
+	 * @return success or failed
+	 */
 	@Override
 	public boolean delete(DomainObject obj) {
 		Order order = (Order) obj;
@@ -71,6 +81,11 @@ public class OrderMapper extends DataMapper {
 			return true;
 	}
 	
+	/**
+	 * function to update record by orderId to table Order
+	 * @param Order obj
+	 * @return success or failed
+	 */
 	@Override
 	public boolean update (DomainObject obj) {
 		Order order = (Order)obj;
@@ -103,6 +118,11 @@ public class OrderMapper extends DataMapper {
 			return true;
 	}
 	
+	/**
+	 * function to find record by orderId from table Order
+	 * @param order
+	 * @return list of order objects
+	 */
 	public List<Order> findOrderByOrderId(Order order){
 		String findOrderByOrderId = "SELECT * from fuhnw47e9sr8fzla.Order WHERE orderId = ?";
 		List<Order> result = new ArrayList<Order>();
@@ -149,6 +169,11 @@ public class OrderMapper extends DataMapper {
 		return result;
 	}
 	
+	/**
+	 * function to find record by roomId from table Order
+	 * @param order
+	 * @return list of order objects
+	 */
 	public List<Order> findOrderByRoomId(Order order){
 		String findOrderByRoomId = "SELECT * from fuhnw47e9sr8fzla.Order WHERE roomId = ?";
 		List<Order> result = new ArrayList<Order>();
@@ -195,6 +220,11 @@ public class OrderMapper extends DataMapper {
 		return result;
 	}
 	
+	/**
+	 * function to find record by customerId from table Order
+	 * @param order
+	 * @return list of order objects
+	 */
 	public List<Order> findOrderByCustomerId(Order order){
 		String findOrderByCustomerId = "SELECT * from fuhnw47e9sr8fzla.Order WHERE customerId = ?";
 		List<Order> result = new ArrayList<Order>();

@@ -17,6 +17,11 @@ import utils.IdentityMap;
 
 public class BookedRoomMapper extends DataMapper {
 	
+	/**
+	 * function to insert record to table BookedRoom
+	 * @param BookedRoom obj
+	 * @return success or failed
+	 */
 	@Override
 	public boolean insert(DomainObject obj) {
 		BookedRoom br = (BookedRoom)obj;
@@ -45,6 +50,11 @@ public class BookedRoomMapper extends DataMapper {
 			return true;
 	}
 	
+	/**
+	 * function to delete record by bookedRoomId from table BookedRoom
+	 * @param BookedRoom obj
+	 * @return success or failed
+	 */
 	@Override
 	public boolean delete(DomainObject obj) {
 		BookedRoom br = (BookedRoom)obj;
@@ -68,6 +78,11 @@ public class BookedRoomMapper extends DataMapper {
 			return true;
 	}
 	
+	/**
+	 * function to delete record by orderId from table BookedRoom
+	 * @param BookedRoom obj
+	 * @return success or failed
+	 */
 	public boolean deleteBookedRoomByOrderId(BookedRoom br) {
 		String deleteBookedRoomById = "DELETE FROM fuhnw47e9sr8fzla.BookedRoom WHERE orderId = ?";
 		int result = 0;
@@ -89,6 +104,11 @@ public class BookedRoomMapper extends DataMapper {
 			return true;
 	}
 	
+	/**
+	 * function to update record by bookedRoomId from table BookedRoom
+	 * @param BookedRoom obj
+	 * @return success or failed
+	 */
 	@Override
 	public boolean update (DomainObject obj) {
 		BookedRoom br = (BookedRoom)obj;
@@ -118,6 +138,10 @@ public class BookedRoomMapper extends DataMapper {
 			return true;
 	}
 	
+	/**
+	 * function to find all booked room records
+	 * @return list of BookedRoom objects
+	 */
 	public List<BookedRoom> findAllBookedRoom(){
 		String findAllBuilding = "SELECT * from fuhnw47e9sr8fzla.BookedRoom";
 		List<BookedRoom> result = new ArrayList<BookedRoom>();
@@ -154,6 +178,11 @@ public class BookedRoomMapper extends DataMapper {
 		return result;
 	}
 	
+	/**
+	 * function to find record by RoomId from table BookedRoom
+	 * @param BookedRoom obj
+	 * @return list of BookedRoom objects
+	 */
 	public List<BookedRoom> findBookedRoomByRoomId(BookedRoom br){
 		String findBookedRoomByRoomId = "SELECT * from fuhnw47e9sr8fzla.BookedRoom WHERE roomId=?";
 		List<BookedRoom> result = new ArrayList<BookedRoom>();
@@ -191,6 +220,11 @@ public class BookedRoomMapper extends DataMapper {
 		return result;
 	}
 	
+	/**
+	 * function to find record by orderId from table BookedRoom
+	 * @param BookedRoom obj
+	 * @return list of BookedRoom objects
+	 */
 	public List<BookedRoom> findBookedRoomByOrderId(BookedRoom br){
 		String findBookedRoomByRoomId = "SELECT * from fuhnw47e9sr8fzla.BookedRoom WHERE orderId=?";
 		List<BookedRoom> result = new ArrayList<BookedRoom>();

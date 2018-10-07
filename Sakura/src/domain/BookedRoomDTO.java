@@ -51,6 +51,11 @@ public class BookedRoomDTO implements Serializable{
 		
 	}
 	
+	/**
+	 * convert a string to BookedRoomDTO object
+	 * @param a String which contain
+	 * @return BookedRoomDTO object
+	 */
 	public static BookedRoomDTO readString(String s) {
 		JSONObject json = JSONObject.fromObject(s);
 		return (BookedRoomDTO) JSONObject.toBean(json, BookedRoomDTO.class);

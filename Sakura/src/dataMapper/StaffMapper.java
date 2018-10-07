@@ -14,6 +14,11 @@ import utils.IdentityMap;
 
 public class StaffMapper extends DataMapper{
 
+	/**
+	 * function to insert record to table Staff
+	 * @param Staff obj
+	 * @return success or failed
+	 */
 	@Override
 	public boolean insert(DomainObject obj) {
 		Staff staff = (Staff)obj;
@@ -43,6 +48,11 @@ public class StaffMapper extends DataMapper{
 			return true;
 	}
 	
+	/**
+	 * function to delete record by staffId to table Staff
+	 * @param Staff obj
+	 * @return success or failed
+	 */
 	@Override
 	public boolean delete(DomainObject obj) {
 		Staff staff = (Staff)obj;
@@ -66,6 +76,11 @@ public class StaffMapper extends DataMapper{
 			return true;
 	}
 	
+	/**
+	 * function to update record by staffId to table Staff
+	 * @param Staff obj
+	 * @return success or failed
+	 */
 	@Override
 	public boolean update (DomainObject obj) {
 		Staff staff = (Staff)obj;
@@ -96,6 +111,11 @@ public class StaffMapper extends DataMapper{
 			return true;
 	}
 	
+	/**
+	 * find record by staffId from table Staff
+	 * @param staff
+	 * @return list of staff objects
+	 */
 	public List<Staff> findStaffById (Staff staff){
 		String findStaffById = "SELECT * FROM fuhnw47e9sr8fzla.Staff WHERE staffId=?";
 		List<Staff> result = new ArrayList<Staff>();

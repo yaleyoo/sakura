@@ -82,6 +82,11 @@ public class CustomerDTO implements Serializable{
 		
 	}
 	
+	/**
+	 * convert a string into a customerDTO object
+	 * @param s
+	 * @return
+	 */
 	public static CustomerDTO readString(String s) {
 		JSONObject json = JSONObject.fromObject(s);
 		return (CustomerDTO) JSONObject.toBean(json, CustomerDTO.class);

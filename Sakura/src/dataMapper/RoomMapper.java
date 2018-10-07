@@ -14,6 +14,11 @@ import utils.DBConnection;
 import utils.IdentityMap;
 
 public class RoomMapper extends DataMapper{
+	/**
+	 * function to insert record to table Room
+	 * @param Room obj
+	 * @return success or failed
+	 */
 	@Override
 	public boolean insert(DomainObject obj) {
 		Room room = (Room)obj;
@@ -42,6 +47,11 @@ public class RoomMapper extends DataMapper{
 			return true;
 	}
 	
+	/**
+	 * function to delete record by roomId to table Room
+	 * @param Room obj
+	 * @return success or failed
+	 */
 	@Override
 	public boolean delete(DomainObject obj) {
 		Room room = (Room)obj;
@@ -65,6 +75,11 @@ public class RoomMapper extends DataMapper{
 			return true;
 	}
 	
+	/**
+	 * function to update record by roomId to table Room
+	 * @param Room obj
+	 * @return success or failed
+	 */
 	@Override
 	public boolean update (DomainObject obj) {
 		Room room = (Room)obj;
@@ -94,6 +109,10 @@ public class RoomMapper extends DataMapper{
 			return true;
 	}
 	
+	/**
+	 * find all records from table Room
+	 * @return list of room objects
+	 */
 	public List<Room> findAllRoom(){
 		String findAllRoom = "SELECT * from fuhnw47e9sr8fzla.Room";
 		List<Room> result = new ArrayList<Room>();
@@ -129,6 +148,11 @@ public class RoomMapper extends DataMapper{
 		return result;
 	}
 	
+	/**
+	 * find record by roomId from table Room
+	 * @param room
+	 * @return list of room objects
+	 */
 	public List<Room> findRoomById(Room room){
 		String findRoomById = "SELECT * from fuhnw47e9sr8fzla.Room WHERE roomId = ?";
 		List<Room> result = new ArrayList<Room>();
@@ -164,6 +188,11 @@ public class RoomMapper extends DataMapper{
 		return result;
 	}
 	
+	/**
+	 * find record by type from table Room
+	 * @param room
+	 * @return list of room objects
+	 */
 	public List<Room> findRoomByType(Room room){
 		String findRoomByType = "SELECT * From fuhnw47e9sr8fzla.Room WHERE type = ?";
 		List<Room> result = new ArrayList<Room>();
@@ -199,6 +228,11 @@ public class RoomMapper extends DataMapper{
 		return result;
 	}
 	
+	/**
+	 * find record by buildingId from table Room
+	 * @param room
+	 * @return list of room objects
+	 */
 	public List<Room> findRoomByBuildingId(Room room){
 		String findRoomByBuildingId = "SELECT * from fuhnw47e9sr8fzla.Room WHERE buildingId = ?";
 		List<Room> result = new ArrayList<Room>();
