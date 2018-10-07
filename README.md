@@ -34,11 +34,12 @@ However, it will not interference the process.
 2. Click **Customer** button on the right-top coner to login as a customer.
 3. Click **Book a Room** button on the navibar or in the central of the page.
 4. You would be navigated to the page which listed all of the rooms.
-5. Fill the `Check In Time` and `Check Out Time` fields following the format:
-	`yyyy-MM-dd hh:mm:ss`. For instance:
+5. Fill the `Check In Time` and `Check Out Time` fields following the format:`yyyy-MM-dd hh:mm:ss`. For instance:
+
 	| Check In Date | Check Out Date | 
 	| -----------------|---------------------| 
 	| 2018-11-06 10:00:00| 2018-11-08 17:00:00 |
+	
 ![](https://s1.ax1x.com/2018/10/06/i8IRPA.png)
 6. Select the building in the building dropdown list. Click **Search** button, a list of the available rooms would be shown up.
 ![](https://s1.ax1x.com/2018/10/06/i8IW8I.png)
