@@ -27,22 +27,48 @@ public class DBConnection {
 			} catch (Exception e) {
 				throw e;
 			}
+			// set the connection to current thread
 			current.set(connection);
 			return connection;
 		}
+		// if current thread already have a connection, return existing one.
 		else
 			return current.get();
 	}
+	
+	/**
+	 * close statment
+	 * @param statement
+	 * @throws Exception
+	 */
 	public static void closeStatement(Statement statement) throws Exception {
 		statement.close();
 	}
+	
+	/**
+	 * close preparedStatement
+	 * @param pStatement
+	 * @throws Exception
+	 */
 	public static void closePreparedStatement(PreparedStatement pStatement)
 			throws Exception {
 		pStatement.close();
 	}
+	
+	/**
+	 * close resultSet
+	 * @param resultSet
+	 * @throws Exception
+	 */
 	public static void closeResultSet(ResultSet resultSet) throws Exception {
 		resultSet.close();
 	}
+	
+	/**
+	 * Close the connection, and clean the closed connection instance in current thread.
+	 * @param connection
+	 * @throws Exception
+	 */
 	public static void closeConnection(Connection connection) throws Exception {
 		current.set(null);
 		connection.close();
