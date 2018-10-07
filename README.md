@@ -28,7 +28,7 @@ However, it will not interference the process.
 
 ## Test Senario
 ### Part 2 (Feature A):
-> `Customer` can search for the available rooms based on his/her **check-in time** and **check-out time** and book the available room. After the order has been placed, `customer` can check his order in **user center**. In user center, `customer` can also cancel his order in **at least 2 days advance**.
+> `Customer` can search for the available rooms based on his/her **check-in time** and **check-out time** and book the available room. After the order has been placed, `customer` can check his order in **user center**. In user center, `customer` can also cancel his order **at least 2 days in advance**.
 
 1. Enter [Sakura Hotel Index Page](https://www.yaleyoo.com/Sakura)
 2. Click **Customer** button on the right-top coner to login as a customer.
